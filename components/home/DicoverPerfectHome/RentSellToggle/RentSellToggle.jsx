@@ -6,7 +6,7 @@ function RentSellToggle() {
   return (
     <div className="flex flex-row flex-wrap justify-center">
       {/* rent sell toggle buttons */}
-      <div className="w-full lg:w-3/12 p-2.5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12">
+      <div className="w-full lg:w-3/12 px-2.5 py-5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12">
         <ButtonMd className="bg-primary-700 border-primary-700 text-white hover:bg-primary-800 hover:border-primary-800  mr-2">
           Sell
         </ButtonMd>

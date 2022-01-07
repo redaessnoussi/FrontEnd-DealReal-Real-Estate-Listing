@@ -5,7 +5,7 @@
       color: $body;
       &.active {
         color: $title;
-        font-weight: theme("fontWeight.bold");
+        font-weight: theme("fontWeight.semibold");
         @media only screen and (min-width: theme("screens.md")) {
           &::after {
             content: "";

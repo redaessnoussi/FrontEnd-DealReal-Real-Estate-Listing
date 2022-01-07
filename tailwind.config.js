@@ -37,11 +37,10 @@ module.exports = {
         infield: {
           800: "#CCCCCC",
         },
+        star: {
+          800: "#FFC000",
+        },
       },
-    },
-    fontFamily: {
-      sans: ["Rubik", "sans-serif"],
-      serif: ["Rubik", "serif"],
     },
   },
   plugins: [],

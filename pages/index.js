@@ -10,6 +10,8 @@ import {
 } from "firebase/auth";
 // React Components
 import DicoverPerfectHome from "../components/home/DicoverPerfectHome/DicoverPerfectHome";
+import NewestListing from "../components/home/NewestListing/NewestListing";
+import ListingCategories from "../components/home/ListingCategories/ListingCategories";
 
 export default function Home() {
   return (
@@ -17,6 +19,10 @@ export default function Home() {
       <div className="container mx-auto px-7">
         {/* discover your perfect home */}
         <DicoverPerfectHome />
+        {/* newest listing */}
+        <NewestListing />
+        {/* listing categories*/}
+        <ListingCategories />
       </div>
     </>
   );
