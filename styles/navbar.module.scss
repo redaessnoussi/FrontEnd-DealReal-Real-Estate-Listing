@@ -1,0 +1,41 @@
+.navbar_top {
+  li {
+    position: relative;
+    a {
+      color: $body;
+      &.active {
+        color: $title;
+        font-weight: theme("fontWeight.bold");
+        @media only screen and (min-width: theme("screens.md")) {
+          &::after {
+            content: "";
+            position: absolute;
+            width: theme("width[3]");
+            height: theme("width[3]");
+            background-color: $primary-700;
+            border-radius: 9999px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 34px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: theme("screens.sm")) {
+  .navbar_top.hide {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.15s ease-out;
+  }
+  .navbar_top.show {
+    visibility: visible;
+    opacity: 1;
+    max-height: 350px;
+    transition: all 0.25s ease-in;
+  }
+}

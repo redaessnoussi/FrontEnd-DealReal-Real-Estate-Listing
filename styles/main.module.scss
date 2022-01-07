@@ -1,0 +1,6 @@
+$primary-700: theme("colors.primary.700");
+$title: theme("colors.title.800");
+$body: theme("colors.body.800");
+
+// Navbar
+@import "navbar.module.scss";

@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rubik Font Family */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+p.small {
+  font-size: 0.875em;
+}
+
+h1 {
+  font-size: calc(1.8rem + 1.5vw);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: calc(1.325rem + 0.9vw);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: calc(1.3rem + 0.6vw);
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: calc(1.275rem + 0.3vw);
+  line-height: 1.2;
+}
+
+h5 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.2;
+}
