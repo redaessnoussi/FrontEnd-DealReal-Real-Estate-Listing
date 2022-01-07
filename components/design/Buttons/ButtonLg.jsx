@@ -1,7 +1,7 @@
 function ButtonLg({ className, children }) {
   return (
     <button
-      className={`flex items-center border-2 px-8 rounded-lg h-12 ${className}`}
+      className={`flex items-center border-2 px-7 rounded-lg h-12 ${className}`}
     >
       {children}
     </button>

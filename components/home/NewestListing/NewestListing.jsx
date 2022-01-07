@@ -14,10 +14,10 @@ function NewestListing() {
           <span className="text-white">View All</span>
         </ButtonLg>
       </div>
-      <div className={`${style.row} gap-4 md:gap-x-2 justify-between`}>
+      <div className={`${style.row} justify-between`}>
         {/* listings cards */}
         {/* lisitng 1 */}
-        <div className="md:w-5/12 lg:w-2/12 flex-auto">
+        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
           <Card>
             <Image
               src="/images/grey.svg"
@@ -69,7 +69,7 @@ function NewestListing() {
           </Card>
         </div>
         {/* lisitng 2 */}
-        <div className="md:w-5/12 lg:w-2/12 flex-auto">
+        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
           <Card>
             <Image
               src="/images/grey.svg"
@@ -121,7 +121,7 @@ function NewestListing() {
           </Card>
         </div>
         {/* lisitng 3 */}
-        <div className="md:w-5/12 lg:w-2/12 flex-auto">
+        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
           <Card>
             <Image
               src="/images/grey.svg"
@@ -173,7 +173,7 @@ function NewestListing() {
           </Card>
         </div>
         {/* lisitng 4 */}
-        <div className="md:w-5/12 lg:w-2/12 flex-auto">
+        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
           <Card>
             <Image
               src="/images/grey.svg"
