@@ -39,3 +39,30 @@
     transition: all 0.25s ease-in;
   }
 }
+
+.list_inline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  li {
+    a {
+      &:hover {
+        color: theme("colors.infield.800");
+      }
+    }
+  }
+}
+
+.list_vertical {
+  li {
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    a {
+      &:hover {
+        color: theme("colors.infield.800");
+      }
+    }
+  }
+}

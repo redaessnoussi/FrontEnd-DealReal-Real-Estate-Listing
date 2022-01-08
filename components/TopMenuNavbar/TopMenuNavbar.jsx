@@ -23,7 +23,7 @@ function TopMenuNavbar() {
         {/* logo + burger menue */}
         <div className="flex flex-row md:w-3/12 lg:w-3/12 mb-4 md:mb-0">
           {/* brand name */}
-          <BrandName className="px-4 w-9/12 md:flex-1 md:w-auto" />
+          <BrandName className="px-4 w-9/12 md:flex-1 md:w-auto text-title-800" />
           {/* mobile menu switch */}
           <button
             className="w-3/12 text-center flex flex-row items-center justify-center md:hidden"
