@@ -73,7 +73,7 @@ function Footer() {
             </div>
           </div>
           {/* footer copyright */}
-          <div className={`${style.row} justify-between`}>
+          <div className={`${style.row} justify-between items-center`}>
             <ul className={`${style.list_inline} gap-x-8 gap-y-2 mb-5 `}>
               <li>
                 <a href="#">Home</a>
