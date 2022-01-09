@@ -66,3 +66,46 @@
     }
   }
 }
+
+.pagination {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  li:not(:first-child):not(:last-child) {
+    margin-right: theme("margin.3");
+    a {
+      border-radius: theme("borderRadius.lg");
+      padding: theme("padding.2") theme("padding.4");
+      display: block;
+      &:hover {
+        background-color: theme("colors.primary.700");
+        color: theme("colors.white");
+      }
+      &.active {
+        background-color: theme("colors.primary.700");
+        color: theme("colors.white");
+      }
+    }
+  }
+  li:first-child {
+    margin-right: theme("margin.3");
+    a {
+      border-radius: theme("borderRadius.lg");
+      padding: theme("padding.2") theme("padding.4");
+      display: block;
+      &:hover {
+        color: theme("colors.primary.700");
+      }
+    }
+  }
+  li:last-child {
+    a {
+      border-radius: theme("borderRadius.lg");
+      padding: theme("padding.2") theme("padding.4");
+      display: block;
+      &:hover {
+        color: theme("colors.primary.700");
+      }
+    }
+  }
+}

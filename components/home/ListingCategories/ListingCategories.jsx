@@ -37,7 +37,7 @@ function ListingCategories() {
           <ButtonMd
             className={`bg-white text-secondary-500 border-secondary-500 hover:text-white hover:bg-secondary-500 hover:border-secondary-500`}
           >
-            Villa
+            Appartement
           </ButtonMd>
         </div>
         {/* buttons 4 */}
@@ -49,13 +49,15 @@ function ListingCategories() {
           </ButtonMd>
         </div>
       </div>
-      <div className={`${style.row}  justify-between`}>
+      {/* listings cards */}
+      <div className={`${style.row} justify-between gap-y-4`}>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
           <CardCategories
             src={`/images/grey.svg`}
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
@@ -64,6 +66,7 @@ function ListingCategories() {
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
@@ -72,6 +75,7 @@ function ListingCategories() {
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
@@ -80,6 +84,7 @@ function ListingCategories() {
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
@@ -88,6 +93,7 @@ function ListingCategories() {
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
@@ -96,6 +102,7 @@ function ListingCategories() {
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
@@ -104,6 +111,7 @@ function ListingCategories() {
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
         <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
@@ -112,6 +120,7 @@ function ListingCategories() {
             title={`Grand Family House`}
             description={`Ohio St. South Gate, California`}
             price={`$350`}
+            category={`Appartement`}
           />
         </div>
       </div>

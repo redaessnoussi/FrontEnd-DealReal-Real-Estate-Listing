@@ -2,7 +2,14 @@ import Image from "next/image";
 import Card from "./Card";
 import style from "../../../styles/main.module.scss";
 
-function CardCategories({ className, title, src, description, price }) {
+function CardCategories({
+  className,
+  category,
+  title,
+  src,
+  description,
+  price,
+}) {
   return (
     <Card className={className}>
       <Image
@@ -13,8 +20,12 @@ function CardCategories({ className, title, src, description, price }) {
         alt="property"
         className="rounded-lg"
       ></Image>
+      {/* listing category */}
+      <div className="my-4 py-2 px-4 bg-primary-100 text-primary-700 rounded-lg w-fit">
+        {category}
+      </div>
       {/* listing title */}
-      <h5 className="text-title-800 mt-4 mb-2 font-bold">{title}</h5>
+      <h5 className="text-title-800 mb-2 font-bold">{title}</h5>
       {/* listing description */}
       <div className={`${style.row} items-center mb-2`}>
         <svg

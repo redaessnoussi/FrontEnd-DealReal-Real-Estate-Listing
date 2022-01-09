@@ -14,7 +14,7 @@ function Footer() {
           <div className={`${style.row} lg:mb-20 mb-10 justify-between`}>
             {/* section 1 */}
             <div className="lg:w-3/12 md:w-6/12 w-full mb-10 lg:mb-0">
-              <h2 className="mb-5">Make your home more modern</h2>
+              <h2 className="mb-5">Make Your Home More Modern</h2>
               <p>
                 Amet minim mollit non deserunt ullamco est sit aliqua dolor do
                 amet sint. Velit officia consequat duis enim
@@ -74,7 +74,7 @@ function Footer() {
           </div>
           {/* footer copyright */}
           <div className={`${style.row} justify-between items-center`}>
-            <ul className={`${style.list_inline} gap-x-8 gap-y-2 mb-5 `}>
+            <ul className={`${style.list_inline} gap-x-8 gap-y-2 mb-5 lg:mb-0`}>
               <li>
                 <a href="#">Home</a>
               </li>
