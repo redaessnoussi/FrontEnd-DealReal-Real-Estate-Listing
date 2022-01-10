@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Card from "./Card";
 import style from "../../../styles/main.module.scss";
+import Link from "next/link";
 
 function CardCategories({
   className,
@@ -10,6 +11,10 @@ function CardCategories({
   description,
   price,
 }) {
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <Card className={className}>
       <Image
@@ -18,16 +23,28 @@ function CardCategories({
         height="100%"
         layout="responsive"
         alt="property"
-        className="rounded-lg"
+        className="rounded-lg object-cover"
       ></Image>
       {/* listing category */}
-      <div className="my-4 py-2 px-4 bg-primary-100 text-primary-700 rounded-lg w-fit">
-        {category}
+      <div className="flex flex-wrap gap-2 my-4">
+        {JSON.parse(category).map((categories, key) => (
+          <div
+            className="py-2 px-4 bg-primary-100 text-primary-700 rounded-lg w-fit"
+            key={key}
+          >
+            {categories.name}
+          </div>
+        ))}
       </div>
+
       {/* listing title */}
-      <h5 className="text-title-800 mb-2 font-bold">{title}</h5>
+      <h5 className="text-title-800 mb-2 font-bold hover:underline">
+        <Link href="#">
+          <a>{title}</a>
+        </Link>
+      </h5>
       {/* listing description */}
-      <div className={`${style.row} items-center mb-2`}>
+      <div className={`flex flex-nowrap mb-2`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 text-primary-700 mr-1"
@@ -44,7 +61,12 @@ function CardCategories({
       </div>
       {/* listing price */}
       <div className={`${style.row} items-center justify-between`}>
-        <h5 className="text-title-800 font-bold">{price}</h5>
+        <h5 className="text-title-800 font-bold">
+          <div className="flex">
+            <span className="mr-2">د.إ</span>
+            {`${numberWithCommas(price)}`}
+          </div>
+        </h5>
         <ul className={`flex items-center`}>
           <li className="mr-1">
             <svg
