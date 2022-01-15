@@ -8,14 +8,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@googlemaps/react-wrapper": "^1.1.20",
     "@heroicons/react": "^1.0.5",
+    "@zeit/next-css": "^1.0.1",
     "axios": "^0.24.0",
+    "deck.gl": "^8.6.5",
     "firebase": "^9.6.1",
+    "google-api-wrapper": "^1.12.0",
+    "google-map-react": "^2.1.10",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-firebase-hooks": "^4.0.1",
     "react-icons": "^4.3.1",
+    "react-map-gl": "^6.1.18",
+    "react-spinners": "^0.11.0",
     "sass": "^1.45.2"
   },
   "devDependencies": {
@@ -23,6 +30,7 @@
     "eslint": "8.6.0",
     "eslint-config-next": "12.0.7",
     "postcss": "^8.4.5",
+    "react-loader-spinner": "^5.0.6",
     "tailwindcss": "^3.0.8"
   }
 }

@@ -10,7 +10,7 @@ function RentSellToggle({ className }) {
       }`}
     >
       {/* rent sell toggle buttons */}
-      <div className="w-full lg:w-3/12 px-2.5 py-5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12 text-center">
+      <div className="shadow-md w-full lg:w-3/12 px-2.5 py-5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12 text-center">
         <ButtonMd className="bg-primary-700 border-primary-700 text-white hover:bg-primary-800 hover:border-primary-800  mr-2">
           Sell
         </ButtonMd>
@@ -19,7 +19,7 @@ function RentSellToggle({ className }) {
         </ButtonMd>
       </div>
       {/* rent sell toggle inputs */}
-      <div className="bg-white w-full md:w-11/12 lg:w-10/12 p-5 md:rounded-lg rounded-tl-none rounded-tr-none rounded-bl-lg rounded-br-lg">
+      <div className="shadow-md bg-white w-full md:w-11/12 lg:w-10/12 p-5 md:rounded-lg rounded-tl-none rounded-tr-none rounded-bl-lg rounded-br-lg">
         <form className="flex flex-wrap flex-row items-end md:justify-center">
           {/* Location */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Card from "./Card";
 import style from "../../../styles/main.module.scss";
 import Link from "next/link";
+import { HiLocationMarker } from "react-icons/hi";
 
 function CardCategories({
   className,
@@ -44,20 +45,13 @@ function CardCategories({
         </Link>
       </h5>
       {/* listing description */}
-      <div className={`flex flex-nowrap mb-2`}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-primary-700 mr-1"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-            clipRule="evenodd"
-          />
-        </svg>
-        <p className="text-xs">{description}</p>
+      <div className={`flex flex-nowrap mb-2 items-center`}>
+        <div className="w-auto mr-2">
+          <HiLocationMarker className="text-primary-700 w-6 h-6" />
+        </div>
+        <div className="w-full">
+          <p className="text-xs">{description}</p>
+        </div>
       </div>
       {/* listing price */}
       <div className={`${style.row} items-center justify-between`}>

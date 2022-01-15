@@ -17,4 +17,6 @@ const listforSale = {
   },
 };
 
+// console.log(listforSale);
+
 export default listforSale;
