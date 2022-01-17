@@ -15,6 +15,8 @@ export default function Explore() {
 
   useEffect(() => {
     const fetchListforSale = async () => {
+      // listing items to show
+      listforSale.params.hitsPerPage = 16;
       axios.request(listforSale).then(function (response) {
         setListingforSale(response.data.hits);
       });
@@ -22,10 +24,6 @@ export default function Explore() {
 
     fetchListforSale();
   }, []);
-
-  // const ListingsCategories = `category= "hhhhh"`;
-
-  // console.log(listingforSale);
 
   return (
     <>

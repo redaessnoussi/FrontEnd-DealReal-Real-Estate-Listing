@@ -2,7 +2,7 @@ import style from "../../../styles/main.module.scss";
 import ButtonMd from "../../design/Buttons/ButtonMd";
 import CardCategories from "../../design/Card/CardCategories";
 
-function ListingCategories() {
+function ListingCategories({ listings }) {
   return (
     <div className="container lg:px-4 pb-24">
       <div className="text-center">
@@ -51,78 +51,17 @@ function ListingCategories() {
       </div>
       {/* listings cards */}
       <div className={`${style.row} justify-between gap-y-4`}>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
-        <div className="md:w-4/12 lg:w-3/12 w-full flex-initial">
-          <CardCategories
-            src={`/images/grey.svg`}
-            title={`Grand Family House`}
-            description={`Ohio St. South Gate, California`}
-            price={`$350`}
-            category={`Appartement`}
-          />
-        </div>
+        {listings?.map((listing, key) => (
+          <div className="md:w-4/12 lg:w-3/12 w-full flex-initial" key={key}>
+            <CardCategories
+              src={`${listing.coverPhoto.url}`}
+              title={`${listing.title}`}
+              description={`${listing.location.map((item) => ` ${item.name}`)}`}
+              price={`${listing.price}`}
+              category={`${JSON.stringify(listing.category)}`}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

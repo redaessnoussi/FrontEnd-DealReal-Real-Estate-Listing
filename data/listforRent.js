@@ -30,7 +30,7 @@ const listforSale = {
   url: "https://bayut.p.rapidapi.com/properties/list",
   params: {
     locationExternalIDs: "5002,6020",
-    purpose: "for-sale",
+    purpose: "for-rent",
     hitsPerPage: hitsPerPage,
     page: "0",
     lang: "en",

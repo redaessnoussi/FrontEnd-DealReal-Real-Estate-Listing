@@ -28,14 +28,9 @@ function CardCategories({
       ></Image>
       {/* listing category */}
       <div className="flex flex-wrap gap-2 my-4">
-        {JSON.parse(category).map((categories, key) => (
-          <div
-            className="py-2 px-4 bg-primary-100 text-primary-700 rounded-lg w-fit"
-            key={key}
-          >
-            {categories.name}
-          </div>
-        ))}
+        <div className="py-2 px-4 bg-primary-100 text-primary-700 rounded-lg w-fit">
+          {JSON.parse(category)[1].name}
+        </div>
       </div>
 
       {/* listing title */}
