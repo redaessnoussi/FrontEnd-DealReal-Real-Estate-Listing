@@ -40,11 +40,11 @@ export default function Explore() {
           <div className="bg-green-200 h-96 relative flex justify-center">
             <GoogleMap />
             <RentSellToggle
-              className={`absolute -bottom-14`}
+              className={`absolute -bottom-64 md:-bottom-14 lg:w-9/12 px-7`}
               rentSaleToggle={rentSaleToggle}
             />
           </div>
-          <div className="container mx-auto px-7 pb-24 pt-60">
+          <div className="container mx-auto px-7 pb-24 pt-96 md:pt-60">
             {/* listings cards */}
             <div className={`${style.row} justify-between gap-y-4`}>
               {listingforSale?.map((listing, key) => (

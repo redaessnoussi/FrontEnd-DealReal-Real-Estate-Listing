@@ -1,0 +1,24 @@
+.input_default {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-text-opacity: 1;
+  color: rgb(204 204 204 / var(--tw-text-opacity));
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(204 204 204 / var(--tw-border-opacity));
+  border-width: 2px;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 3rem;
+}
+
+.input_select {
+  @extend .input_default;
+  background-image: url("/images/download.svg");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

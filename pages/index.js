@@ -39,7 +39,6 @@ export default function Home() {
 
   // fetch api by default sale
   useEffect(() => {
-    console.log(rentSale);
     fetchlistingsAPI(rentSale);
   }, [rentSale]);
 

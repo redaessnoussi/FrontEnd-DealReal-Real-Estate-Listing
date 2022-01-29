@@ -1,5 +1,6 @@
 import ButtonMd from "../../../design/Buttons/ButtonMd";
 import ButtonLg from "../../../design/Buttons/ButtonLg";
+import style from "../../../../styles/main.module.scss";
 import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 
@@ -46,22 +47,20 @@ function RentSellToggle({ className, rentSaleToggle }) {
             <span className="block text-title-800 font-semibold mb-2 text-sm">
               Location
             </span>
-            <input
-              type="text"
-              className="h-12 border-infield-800 outline-none border-2 rounded-lg px-2 text-infield-800 w-full"
-              placeholder="$106 - $948"
-            />
+            <select className={style.input_select}>
+              <option value="dubai">Dubai</option>
+              <option value="abudabi">Abudabi</option>
+            </select>
           </label>
           {/* Type */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">
             <span className="block text-title-800 font-semibold mb-2 text-sm">
               Type
             </span>
-            <input
-              type="text"
-              className="h-12 border-infield-800 outline-none border-2 rounded-lg px-2 text-infield-800 w-full"
-              placeholder="$106 - $948"
-            />
+            <select className={style.input_select}>
+              <option value="dubai">Dubai</option>
+              <option value="abudabi">Abudabi</option>
+            </select>
           </label>
           {/* Range */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">
@@ -70,7 +69,7 @@ function RentSellToggle({ className, rentSaleToggle }) {
             </span>
             <input
               type="text"
-              className="h-12 border-infield-800 outline-none border-2 rounded-lg px-2 text-infield-800 w-full"
+              className={style.input_default}
               placeholder="$106 - $948"
             />
           </label>
