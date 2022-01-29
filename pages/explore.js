@@ -5,25 +5,33 @@ import RentSellToggle from "../components/home/DicoverPerfectHome/RentSellToggle
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import listforSale from "../data/listforSale";
+import listingsAPI from "../data/listingsAPI";
 import GoogleMap from "../components/googleMap/googleMap";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
 
 export default function Explore() {
   const [listingforSale, setListingforSale] = useState([]);
+  const [rentSale, setrentSale] = useState("for-sale");
   const fetched = listingforSale.length;
 
+  const rentSaleToggle = (data) => {
+    data.textContent === "Rent"
+      ? setrentSale("for-rent")
+      : setrentSale("for-sale");
+  };
+
   useEffect(() => {
-    const fetchListforSale = async () => {
+    const fetchlistingsAPI = async () => {
       // listing items to show
-      listforSale.params.hitsPerPage = 16;
-      axios.request(listforSale).then(function (response) {
+      listingsAPI.params.purpose = rentSale;
+      listingsAPI.params.hitsPerPage = 16;
+      axios.request(listingsAPI).then(function (response) {
         setListingforSale(response.data.hits);
       });
     };
 
-    fetchListforSale();
-  }, []);
+    fetchlistingsAPI(rentSale);
+  }, [rentSale]);
 
   return (
     <>
@@ -31,7 +39,10 @@ export default function Explore() {
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
             <GoogleMap />
-            <RentSellToggle className={`absolute -bottom-14`} />
+            <RentSellToggle
+              className={`absolute -bottom-14`}
+              rentSaleToggle={rentSaleToggle}
+            />
           </div>
           <div className="container mx-auto px-7 pb-24 pt-60">
             {/* listings cards */}

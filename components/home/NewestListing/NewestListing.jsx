@@ -9,7 +9,6 @@ function NewestListing({ listings }) {
   }
 
   return (
-    // md:py-10 lg:py-24 lg:px-4
     <div className="container lg:px-4 py-24">
       <div className={`${style.row} justify-between items-center mb-8`}>
         {/* headline */}
@@ -35,7 +34,7 @@ function NewestListing({ listings }) {
                     height="100%"
                     layout="responsive"
                     alt="property"
-                    className="rounded-lg"
+                    className="rounded-lg object-cover"
                   ></Image>
                   {/* listing title */}
                   <h5 className="text-title-800 mt-4 mb-2 font-bold">

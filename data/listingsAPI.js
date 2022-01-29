@@ -25,7 +25,7 @@
 const hitsPerPage = 0;
 const listingCategory = 0;
 
-const listforSale = {
+const listingsAPI = {
   method: "GET",
   url: "https://bayut.p.rapidapi.com/properties/list",
   params: {
@@ -34,7 +34,6 @@ const listforSale = {
     hitsPerPage: hitsPerPage,
     page: "0",
     lang: "en",
-    sort: "city-level-score",
     rentFrequency: "monthly",
     categoryExternalID: listingCategory,
   },
@@ -46,4 +45,4 @@ const listforSale = {
 
 // console.log(listforSale.params.hitsPerPage);
 
-export default listforSale;
+export default listingsAPI;
