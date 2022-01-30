@@ -27,6 +27,7 @@ export default function Explore() {
       listingsAPI.params.hitsPerPage = 16;
       axios.request(listingsAPI).then(function (response) {
         setListingforSale(response.data.hits);
+        console.log(response.data.hits);
       });
     };
 
@@ -38,7 +39,7 @@ export default function Explore() {
       {fetched !== 0 ? (
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
-            <GoogleMap />
+            <GoogleMap listingforSale={listingforSale} />
             <RentSellToggle
               className={`absolute -bottom-64 md:-bottom-14 lg:w-9/12 px-7`}
               rentSaleToggle={rentSaleToggle}
