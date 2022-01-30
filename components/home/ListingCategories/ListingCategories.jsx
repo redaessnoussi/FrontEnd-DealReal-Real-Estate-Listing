@@ -37,7 +37,7 @@ function ListingCategories({ listings }) {
           <ButtonMd
             className={`bg-white text-secondary-500 border-secondary-500 hover:text-white hover:bg-secondary-500 hover:border-secondary-500`}
           >
-            Appartement
+            Villa
           </ButtonMd>
         </div>
         {/* buttons 4 */}

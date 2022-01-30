@@ -8,13 +8,16 @@ import { useEffect, useState } from "react";
 import listingsAPI from "../data/listingsAPI";
 import GoogleMap from "../components/googleMap/googleMap";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
+import LoadingItems from "../components/design/LoadingItems/LoadingItems";
 
 export default function Explore() {
   const [listingforSale, setListingforSale] = useState([]);
   const [rentSale, setrentSale] = useState("for-sale");
+  const [loading, setLoading] = useState(false);
   const fetched = listingforSale.length;
 
   const rentSaleToggle = (data) => {
+    setLoading(false);
     data.textContent === "Rent"
       ? setrentSale("for-rent")
       : setrentSale("for-sale");
@@ -28,6 +31,7 @@ export default function Explore() {
       axios.request(listingsAPI).then(function (response) {
         setListingforSale(response.data.hits);
         console.log(response.data.hits);
+        setLoading(true);
       });
     };
 
@@ -48,22 +52,26 @@ export default function Explore() {
           <div className="container mx-auto px-7 pb-24 pt-96 md:pt-60">
             {/* listings cards */}
             <div className={`${style.row} justify-between gap-y-4`}>
-              {listingforSale?.map((listing, key) => (
-                <div
-                  className="md:w-4/12 lg:w-3/12 w-full h-full flex-initial"
-                  key={key}
-                >
-                  <CardCategories
-                    src={`${listing.coverPhoto.url}`}
-                    title={`${listing.title}`}
-                    description={`${listing.location.map(
-                      (item) => ` ${item.name}`
-                    )}`}
-                    price={`${listing.price}`}
-                    category={`${JSON.stringify(listing.category)}`}
-                  />
-                </div>
-              ))}
+              {loading ? (
+                listingforSale?.map((listing, key) => (
+                  <div
+                    className="md:w-4/12 lg:w-3/12 w-full h-full flex-initial"
+                    key={key}
+                  >
+                    <CardCategories
+                      src={`${listing.coverPhoto.url}`}
+                      title={`${listing.title}`}
+                      description={`${listing.location.map(
+                        (item) => ` ${item.name}`
+                      )}`}
+                      price={`${listing.price}`}
+                      category={`${JSON.stringify(listing.category)}`}
+                    />
+                  </div>
+                ))
+              ) : (
+                <LoadingItems />
+              )}
             </div>
 
             <div className={`${style.row} justify-center mt-20`}>

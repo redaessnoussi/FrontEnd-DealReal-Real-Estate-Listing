@@ -16,13 +16,16 @@ import { useEffect, useState } from "react";
 import listingsAPI from "../data/listingsAPI";
 import axios from "axios";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
+import LoadingItems from "../components/design/LoadingItems/LoadingItems";
 
 export default function Home() {
   const [listingforSale, setListingforSale] = useState([]);
   const [rentSale, setrentSale] = useState("for-sale");
+  const [loading, setLoading] = useState(false);
   const fetched = listingforSale.length;
 
   const rentSaleToggle = (data) => {
+    setLoading(false);
     data.textContent === "Rent"
       ? setrentSale("for-rent")
       : setrentSale("for-sale");
@@ -34,6 +37,7 @@ export default function Home() {
     listingsAPI.params.hitsPerPage = 8;
     axios.request(listingsAPI).then(function (response) {
       setListingforSale(response.data.hits);
+      setLoading(true);
     });
   };
 
@@ -49,9 +53,13 @@ export default function Home() {
           {/* discover your perfect home */}
           <DicoverPerfectHome rentSaleToggle={rentSaleToggle} />
           {/* newest listing */}
-          <NewestListing listings={listingforSale} />
+          {loading ? (
+            <NewestListing listings={listingforSale} />
+          ) : (
+            <LoadingItems />
+          )}
           {/* listing categories*/}
-          <ListingCategories listings={listingforSale} />
+          {loading && <ListingCategories listings={listingforSale} />}
         </div>
       ) : (
         <LoadingPage />
