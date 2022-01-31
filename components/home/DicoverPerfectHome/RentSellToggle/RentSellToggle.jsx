@@ -4,9 +4,10 @@ import style from "../../../../styles/main.module.scss";
 import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 
-function RentSellToggle({ className, rentSaleToggle }) {
+function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
   const [active, setactive] = useState(true);
   const [inactive, setinactive] = useState(true);
+  const [listingsType, setlistingsType] = useState("3");
   const activeClass =
     "bg-primary-700 border-primary-700 text-white hover:bg-primary-800 hover:border-primary-800";
   const inactiveClass =
@@ -19,6 +20,29 @@ function RentSellToggle({ className, rentSaleToggle }) {
       setinactive(!inactive);
     }
   };
+
+  const changeListingType = (val) => {
+    listingTypeChange(val);
+    setlistingsType(val);
+  };
+
+  const ListingTypes = () => (
+    <select
+      value={listingsType}
+      className={style.input_select}
+      onChange={(e) => changeListingType(e.target.value)}
+    >
+      <option value="3">Villas</option>
+      <option value="4">Apartment</option>
+      <option value="5">Office</option>
+      <option value="6">Shop</option>
+      <option value="7">Warehouse</option>
+      <option value="8">Factory</option>
+      <option value="9">Labour camp</option>
+      <option value="10">Commercial Building</option>
+      <option value="11">Other Commercial</option>
+    </select>
+  );
 
   return (
     <div
@@ -57,10 +81,7 @@ function RentSellToggle({ className, rentSaleToggle }) {
             <span className="block text-title-800 font-semibold mb-2 text-sm">
               Type
             </span>
-            <select className={style.input_select}>
-              <option value="dubai">Dubai</option>
-              <option value="abudabi">Abudabi</option>
-            </select>
+            <ListingTypes />
           </label>
           {/* Range */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">

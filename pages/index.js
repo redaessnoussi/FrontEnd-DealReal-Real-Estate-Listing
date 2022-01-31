@@ -22,6 +22,7 @@ export default function Home() {
   const [listingforSale, setListingforSale] = useState([]);
   const [rentSale, setrentSale] = useState("for-sale");
   const [loading, setLoading] = useState(false);
+  const [listingType, setlistingType] = useState("0");
   const fetched = listingforSale.length;
 
   const rentSaleToggle = (data) => {
@@ -31,9 +32,15 @@ export default function Home() {
       : setrentSale("for-sale");
   };
 
-  const fetchlistingsAPI = async (rentSale) => {
+  const listingTypeChange = (data) => {
+    console.log(data);
+    setlistingType(data);
+  };
+
+  const fetchlistingsAPI = async (rentSale, listingType) => {
     // listing items to show
     listingsAPI.params.purpose = rentSale;
+    listingsAPI.params.categoryExternalID = listingType;
     listingsAPI.params.hitsPerPage = 8;
     axios.request(listingsAPI).then(function (response) {
       setListingforSale(response.data.hits);
@@ -43,15 +50,18 @@ export default function Home() {
 
   // fetch api by default sale
   useEffect(() => {
-    fetchlistingsAPI(rentSale);
-  }, [rentSale]);
+    fetchlistingsAPI(rentSale, listingType);
+  }, [rentSale, listingType]);
 
   return (
     <>
       {fetched !== 0 ? (
         <div className="container mx-auto px-7">
           {/* discover your perfect home */}
-          <DicoverPerfectHome rentSaleToggle={rentSaleToggle} />
+          <DicoverPerfectHome
+            rentSaleToggle={rentSaleToggle}
+            listingTypeChange={listingTypeChange}
+          />
           {/* newest listing */}
           {loading ? (
             <NewestListing listings={listingforSale} />
