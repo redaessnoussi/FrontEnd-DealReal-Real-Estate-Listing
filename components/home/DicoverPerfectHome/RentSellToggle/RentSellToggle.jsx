@@ -21,8 +21,8 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
     }
   };
 
+  // change listing type value from combobox
   const changeListingType = (val) => {
-    listingTypeChange(val);
     setlistingsType(val);
   };
 
@@ -43,6 +43,11 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
       <option value="11">Other Commercial</option>
     </select>
   );
+
+  const searchListings = (e) => {
+    e.preventDefault();
+    listingTypeChange(listingsType);
+  };
 
   return (
     <div
@@ -65,7 +70,10 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
       </div>
       {/* rent sell toggle inputs */}
       <div className="shadow-md bg-white w-full md:w-11/12 lg:w-10/12 p-5 md:rounded-lg rounded-tl-none rounded-tr-none rounded-bl-lg rounded-br-lg">
-        <form className="flex flex-wrap flex-row items-end md:justify-center">
+        <form
+          className="flex flex-wrap flex-row items-end md:justify-center"
+          onSubmit={(e) => searchListings(e)}
+        >
           {/* Location */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">
             <span className="block text-title-800 font-semibold mb-2 text-sm">
