@@ -14,6 +14,7 @@ export default function Explore() {
   const [listingforSale, setListingforSale] = useState([]);
   const [rentSale, setrentSale] = useState("for-sale");
   const [loading, setLoading] = useState(false);
+  const [listingType, setlistingType] = useState("0");
   const fetched = listingforSale.length;
 
   const rentSaleToggle = (data) => {
@@ -23,20 +24,26 @@ export default function Explore() {
       : setrentSale("for-sale");
   };
 
-  useEffect(() => {
-    const fetchlistingsAPI = async () => {
-      // listing items to show
-      listingsAPI.params.purpose = rentSale;
-      listingsAPI.params.hitsPerPage = 16;
-      axios.request(listingsAPI).then(function (response) {
-        setListingforSale(response.data.hits);
-        console.log(response.data.hits);
-        setLoading(true);
-      });
-    };
+  const listingTypeChange = (data) => {
+    console.log(data);
+    setlistingType(data);
+  };
 
-    fetchlistingsAPI(rentSale);
-  }, [rentSale]);
+  const fetchlistingsAPI = async (rentSale, listingType) => {
+    // listing items to show
+    listingsAPI.params.purpose = rentSale;
+    listingsAPI.params.categoryExternalID = listingType;
+    listingsAPI.params.hitsPerPage = 16;
+    axios.request(listingsAPI).then(function (response) {
+      setListingforSale(response.data.hits);
+      setLoading(true);
+    });
+  };
+
+  // fetch api by default sale
+  useEffect(() => {
+    fetchlistingsAPI(rentSale, listingType);
+  }, [rentSale, listingType]);
 
   return (
     <>
@@ -44,9 +51,11 @@ export default function Explore() {
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
             <GoogleMap listingforSale={listingforSale} />
+            {/* Rent Sell Toggle */}
             <RentSellToggle
               className={`absolute -bottom-64 md:-bottom-14 lg:w-9/12 px-7`}
               rentSaleToggle={rentSaleToggle}
+              listingTypeChange={listingTypeChange}
             />
           </div>
           <div className="container mx-auto px-7 pb-24 pt-96 md:pt-60">
