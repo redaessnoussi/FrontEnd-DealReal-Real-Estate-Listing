@@ -51,7 +51,7 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
       }`}
     >
       {/* rent sell toggle buttons */}
-      <div className="flex justify-center shadow-md w-full lg:w-3/12 px-2.5 py-5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12 text-center">
+      <div className="flex justify-center shadow-md w-full lg:w-2/6 xl:w-3/12 px-2.5 py-5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12 text-center">
         <div className="w-auto relative" onClick={(e) => toggleClass(e.target)}>
           <ButtonMd className={`${active ? activeClass : inactiveClass} mr-2`}>
             Sell
