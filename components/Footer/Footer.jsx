@@ -13,7 +13,7 @@ function Footer() {
           {/* footer sections */}
           <div className={`${style.row} lg:mb-20 mb-10 justify-between`}>
             {/* section 1 */}
-            <div className="lg:w-3/12 md:w-6/12 w-full mb-10 lg:mb-0">
+            <div className="lg:w-3/12 md:w-5/12 w-full mb-10 lg:mb-0">
               <h2 className="mb-5">Make Your Home More Modern</h2>
               <p>
                 Amet minim mollit non deserunt ullamco est sit aliqua dolor do

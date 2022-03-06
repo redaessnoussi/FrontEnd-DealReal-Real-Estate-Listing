@@ -24,7 +24,7 @@ function NewestListing({ listings }) {
           (listing, key) =>
             key < 4 && (
               <div
-                className="md:w-4/12 lg:w-3/12 w-full flex-initial"
+                className="md:w-6/12 lg:w-3/12 w-full flex-initial"
                 key={key}
               >
                 <Card>

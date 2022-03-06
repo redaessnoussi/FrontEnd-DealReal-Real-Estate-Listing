@@ -52,7 +52,7 @@ function ListingCategories({ listings }) {
       {/* listings cards */}
       <div className={`${style.row} justify-between gap-y-4`}>
         {listings?.map((listing, key) => (
-          <div className="md:w-4/12 lg:w-3/12 w-full flex-initial" key={key}>
+          <div className="md:w-6/12 lg:w-3/12 w-full flex-initial" key={key}>
             <CardCategories
               src={`${listing.coverPhoto.url}`}
               title={`${listing.title}`}
