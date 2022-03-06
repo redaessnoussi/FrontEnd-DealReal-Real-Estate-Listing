@@ -17,6 +17,7 @@ import listingsAPI from "../data/listingsAPI";
 import axios from "axios";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
 import LoadingItems from "../components/design/LoadingItems/LoadingItems";
+import HelpYouFind from "../components/home/HelpYouFind/HelpYouFind";
 
 export default function Home() {
   const [listingforSale, setListingforSale] = useState([]);
@@ -68,6 +69,8 @@ export default function Home() {
           ) : (
             <LoadingItems />
           )}
+          {/* we help you find your dream house */}
+          <HelpYouFind />
           {/* listing categories*/}
           {loading && <ListingCategories listings={listingforSale} />}
         </div>
