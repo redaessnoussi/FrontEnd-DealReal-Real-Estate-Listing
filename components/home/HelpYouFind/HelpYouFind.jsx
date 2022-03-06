@@ -39,7 +39,7 @@ function HelpYouFind() {
           </h1>
           {/* house image */}
           <Image
-            src="/images/dream-house.png"
+            src="/images/dream-house.jpg"
             alt="Dream House"
             width={500}
             height={300}
