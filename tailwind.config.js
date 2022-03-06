@@ -35,7 +35,7 @@ module.exports = {
           800: "#6D6D6D",
         },
         infield: {
-          800: "#CCCCCC",
+          800: "#7c8fa4",
         },
         star: {
           800: "#FFC000",

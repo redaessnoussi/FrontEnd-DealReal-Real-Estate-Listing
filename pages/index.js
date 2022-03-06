@@ -18,6 +18,7 @@ import axios from "axios";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
 import LoadingItems from "../components/design/LoadingItems/LoadingItems";
 import HelpYouFind from "../components/home/HelpYouFind/HelpYouFind";
+import ContactUs from "../components/home/ContactUs/ContactUs";
 
 export default function Home() {
   const [listingforSale, setListingforSale] = useState([]);
@@ -57,23 +58,27 @@ export default function Home() {
   return (
     <>
       {fetched !== 0 ? (
-        <div className="container mx-auto px-7">
-          {/* discover your perfect home */}
-          <DicoverPerfectHome
-            rentSaleToggle={rentSaleToggle}
-            listingTypeChange={listingTypeChange}
-          />
-          {/* newest listing */}
-          {loading ? (
-            <NewestListing listings={listingforSale} />
-          ) : (
-            <LoadingItems />
-          )}
-          {/* we help you find your dream house */}
-          <HelpYouFind />
-          {/* listing categories*/}
-          {loading && <ListingCategories listings={listingforSale} />}
-        </div>
+        <>
+          <div className="container mx-auto px-7">
+            {/* discover your perfect home */}
+            <DicoverPerfectHome
+              rentSaleToggle={rentSaleToggle}
+              listingTypeChange={listingTypeChange}
+            />
+            {/* newest listing */}
+            {loading ? (
+              <NewestListing listings={listingforSale} />
+            ) : (
+              <LoadingItems />
+            )}
+            {/* we help you find your dream house */}
+            <HelpYouFind />
+            {/* listing categories*/}
+            {loading && <ListingCategories listings={listingforSale} />}
+          </div>
+          {/* contact us section */}
+          <ContactUs />
+        </>
       ) : (
         <LoadingPage />
       )}
