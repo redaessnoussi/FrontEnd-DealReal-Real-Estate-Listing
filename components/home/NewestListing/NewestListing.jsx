@@ -41,7 +41,7 @@ function NewestListing({ listings }) {
                     {`${listing.title}`}
                   </h5>
                   {/* listing description */}
-                  <div className={`${style.row} items-center mb-2`}>
+                  <div className={`flex items-center mb-2`}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 text-primary-700 mr-1"
@@ -54,9 +54,9 @@ function NewestListing({ listings }) {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <p className="text-xs">{`${listing.location.map(
-                      (item) => ` ${item.name}`
-                    )}`}</p>
+                    <p
+                      className={`${style.text_truncate} text-xs`}
+                    >{`${listing.location.map((item) => ` ${item.name}`)}`}</p>
                   </div>
                   {/* listing price */}
                   <div className={`${style.row} items-center justify-between`}>

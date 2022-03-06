@@ -3,7 +3,7 @@ import { ClipLoader } from "react-spinners";
 
 function LoadingPage() {
   return (
-    <div className="w-full flex flex-col justify-center items-center h-full absolute top-0 bg-white">
+    <div className="w-full flex flex-col justify-center items-center h-full absolute top-0 bg-white z-50">
       <ClipLoader size={150} color={`#27AD77`} />
     </div>
   );

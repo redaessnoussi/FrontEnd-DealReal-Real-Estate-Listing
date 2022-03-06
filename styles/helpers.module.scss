@@ -3,6 +3,14 @@
   flex-wrap: wrap;
 }
 
+.text_truncate {
+  letter-spacing: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
 .bg_hero {
   object-fit: cover;
   width: 100%;

@@ -40,13 +40,11 @@ function CardCategories({
         </Link>
       </h5>
       {/* listing description */}
-      <div className={`flex flex-nowrap mb-2 items-center`}>
+      <div className={`flex flex-nowrap mb-2`}>
         <div className="w-auto mr-2">
-          <HiLocationMarker className="text-primary-700 w-6 h-6" />
+          <HiLocationMarker className="text-primary-700 w-4 h-4" />
         </div>
-        <div className="w-full">
-          <p className="text-xs">{description}</p>
-        </div>
+        <p className={`${style.text_truncate} text-xs`}>{description}</p>
       </div>
       {/* listing price */}
       <div className={`${style.row} items-center justify-between`}>
