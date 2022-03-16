@@ -47,13 +47,13 @@ function AgencyList() {
           `}
         >
           {/* agency image  */}
-          <div className="w-full md:w-3/12 lg:w-3/12 mb-4 lg:mb-0">
+          <div className="w-full md:w-3/12 lg:w-auto mb-4 md:mb-0">
             <Image
               src={`${agency.agencyImage}`}
               alt="Agency Image"
               width={160}
-              height={172}
-              layout="responsive"
+              height={160}
+              layout="fixed"
               className="object-cover"
             />
           </div>
