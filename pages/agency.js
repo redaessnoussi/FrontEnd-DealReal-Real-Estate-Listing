@@ -3,24 +3,19 @@ import AgencyList from "../components/AgencyList/AgencyList";
 import style from "../styles/main.module.scss";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
+import HeroPage from "../components/HeroPage/HeroPage";
 
 function Agency() {
-  const HeroPage = () => (
-    <div className="bg-infield-800">
-      <div className="container lg:px-60 py-24 mx-auto text-center">
+  return (
+    <>
+      {/* hero section  */}
+      <HeroPage>
         <h1 className="text-white mb-8">Our Agencies List</h1>
         <p className="text-white">
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium
         </p>
-      </div>
-    </div>
-  );
-
-  return (
-    <>
-      {/* hero section  */}
-      <HeroPage />
+      </HeroPage>
       {/* agency list */}
       <div className="container mx-auto p-7">
         <div className={`${style.row} pt-10 lg:pt-24`}>
