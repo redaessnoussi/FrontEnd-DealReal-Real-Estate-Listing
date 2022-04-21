@@ -2,6 +2,7 @@ import Image from "next/image";
 import style from "../../../styles/main.module.scss";
 import ButtonLg from "../../design/Buttons/ButtonLg";
 import Card from "../../design/Card/Card";
+import Link from "next/link";
 
 function NewestListing({ listings }) {
   function numberWithCommas(x) {
@@ -37,8 +38,14 @@ function NewestListing({ listings }) {
                     className="rounded-lg object-cover"
                   ></Image>
                   {/* listing title */}
-                  <h5 className="text-title-800 mt-4 mb-2 font-bold">
-                    {`${listing.title}`}
+                  <h5
+                    className={`text-title-800 mb-2 mt-4 font-bold hover:underline ${style.text_truncate}`}
+                  >
+                    <Link href="#">
+                      <a
+                        className={`${style.stretched_link}`}
+                      >{`${listing.title}`}</a>
+                    </Link>
                   </h5>
                   {/* listing description */}
                   <div className={`flex items-center mb-2`}>
