@@ -7,8 +7,6 @@ function NavbarTop({ children, className }) {
   const pathname = useRouter().pathname;
   const [currentPage, SetcurrentPage] = useState(pathname);
 
-  // console.log(toggleMenuRef);
-
   const SetMenuItems = () => {
     const itemsHrefArrayLower = [];
     const itemsMenueArray = children.split(" ");
