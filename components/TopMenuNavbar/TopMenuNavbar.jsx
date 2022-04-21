@@ -4,6 +4,7 @@ import NavbarTop from "../design/Navbar/NavbarTop";
 import navbar from "../../styles/main.module.scss";
 import { useEffect, useState } from "react";
 import ButtonLg from "../design/Buttons/ButtonLg";
+import Link from "next/link";
 
 function TopMenuNavbar() {
   const [isActive, setActive] = useState(false);
@@ -57,7 +58,7 @@ function TopMenuNavbar() {
           />
           {/* add listing button */}
           <ButtonLg className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white">
-            Add Listing
+            <Link href="/add-listing">Add Listing</Link>
           </ButtonLg>
         </div>
       </div>
