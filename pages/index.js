@@ -18,7 +18,8 @@ import axios from "axios";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
 import LoadingItems from "../components/design/LoadingItems/LoadingItems";
 import HelpYouFind from "../components/home/HelpYouFind/HelpYouFind";
-import ContactUs from "../components/home/ContactUs/ContactUs";
+import HeroPage from "../components/HeroPage/HeroPage";
+import ButtonLg from "../components/design/Buttons/ButtonLg";
 
 export default function Home() {
   const [listingforSale, setListingforSale] = useState([]);
@@ -77,7 +78,15 @@ export default function Home() {
             {loading && <ListingCategories listings={listingforSale} />}
           </div>
           {/* contact us section */}
-          <ContactUs />
+          <HeroPage>
+            <h1 className="text-white mb-8">
+              Get Luxury And Cheap Housing And Guaranteed Forever
+            </h1>
+            <ButtonLg className="border-secondary-500 bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 mx-auto">
+              <span className="text-white">Contact Now</span>
+            </ButtonLg>
+          </HeroPage>
+          {/* <ContactUs /> */}
         </>
       ) : (
         <LoadingPage />
