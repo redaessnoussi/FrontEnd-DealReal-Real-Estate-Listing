@@ -1,5 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import listingsAPI from "../data/listingsAPI";
 import firebaseProvider from "../firebase/firebase";
 // Firebase Auth
 import {
@@ -12,9 +14,6 @@ import {
 import DicoverPerfectHome from "../components/home/DicoverPerfectHome/DicoverPerfectHome";
 import NewestListing from "../components/home/NewestListing/NewestListing";
 import ListingCategories from "../components/home/ListingCategories/ListingCategories";
-import { useEffect, useState } from "react";
-import listingsAPI from "../data/listingsAPI";
-import axios from "axios";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
 import LoadingItems from "../components/design/LoadingItems/LoadingItems";
 import HelpYouFind from "../components/home/HelpYouFind/HelpYouFind";
@@ -58,6 +57,10 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Deal Real - Homepage</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       {fetched !== 0 ? (
         <>
           <div className="container mx-auto px-7">
