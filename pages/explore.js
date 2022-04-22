@@ -9,6 +9,7 @@ import listingsAPI from "../data/listingsAPI";
 import GoogleMap from "../components/googleMap/googleMap";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
 import LoadingItems from "../components/design/LoadingItems/LoadingItems";
+import Head from "next/head";
 
 export default function Explore() {
   const [listingforSale, setListingforSale] = useState([]);
@@ -47,6 +48,10 @@ export default function Explore() {
 
   return (
     <>
+      <Head>
+        <title>Deal Real - Explore Listings</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       {fetched !== 0 ? (
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
