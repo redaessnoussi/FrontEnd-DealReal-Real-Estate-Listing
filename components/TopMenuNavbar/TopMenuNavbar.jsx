@@ -57,7 +57,10 @@ function TopMenuNavbar() {
             className="ml-5 md:ml-0 md:mr-5"
           />
           {/* add listing button */}
-          <ButtonLg className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white">
+          <ButtonLg
+            type={`button`}
+            className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white"
+          >
             <Link href="/add-listing">Add Listing</Link>
           </ButtonLg>
         </div>

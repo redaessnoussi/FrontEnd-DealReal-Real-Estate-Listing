@@ -2,7 +2,10 @@ import Image from "next/image";
 
 function AvatarButton({ src, className }) {
   return (
-    <button className={"flex flex-col justify-center p-2 " + className}>
+    <button
+      className={"flex flex-col justify-center p-2 " + className}
+      type="button"
+    >
       <Image
         src={src}
         width="56"

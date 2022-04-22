@@ -58,12 +58,18 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
       {/* rent sell toggle buttons */}
       <div className="flex justify-center shadow-md w-full lg:w-2/6 xl:w-3/12 px-2.5 py-5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12 text-center">
         <div className="w-auto relative" onClick={(e) => toggleClass(e.target)}>
-          <ButtonMd className={`${active ? activeClass : inactiveClass} mr-2`}>
+          <ButtonMd
+            type={`button`}
+            className={`${active ? activeClass : inactiveClass} mr-2`}
+          >
             Sell
           </ButtonMd>
         </div>
         <div className="w-auto relative" onClick={(e) => toggleClass(e.target)}>
-          <ButtonMd className={`${inactive ? inactiveClass : activeClass}`}>
+          <ButtonMd
+            type={`button`}
+            className={`${inactive ? inactiveClass : activeClass}`}
+          >
             Rent
           </ButtonMd>
         </div>
@@ -103,7 +109,10 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
             />
           </label>
           {/* Search Button */}
-          <ButtonLg className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white md:mb-0">
+          <ButtonLg
+            type={`submit`}
+            className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white md:mb-0"
+          >
             Search <FiSearch className="w-5 h-5 ml-2" />
           </ButtonLg>
         </form>

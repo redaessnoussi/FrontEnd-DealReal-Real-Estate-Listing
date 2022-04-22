@@ -77,7 +77,10 @@ function AgencyList() {
           </div>
           {/* view listing button */}
           <div className="w-full md:w-3/12 lg:w-auto">
-            <ButtonLg className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white md:mb-0">
+            <ButtonLg
+              type={`button`}
+              className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white md:mb-0"
+            >
               View listings
             </ButtonLg>
           </div>

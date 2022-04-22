@@ -204,7 +204,7 @@ function StepsSection({ steps }) {
           </div>
           {/* Next Button */}
           <div className={`flex justify-end`}>
-            <ButtonLg
+            <ButtonLg type={`button`}
               className={`bg-secondary-500 border-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 text-white`}
             >
               Next Step

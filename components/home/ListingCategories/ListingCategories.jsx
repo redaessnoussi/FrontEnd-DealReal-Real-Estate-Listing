@@ -19,6 +19,7 @@ function ListingCategories({ listings }) {
         {/* buttons 1 */}
         <div className="w-auto">
           <ButtonMd
+            type={`button`}
             className={`bg-secondary-500 border-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 text-white`}
           >
             All
@@ -27,6 +28,7 @@ function ListingCategories({ listings }) {
         {/* buttons 2 */}
         <div className="w-auto">
           <ButtonMd
+            type={`button`}
             className={`bg-white text-secondary-500 border-secondary-500 hover:text-white hover:bg-secondary-500 hover:border-secondary-500`}
           >
             Houses
@@ -35,6 +37,7 @@ function ListingCategories({ listings }) {
         {/* buttons 3 */}
         <div className="w-auto">
           <ButtonMd
+            type={`button`}
             className={`bg-white text-secondary-500 border-secondary-500 hover:text-white hover:bg-secondary-500 hover:border-secondary-500`}
           >
             Villa
@@ -43,6 +46,7 @@ function ListingCategories({ listings }) {
         {/* buttons 4 */}
         <div className="w-auto">
           <ButtonMd
+            type={`button`}
             className={`bg-white text-secondary-500 border-secondary-500 hover:text-white hover:bg-secondary-500 hover:border-secondary-500`}
           >
             Appartement
