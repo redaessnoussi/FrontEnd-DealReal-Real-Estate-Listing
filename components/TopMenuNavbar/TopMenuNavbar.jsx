@@ -27,6 +27,7 @@ function TopMenuNavbar() {
           <BrandName className="px-4 w-9/12 md:flex-1 md:w-auto text-title-800" />
           {/* mobile menu switch */}
           <button
+            type="button"
             className="w-3/12 text-center flex flex-row items-center justify-center md:hidden"
             onClick={toggleClass}
           >
