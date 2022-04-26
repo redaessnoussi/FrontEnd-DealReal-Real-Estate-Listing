@@ -1,15 +1,14 @@
 import Head from "next/head";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import listingsAPI from "../data/listingsAPI";
-import firebaseProvider from "../firebase/firebase";
+import { baseUrl, listingsAPI } from "../data/listingsAPI";
+// import firebaseProvider from "../firebase/firebase";
 // Firebase Auth
-import {
-  getAuth,
-  signInWithPopup,
-  signOut,
-  GoogleAuthProvider,
-} from "firebase/auth";
+// import {
+//   getAuth,
+//   signInWithPopup,
+//   signOut,
+//   GoogleAuthProvider,
+// } from "firebase/auth";
 // React Components
 import DicoverPerfectHome from "../components/home/DicoverPerfectHome/DicoverPerfectHome";
 import NewestListing from "../components/home/NewestListing/NewestListing";
@@ -20,12 +19,11 @@ import HelpYouFind from "../components/home/HelpYouFind/HelpYouFind";
 import HeroPage from "../components/HeroPage/HeroPage";
 import ButtonLg from "../components/design/Buttons/ButtonLg";
 
-export default function Home() {
-  const [listingforSale, setListingforSale] = useState([]);
+export default function Home({ propertyForSale, propertyForRent }) {
   const [rentSale, setrentSale] = useState("for-sale");
   const [loading, setLoading] = useState(false);
   const [listingType, setlistingType] = useState("0");
-  const fetched = listingforSale.length;
+  const [fetched, setfetched] = useState(propertyForSale.length);
 
   const rentSaleToggle = (data) => {
     setLoading(false);
@@ -35,25 +33,13 @@ export default function Home() {
   };
 
   const listingTypeChange = (data) => {
-    console.log(data);
     setlistingType(data);
   };
 
-  const fetchlistingsAPI = async (rentSale, listingType) => {
-    // listing items to show
-    listingsAPI.params.purpose = rentSale;
-    listingsAPI.params.categoryExternalID = listingType;
-    listingsAPI.params.hitsPerPage = 8;
-    axios.request(listingsAPI).then(function (response) {
-      setListingforSale(response.data.hits);
-      setLoading(true);
-    });
-  };
-
-  // fetch api by default sale
+  // set loading if data fetched
   useEffect(() => {
-    fetchlistingsAPI(rentSale, listingType);
-  }, [rentSale, listingType]);
+    fetched && setLoading(true);
+  }, [fetched, rentSale]);
 
   return (
     <>
@@ -71,14 +57,24 @@ export default function Home() {
             />
             {/* newest listing */}
             {loading ? (
-              <NewestListing listings={listingforSale} />
+              <NewestListing
+                listings={
+                  rentSale == "for-sale" ? propertyForSale : propertyForRent
+                }
+              />
             ) : (
               <LoadingItems />
             )}
             {/* we help you find your dream house */}
             <HelpYouFind />
             {/* listing categories*/}
-            {loading && <ListingCategories listings={listingforSale} />}
+            {loading && (
+              <ListingCategories
+                listings={
+                  rentSale == "for-sale" ? propertyForSale : propertyForRent
+                }
+              />
+            )}
           </div>
           {/* contact us section */}
           <HeroPage>
@@ -97,3 +93,19 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  const propertyForSale = await listingsAPI(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=8`
+  );
+  const propertyForRent = await listingsAPI(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=8`
+  );
+
+  return {
+    props: {
+      propertyForSale: propertyForSale?.hits,
+      propertyForRent: propertyForRent?.hits,
+    },
+  };
+};
