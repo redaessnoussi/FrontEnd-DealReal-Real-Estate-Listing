@@ -1,22 +1,20 @@
-import axios from "axios";
+import { baseUrl, listingsAPI } from "../data/listingsAPI";
 import CardCategories from "../components/design/Card/CardCategories";
 import style from "../styles/main.module.scss";
 import RentSellToggle from "../components/home/DicoverPerfectHome/RentSellToggle/RentSellToggle";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import listingsAPI from "../data/listingsAPI";
 import GoogleMap from "../components/googleMap/googleMap";
 import LoadingPage from "../components/design/LoadingPage/LoadingPage";
 import LoadingItems from "../components/design/LoadingItems/LoadingItems";
 import Head from "next/head";
 
-export default function Explore() {
-  const [listingforSale, setListingforSale] = useState([]);
+export default function Explore({ propertyForSale, propertyForRent }) {
   const [rentSale, setrentSale] = useState("for-sale");
   const [loading, setLoading] = useState(false);
   const [listingType, setlistingType] = useState("0");
-  const fetched = listingforSale.length;
+  const [fetched, setfetched] = useState(propertyForSale.length);
 
   const rentSaleToggle = (data) => {
     setLoading(false);
@@ -26,25 +24,13 @@ export default function Explore() {
   };
 
   const listingTypeChange = (data) => {
-    console.log(data);
     setlistingType(data);
   };
 
-  const fetchlistingsAPI = async (rentSale, listingType) => {
-    // listing items to show
-    listingsAPI.params.purpose = rentSale;
-    listingsAPI.params.categoryExternalID = listingType;
-    listingsAPI.params.hitsPerPage = 16;
-    axios.request(listingsAPI).then(function (response) {
-      setListingforSale(response.data.hits);
-      setLoading(true);
-    });
-  };
-
-  // fetch api by default sale
+  // set loading if data fetched
   useEffect(() => {
-    fetchlistingsAPI(rentSale, listingType);
-  }, [rentSale, listingType]);
+    fetched && setLoading(true);
+  }, [fetched, rentSale]);
 
   return (
     <>
@@ -55,7 +41,11 @@ export default function Explore() {
       {fetched !== 0 ? (
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
-            <GoogleMap listingforSale={listingforSale} />
+            <GoogleMap
+              listingforSale={
+                rentSale == "for-sale" ? propertyForSale : propertyForRent
+              }
+            />
             {/* Rent Sell Toggle */}
             <RentSellToggle
               className={`absolute -bottom-64 md:-bottom-14 lg:w-9/12 px-7`}
@@ -67,7 +57,10 @@ export default function Explore() {
             {/* listings cards */}
             <div className={`${style.row} justify-between gap-y-4`}>
               {loading ? (
-                listingforSale?.map((listing, key) => (
+                (rentSale == "for-sale"
+                  ? propertyForSale
+                  : propertyForRent
+                ).map((listing, key) => (
                   <div
                     className="md:w-4/12 lg:w-3/12 w-full h-full flex-initial"
                     key={key}
@@ -127,3 +120,19 @@ export default function Explore() {
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  const propertyForSale = await listingsAPI(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=16`
+  );
+  const propertyForRent = await listingsAPI(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=16`
+  );
+
+  return {
+    props: {
+      propertyForSale: propertyForSale?.hits,
+      propertyForRent: propertyForRent?.hits,
+    },
+  };
+};
