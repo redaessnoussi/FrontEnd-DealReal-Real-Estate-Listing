@@ -27,6 +27,11 @@ function StepsSection({ steps }) {
     </>
   );
 
+  const rentalSetup = (type) => {
+    setrentalType(type);
+    setdropdown(!dropdown);
+  };
+
   return (
     <>
       {/* steps section */}
@@ -167,12 +172,12 @@ function StepsSection({ steps }) {
               </button>
               {dropdown && (
                 <ul className={`${style.dropdown_menu_end}`}>
-                  <li onClick={() => setrentalType("Monthly")}>
+                  <li onClick={() => rentalSetup("Monthly")}>
                     <a className={`${style.dropdown_item}`} role="button">
                       Monthly
                     </a>
                   </li>
-                  <li onClick={() => setrentalType("Yearly")}>
+                  <li onClick={() => rentalSetup("Yearly")}>
                     <a className={`${style.dropdown_item}`} role="button">
                       Yearly
                     </a>
@@ -204,7 +209,8 @@ function StepsSection({ steps }) {
           </div>
           {/* Next Button */}
           <div className={`flex justify-end`}>
-            <ButtonLg type={`button`}
+            <ButtonLg
+              type={`button`}
               className={`bg-secondary-500 border-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 text-white`}
             >
               Next Step
