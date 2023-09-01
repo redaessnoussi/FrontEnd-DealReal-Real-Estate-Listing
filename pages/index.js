@@ -1,14 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { baseUrl, listingsAPI } from "../data/listingsAPI";
-// import firebaseProvider from "../firebase/firebase";
-// Firebase Auth
-// import {
-//   getAuth,
-//   signInWithPopup,
-//   signOut,
-//   GoogleAuthProvider,
-// } from "firebase/auth";
 // React Components
 import DicoverPerfectHome from "../components/home/DicoverPerfectHome/DicoverPerfectHome";
 import NewestListing from "../components/home/NewestListing/NewestListing";
