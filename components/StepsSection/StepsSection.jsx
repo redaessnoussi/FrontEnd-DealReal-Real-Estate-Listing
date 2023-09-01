@@ -1,14 +1,15 @@
 import { useState } from "react";
-import style from "../../styles/main.module.scss";
-import ButtonLg from "../design/Buttons/ButtonLg";
+import UploadMedia from "../UploadMedia/UploadMedia";
+import LocationStep from "../LocationStep/LocationStep";
+import GeneralStep from "../GeneralStep/GeneralStep";
 
 function StepsSection({ steps }) {
   const stepsCount = steps.length;
+  const [currentStep, setCurrentStep] = useState(0);
   const [category, setcategory] = useState("");
-  const [status, setstatus] = useState("");
-  const [yearlyTax, setYearlyTax] = useState("");
-  const [rentalType, setrentalType] = useState("Monthly");
   const [dropdown, setdropdown] = useState(false);
+
+  console.log(currentStep);
 
   const Steps = ({ step, count }) => (
     <>
@@ -27,6 +28,11 @@ function StepsSection({ steps }) {
     </>
   );
 
+  // Function to move to the next step
+  const moveToNextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
   const rentalSetup = (type) => {
     setrentalType(type);
     setdropdown(!dropdown);
@@ -42,181 +48,20 @@ function StepsSection({ steps }) {
       </div>
       <div className="py-8 md:px-20">
         {/* General Section */}
-        <form>
-          {/* Property Title */}
-          <div className="mb-6">
-            <label
-              htmlFor="property-title"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Property Title
-            </label>
-            <input
-              type="text"
-              className={`block w-full ${style.input_default}`}
-              id="input-propertyTitle"
-              aria-describedby="propertyTitle"
-              placeholder="Add Listing Title"
-            />
-          </div>
-          {/* Property Description */}
-          <div className="mb-6">
-            <label
-              htmlFor="property-description"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Description
-            </label>
-            <textarea
-              placeholder="Add Description"
-              name="propertyDescription"
-              className={`block w-full ${style.input_textaria}`}
-              id="input-propertyDescription"
-              rows="5"
-            />
-          </div>
-          {/* Property Category */}
-          <div className="mb-6">
-            <label
-              htmlFor="property-description"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Category
-            </label>
-            <select
-              defaultValue={category}
-              onChange={(e) => setcategory(e.target.value)}
-              className={style.input_select}
-              aria-label="select property category"
-            >
-              <option value="" disabled>
-                Select property category
-              </option>
-              <option value="villa">Villa</option>
-              <option value="office">Office</option>
-            </select>
-          </div>
-          {/* Property Listed In */}
-          <div className="mb-6">
-            <label
-              htmlFor="property-listed"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Listed In
-            </label>
-            <input
-              type="text"
-              className={`block w-full ${style.input_default}`}
-              id="input-propertyListed"
-              aria-describedby="propertyListed"
-              placeholder=""
-            />
-          </div>
-          {/* Property Status */}
-          <div className="mb-6">
-            <label
-              htmlFor="property-description"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Property Status
-            </label>
-            <select
-              defaultValue={status}
-              onChange={(e) => setstatus(e.target.value)}
-              className={style.input_select}
-              aria-label="property status"
-            >
-              <option value="active">Active</option>
-              <option value="sold">Sold</option>
-            </select>
-          </div>
-          {/* Property Listed In */}
-          <div className="mb-6">
-            <label
-              htmlFor="salesPrice"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Property Sales Price
-            </label>
-            <input
-              type="text"
-              className={`block w-full ${style.input_default}`}
-              id="input-salesPrice"
-              aria-describedby="salesPrice"
-              placeholder="Add sales price"
-            />
-          </div>
-          {/* Property Rental Price */}
-          <div className="mb-6">
-            <label
-              htmlFor="rentalPrice"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Property Rental Price
-            </label>
-            <div className={`${style.input_group} mb-3`}>
-              <input
-                type="text"
-                className={`${style.form_control}`}
-                aria-label="Text input with dropdown button"
-                placeholder="Select property category"
-              />
-              <button
-                onClick={() => setdropdown(!dropdown)}
-                className={`${style.input_group_btn}`}
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {rentalType}
-              </button>
-              {dropdown && (
-                <ul className={`${style.dropdown_menu_end}`}>
-                  <li onClick={() => rentalSetup("Monthly")}>
-                    <a className={`${style.dropdown_item}`} role="button">
-                      Monthly
-                    </a>
-                  </li>
-                  <li onClick={() => rentalSetup("Yearly")}>
-                    <a className={`${style.dropdown_item}`} role="button">
-                      Yearly
-                    </a>
-                  </li>
-                </ul>
-              )}
-            </div>
-          </div>
-          {/* Property Status */}
-          <div className="mb-6">
-            <label
-              htmlFor="property-description"
-              className="mb-2 inline-block text-title-800 font-bold"
-            >
-              Yearly Tax Rate
-            </label>
-            <select
-              defaultValue={yearlyTax}
-              onChange={(e) => setYearlyTax(e.target.value)}
-              className={style.input_select}
-              aria-label="yearly tax rate"
-            >
-              <option value="" disabled>
-                Add property tax
-              </option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </select>
-          </div>
-          {/* Next Button */}
-          <div className={`flex justify-end`}>
-            <ButtonLg
-              type={`button`}
-              className={`bg-secondary-500 border-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 text-white`}
-            >
-              Next Step
-            </ButtonLg>
-          </div>
-        </form>
+        {currentStep === 0 && ( // Conditionally render Media section
+          <GeneralStep moveToNextStep={moveToNextStep} />
+        )}
+
+        {/* Media Section */}
+        {currentStep === 1 && ( // Conditionally render Media section
+          <UploadMedia moveToNextStep={moveToNextStep} />
+        )}
+
+        {/* Location Section */}
+
+        {currentStep === 2 && ( // Conditionally render Location section
+          <LocationStep moveToNextStep={moveToNextStep} />
+        )}
       </div>
     </>
   );
