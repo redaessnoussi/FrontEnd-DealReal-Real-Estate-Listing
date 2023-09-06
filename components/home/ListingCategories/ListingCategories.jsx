@@ -58,11 +58,11 @@ function ListingCategories({ listings }) {
         {listings?.map((listing, key) => (
           <div className="md:w-6/12 lg:w-3/12 w-full flex-initial" key={key}>
             <CardCategories
-              src={`${listing.coverPhoto.url}`}
-              title={`${listing.title}`}
-              description={`${listing.location.map((item) => ` ${item.name}`)}`}
-              price={`${listing.price}`}
-              category={`${JSON.stringify(listing.category)}`}
+              src={listing.images[0].data}
+              title={listing.title}
+              location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
+              price={listing.price}
+              category={listing.category}
             />
           </div>
         ))}

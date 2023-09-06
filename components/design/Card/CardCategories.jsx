@@ -4,32 +4,31 @@ import style from "../../../styles/main.module.scss";
 import Link from "next/link";
 import { HiLocationMarker } from "react-icons/hi";
 
-function CardCategories({
-  className,
-  category,
-  title,
-  src,
-  description,
-  price,
-}) {
+function CardCategories({ className, category, title, src, location, price }) {
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  function bufferToBase64(img) {
+    const buffer = Buffer.from(img);
+    return buffer.toString("base64");
+  }
+
+  // console.log(src);
   return (
     <Card className={className}>
       <Image
-        src={src}
+        src={`data:image/jpeg;base64,${bufferToBase64(src)}`}
         width="100%"
         height="100%"
         layout="responsive"
-        alt="property"
+        alt={`property__`} // Use a unique alt text for each image
         className="rounded-lg object-cover"
-      ></Image>
+      />
       {/* listing category */}
       <div className="flex flex-wrap gap-2 my-4">
         <div className="py-2 px-4 bg-primary-100 text-primary-700 rounded-lg w-fit">
-          {JSON.parse(category)[1].name}
+          {category}
         </div>
       </div>
 
@@ -41,12 +40,12 @@ function CardCategories({
           <a className={`${style.stretched_link}`}>{title}</a>
         </Link>
       </h5>
-      {/* listing description */}
+      {/* listing location */}
       <div className={`flex flex-nowrap mb-2`}>
         <div className="w-auto mr-2">
           <HiLocationMarker className="text-primary-700 w-4 h-4" />
         </div>
-        <p className={`${style.text_truncate} text-xs`}>{description}</p>
+        <p className={`${style.text_truncate} text-xs`}>{location}</p>
       </div>
       {/* listing price */}
       <div className={`${style.row} items-center justify-between`}>

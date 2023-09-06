@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import ButtonLg from "../design/Buttons/ButtonLg";
 import style from "../../styles/main.module.scss";
 
-function GeneralStep({
-  category,
-  setCategory,
-  price,
-  setPrice,
-  location,
-  setLocation,
-  moveToNextStep,
-}) {
+function GeneralStep({ handleFormData, moveToNextStep }) {
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
+  const [purpose, setPurpose] = useState("for-sale");
+
+  const handleNextStep = () => {
+    handleFormData({ title, category, price, purpose });
+    moveToNextStep();
+  };
+
   return (
     <>
       <div className="mb-6">
@@ -21,6 +23,8 @@ function GeneralStep({
           Property Title
         </label>
         <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           type="text"
           className={`block w-full ${style.input_default}`}
           id="input-propertyTitle"
@@ -44,6 +48,8 @@ function GeneralStep({
           <option value="" disabled>
             Select property category
           </option>
+          <option value="apartments">Apartments</option>
+          <option value="townhouses">Townhouses</option>
           <option value="villa">Villa</option>
           <option value="office">Office</option>
         </select>
@@ -56,6 +62,8 @@ function GeneralStep({
           Price
         </label>
         <input
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
           type="text"
           className={`block w-full ${style.input_default}`}
           id="input-propertyPricing"
@@ -64,24 +72,32 @@ function GeneralStep({
         />
       </div>
       <div className="mb-6">
-        <label
-          htmlFor="property-location"
-          className="mb-2 inline-block text-title-800 font-bold"
-        >
-          Location
-        </label>
-        <input
-          type="text"
-          className={`block w-full ${style.input_default}`}
-          id="input-propertyLocation"
-          aria-describedby="propertyLocation"
-          placeholder=""
-        />
+        <label className="block text-title-800 font-bold">Listing Type</label>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="for-sale"
+              checked={purpose === "for-sale"}
+              onChange={() => setPurpose("for-sale")}
+            />
+            For Sale
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="for-rent"
+              checked={purpose === "for-rent"}
+              onChange={() => setPurpose("for-rent")}
+            />
+            For Rent
+          </label>
+        </div>
       </div>
       <div className={`flex justify-end`}>
         <ButtonLg
-          type={`submit`}
-          onClick={moveToNextStep} // Move to the next step
+          type={`button`}
+          onClick={handleNextStep} // Move to the next step
           className={`bg-secondary-500 border-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 text-white`}
         >
           Next Step

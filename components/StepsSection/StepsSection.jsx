@@ -1,15 +1,73 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UploadMedia from "../UploadMedia/UploadMedia";
 import LocationStep from "../LocationStep/LocationStep";
 import GeneralStep from "../GeneralStep/GeneralStep";
+import axios from "axios";
 
 function StepsSection({ steps }) {
   const stepsCount = steps.length;
+  const [locationDataReceived, setLocationDataReceived] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [category, setcategory] = useState("");
-  const [dropdown, setdropdown] = useState(false);
+  const [propertyData, setPropertyData] = useState({
+    purpose: "",
+    category: "",
+    price: "",
+    title: "",
+    location: {
+      country: "",
+      city: "",
+      area: "",
+      street: "",
+    },
+    images: [],
+  });
 
-  console.log(currentStep);
+  const handleFormData = (data) => {
+    setPropertyData({ ...propertyData, ...data });
+
+    // Check if location data is received
+    if (data.location) {
+      setLocationDataReceived(true);
+    }
+  };
+
+  const submitListing = async () => {
+    // Create FormData object to send data
+    const formData = new FormData();
+
+    propertyData.images.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    // Append other form data
+    formData.append("purpose", propertyData.purpose);
+    formData.append("category", propertyData.category);
+    formData.append("price", propertyData.price);
+    formData.append("title", propertyData.title);
+
+    formData.append("location[country]", propertyData.location.country);
+    formData.append("location[city]", propertyData.location.city);
+    formData.append("location[area]", propertyData.location.area);
+    formData.append("location[street]", propertyData.location.street);
+
+    try {
+      // Make an API request to upload images and other data
+      await axios.post("http://localhost:5000/api/add-property", formData);
+
+      // Handle success, e.g., redirect to a success page
+      console.log("added succusfuly");
+    } catch (error) {
+      // Handle error, e.g., display an error message
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (locationDataReceived) {
+      submitListing();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locationDataReceived]);
 
   const Steps = ({ step, count }) => (
     <>
@@ -33,10 +91,44 @@ function StepsSection({ steps }) {
     setCurrentStep(currentStep + 1);
   };
 
-  const rentalSetup = (type) => {
-    setrentalType(type);
-    setdropdown(!dropdown);
-  };
+  // Render the appropriate step based on currentStep
+  let stepComponent;
+  /* General Section */
+  switch (currentStep) {
+    case 0:
+      stepComponent = (
+        <GeneralStep
+          handleFormData={handleFormData}
+          moveToNextStep={moveToNextStep}
+        />
+      );
+      break;
+      {
+        /* Media Section */
+      }
+    case 1:
+      stepComponent = (
+        <UploadMedia
+          handleFormData={handleFormData}
+          moveToNextStep={moveToNextStep}
+        />
+      );
+      break;
+      {
+        /* Location Section */
+      }
+
+    case 2:
+      stepComponent = (
+        <LocationStep
+          handleFormData={handleFormData}
+          moveToNextStep={moveToNextStep}
+        />
+      );
+      break;
+    default:
+      stepComponent = null;
+  }
 
   return (
     <>
@@ -46,23 +138,7 @@ function StepsSection({ steps }) {
           <Steps key={key} count={key} step={step} />
         ))}
       </div>
-      <div className="py-8 md:px-20">
-        {/* General Section */}
-        {currentStep === 0 && ( // Conditionally render Media section
-          <GeneralStep moveToNextStep={moveToNextStep} />
-        )}
-
-        {/* Media Section */}
-        {currentStep === 1 && ( // Conditionally render Media section
-          <UploadMedia moveToNextStep={moveToNextStep} />
-        )}
-
-        {/* Location Section */}
-
-        {currentStep === 2 && ( // Conditionally render Location section
-          <LocationStep moveToNextStep={moveToNextStep} />
-        )}
-      </div>
+      <div className="py-8 md:px-20">{stepComponent}</div>
     </>
   );
 }

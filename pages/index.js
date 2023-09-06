@@ -87,17 +87,13 @@ export default function Home({ propertyForSale, propertyForRent }) {
 }
 
 export const getStaticProps = async () => {
-  const propertyForSale = await listingsAPI(
-    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=8`
-  );
-  const propertyForRent = await listingsAPI(
-    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=8`
-  );
+  const propertyForSale = await listingsAPI("properties/for-sale");
+  const propertyForRent = await listingsAPI("properties/for-rent");
 
   return {
     props: {
-      propertyForSale: propertyForSale?.hits,
-      propertyForRent: propertyForRent?.hits,
+      propertyForSale: propertyForSale,
+      propertyForRent: propertyForRent,
     },
   };
 };

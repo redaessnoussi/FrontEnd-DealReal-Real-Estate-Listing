@@ -9,6 +9,12 @@ function NewestListing({ listings }) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  function bufferToBase64(img) {
+    // console.log(img);
+    const buffer = Buffer.from(img);
+    return buffer.toString("base64");
+  }
+
   return (
     <div className="container lg:px-4 py-24">
       <div className={`${style.row} justify-between items-center mb-8`}>
@@ -33,13 +39,15 @@ function NewestListing({ listings }) {
               >
                 <Card>
                   <Image
-                    src={`${listing.coverPhoto.url}`}
+                    src={`data:image/jpeg;base64,${bufferToBase64(
+                      listing.images[0].data
+                    )}`}
                     width="100%"
                     height="100%"
                     layout="responsive"
-                    alt="property"
+                    alt={`property__`} // Use a unique alt text for each image
                     className="rounded-lg object-cover"
-                  ></Image>
+                  />
                   {/* listing title */}
                   <h5
                     className={`text-title-800 mb-2 mt-4 font-bold hover:underline ${style.text_truncate}`}
@@ -64,9 +72,10 @@ function NewestListing({ listings }) {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <p
-                      className={`${style.text_truncate} text-xs`}
-                    >{`${listing.location.map((item) => ` ${item.name}`)}`}</p>
+                    <p className={`${style.text_truncate} text-xs`}>
+                      {" "}
+                      {`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
+                    </p>
                   </div>
                   {/* listing price */}
                   <div className={`${style.row} items-center justify-between`}>
