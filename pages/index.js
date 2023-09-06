@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { baseUrl, listingsAPI } from "../data/listingsAPI";
+import { listingsAPI } from "../data/listingsAPI";
 // React Components
 import DicoverPerfectHome from "../components/home/DicoverPerfectHome/DicoverPerfectHome";
 import NewestListing from "../components/home/NewestListing/NewestListing";

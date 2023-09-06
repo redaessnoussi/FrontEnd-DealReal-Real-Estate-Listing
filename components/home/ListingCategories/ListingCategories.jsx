@@ -55,17 +55,23 @@ function ListingCategories({ listings }) {
       </div>
       {/* listings cards */}
       <div className={`${style.row} justify-between gap-y-4`}>
-        {listings?.map((listing, key) => (
-          <div className="md:w-6/12 lg:w-3/12 w-full flex-initial" key={key}>
-            <CardCategories
-              src={listing.images[0].data}
-              title={listing.title}
-              location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
-              price={listing.price}
-              category={listing.category}
-            />
-          </div>
-        ))}
+        {listings?.map(
+          (listing, key) =>
+            key < 8 && (
+              <div
+                className="md:w-6/12 lg:w-3/12 w-full flex-initial"
+                key={key}
+              >
+                <CardCategories
+                  src={listing.images[0].data}
+                  title={listing.title}
+                  location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
+                  price={listing.price}
+                  category={listing.category}
+                />
+              </div>
+            )
+        )}
       </div>
     </div>
   );
