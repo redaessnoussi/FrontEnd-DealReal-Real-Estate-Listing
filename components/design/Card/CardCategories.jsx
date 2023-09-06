@@ -14,6 +14,10 @@ function CardCategories({ className, category, title, src, location, price }) {
     return buffer.toString("base64");
   }
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   // console.log(src);
   return (
     <Card className={className}>
@@ -28,7 +32,7 @@ function CardCategories({ className, category, title, src, location, price }) {
       {/* listing category */}
       <div className="flex flex-wrap gap-2 my-4">
         <div className="py-2 px-4 bg-primary-100 text-primary-700 rounded-lg w-fit">
-          {category}
+          {capitalizeFirstLetter(category)}
         </div>
       </div>
 
