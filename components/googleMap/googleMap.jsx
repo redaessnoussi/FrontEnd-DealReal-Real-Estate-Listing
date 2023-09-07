@@ -1,6 +1,8 @@
 import GoogleMapReact from "google-map-react";
 import { HiLocationMarker } from "react-icons/hi";
 
+// Google Geocoding: AIzaSyBvjzj92Q7W5_U229N0g-oXzvFJnJev_xk
+
 const MarkerLocation = () => (
   <HiLocationMarker className="text-red-500 w-6 h-6" />
 );
@@ -8,10 +10,10 @@ const MarkerLocation = () => (
 const GoogleMaps = ({ listingforSale }) => {
   const defaultMapParams = {
     center: {
-      lat: listingforSale[0].geography.lat,
-      lng: listingforSale[0].geography.lng,
+      lat: 25.276987,
+      lng: 55.296249,
     },
-    zoom: 11,
+    zoom: 9,
   };
 
   return (

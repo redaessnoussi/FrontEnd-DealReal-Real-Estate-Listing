@@ -1,4 +1,4 @@
-import { baseUrl, listingsAPI } from "../data/listingsAPI";
+import { listingsAPI } from "../data/listingsAPI";
 import CardCategories from "../components/design/Card/CardCategories";
 import style from "../styles/main.module.scss";
 import RentSellToggle from "../components/home/DicoverPerfectHome/RentSellToggle/RentSellToggle";
@@ -66,13 +66,11 @@ export default function Explore({ propertyForSale, propertyForRent }) {
                     key={key}
                   >
                     <CardCategories
-                      src={`${listing.coverPhoto.url}`}
-                      title={`${listing.title}`}
-                      description={`${listing.location.map(
-                        (item) => ` ${item.name}`
-                      )}`}
-                      price={`${listing.price}`}
-                      category={`${JSON.stringify(listing.category)}`}
+                      src={listing.images[0].data}
+                      title={listing.title}
+                      location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
+                      price={listing.price}
+                      category={listing.category}
                     />
                   </div>
                 ))
@@ -122,17 +120,13 @@ export default function Explore({ propertyForSale, propertyForRent }) {
 }
 
 export const getStaticProps = async () => {
-  const propertyForSale = await listingsAPI(
-    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=16`
-  );
-  const propertyForRent = await listingsAPI(
-    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=16`
-  );
+  const propertyForSale = await listingsAPI("properties/for-sale");
+  const propertyForRent = await listingsAPI("properties/for-rent");
 
   return {
     props: {
-      propertyForSale: propertyForSale?.hits,
-      propertyForRent: propertyForRent?.hits,
+      propertyForSale: propertyForSale,
+      propertyForRent: propertyForRent,
     },
   };
 };

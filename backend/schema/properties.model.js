@@ -10,8 +10,11 @@ const propertySchema = new mongoose.Schema({
     city: String,
     area: String,
     street: String,
-  }, //Location of the proprety
-  // ...other fields
+  },
+  geography: {
+    lat: String,
+    lng: String,
+  },
   images: [Buffer], // Array of image URLs
 });
 
