@@ -10,10 +10,10 @@ const MarkerLocation = () => (
 const GoogleMaps = ({ listingforSale }) => {
   const defaultMapParams = {
     center: {
-      lat: 25.276987,
-      lng: 55.296249,
+      lat: parseInt(listingforSale[0].geography.lat),
+      lng: parseInt(listingforSale[0].geography.lng),
     },
-    zoom: 9,
+    zoom: 11,
   };
 
   return (
