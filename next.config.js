@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ["bayut-production.s3.eu-central-1.amazonaws.com"],
+    domains: ["firebasestorage.googleapis.com"],
   },
   i18n: {
     locales: ["en"],
