@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@firebase/storage": "^0.11.2",
     "@googlemaps/react-wrapper": "^1.1.20",
     "@heroicons/react": "^1.0.5",
     "@zeit/next-css": "^1.0.1",
@@ -15,7 +16,8 @@
     "cors": "^2.8.5",
     "deck.gl": "^8.6.5",
     "express": "^4.18.2",
-    "firebase": "^9.6.1",
+    "firebase": "^10.3.1",
+    "firebase-admin": "^11.10.1",
     "google-api-wrapper": "^1.12.0",
     "google-map-react": "^2.1.10",
     "mongoose": "^7.4.5",
