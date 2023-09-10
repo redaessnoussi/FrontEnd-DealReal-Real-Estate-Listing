@@ -63,7 +63,7 @@ function ListingCategories({ listings }) {
                 key={key}
               >
                 <CardCategories
-                  src={listing.images[0].data}
+                  src={listing.images[0].url}
                   title={listing.title}
                   location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
                   price={listing.price}

@@ -9,12 +9,6 @@ function NewestListing({ listings }) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  function bufferToBase64(img) {
-    // console.log(img);
-    const buffer = Buffer.from(img);
-    return buffer.toString("base64");
-  }
-
   return (
     <div className="container lg:px-4 py-24">
       <div className={`${style.row} justify-between items-center mb-8`}>
@@ -39,9 +33,7 @@ function NewestListing({ listings }) {
               >
                 <Card>
                   <Image
-                    src={`data:image/jpeg;base64,${bufferToBase64(
-                      listing.images[0].data
-                    )}`}
+                    src={listing.images[0].url}
                     width="100%"
                     height="100%"
                     layout="responsive"

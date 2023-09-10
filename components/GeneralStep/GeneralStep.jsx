@@ -50,8 +50,8 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
           </option>
           <option value="apartments">Apartments</option>
           <option value="townhouses">Townhouses</option>
-          <option value="villa">Villa</option>
-          <option value="office">Office</option>
+          <option value="villas">Villas</option>
+          <option value="offices">Offices</option>
         </select>
       </div>
       <div className="mb-6">

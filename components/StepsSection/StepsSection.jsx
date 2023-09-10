@@ -19,7 +19,11 @@ function StepsSection({ steps }) {
       area: "",
       street: "",
     },
-    images: [],
+    images: [
+      {
+        url: "",
+      },
+    ],
   });
 
   const handleFormData = (data) => {
@@ -35,8 +39,11 @@ function StepsSection({ steps }) {
     // Create FormData object to send data
     const formData = new FormData();
 
-    propertyData.images.forEach((image) => {
-      formData.append("images", image);
+    propertyData.images.forEach((imageObj) => {
+      console.log("2");
+      console.log(imageObj.url);
+      // Append each image URL as a separate field
+      formData.append("images[]", imageObj.url);
     });
 
     // Append other form data

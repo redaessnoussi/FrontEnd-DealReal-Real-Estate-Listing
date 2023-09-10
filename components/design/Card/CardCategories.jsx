@@ -9,11 +9,6 @@ function CardCategories({ className, category, title, src, location, price }) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  function bufferToBase64(img) {
-    const buffer = Buffer.from(img);
-    return buffer.toString("base64");
-  }
-
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -22,7 +17,7 @@ function CardCategories({ className, category, title, src, location, price }) {
   return (
     <Card className={className}>
       <Image
-        src={`data:image/jpeg;base64,${bufferToBase64(src)}`}
+        src={src}
         width="100%"
         height="100%"
         layout="responsive"
