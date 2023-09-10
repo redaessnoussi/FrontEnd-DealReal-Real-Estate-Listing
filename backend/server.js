@@ -5,6 +5,15 @@ const app = express();
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 const propertiesRouter = require("./routes/properties.routes"); // Import your properties router
+const admin = require("firebase-admin");
+const serviceAccount = require("../firebase/deal-real-firebase-adminsdk-bblp1-5950ccef13.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "gs://deal-real.appspot.com",
+});
+
+const storageFirebase = admin.storage();
 
 //Cors
 app.use(cors());
@@ -44,3 +53,5 @@ app.listen(PORT, () => {
 
 // Use the properties router
 app.use("/api", propertiesRouter);
+
+module.exports = { storageFirebase };

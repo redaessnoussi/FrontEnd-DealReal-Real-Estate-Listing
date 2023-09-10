@@ -15,7 +15,11 @@ const propertySchema = new mongoose.Schema({
     lat: String,
     lng: String,
   },
-  images: [Buffer], // Array of image URLs
+  images: [
+    {
+      url: String, // Actual image URL
+    },
+  ],
 });
 
 const Property = mongoose.model("Property", propertySchema);
