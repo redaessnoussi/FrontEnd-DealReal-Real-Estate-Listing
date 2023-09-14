@@ -14,11 +14,9 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
     "bg-white border-primary-700 hover:border-primary-800 text-primary-700 hover:bg-primary-800 hover:text-white";
 
   const toggleClass = (target) => {
-    if (!target.classList.contains("bg-primary-700")) {
-      rentSaleToggle(target);
-      setactive(!active);
-      setinactive(!inactive);
-    }
+    rentSaleToggle(target);
+    setactive(!active);
+    setinactive(!inactive);
   };
 
   // change listing type value from combobox
@@ -57,7 +55,10 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
     >
       {/* rent sell toggle buttons */}
       <div className="flex justify-center shadow-md w-full lg:w-2/6 xl:w-3/12 px-2.5 py-5 bg-white rounded-tl-lg rounded-tr-lg md:w-5/12 text-center">
-        <div className="w-auto relative" onClick={(e) => toggleClass(e.target)}>
+        <div
+          className="w-auto relative"
+          onClick={() => toggleClass("for-sale")}
+        >
           <ButtonMd
             type={`button`}
             className={`${active ? activeClass : inactiveClass} mr-2`}
@@ -65,7 +66,10 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
             Sell
           </ButtonMd>
         </div>
-        <div className="w-auto relative" onClick={(e) => toggleClass(e.target)}>
+        <div
+          className="w-auto relative"
+          onClick={() => toggleClass("for-rent")}
+        >
           <ButtonMd
             type={`button`}
             className={`${inactive ? inactiveClass : activeClass}`}

@@ -7,11 +7,11 @@ const MarkerLocation = () => (
   <HiLocationMarker className="text-red-500 w-6 h-6" />
 );
 
-const GoogleMaps = ({ listingforSale }) => {
+const GoogleMaps = ({ properties }) => {
   const defaultMapParams = {
     center: {
-      lat: parseInt(listingforSale[0].geography.lat),
-      lng: parseInt(listingforSale[0].geography.lng),
+      lat: parseInt(properties[0].geography.lat),
+      lng: parseInt(properties[0].geography.lng),
     },
     zoom: 11,
   };
@@ -24,7 +24,7 @@ const GoogleMaps = ({ listingforSale }) => {
           defaultCenter={defaultMapParams.center}
           defaultZoom={defaultMapParams.zoom}
         >
-          {listingforSale?.map((listing, key) => (
+          {properties?.map((listing, key) => (
             <MarkerLocation
               key={key}
               lat={listing.geography.lat}
