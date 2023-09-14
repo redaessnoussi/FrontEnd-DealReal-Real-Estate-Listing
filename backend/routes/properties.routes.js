@@ -35,11 +35,15 @@ router.get("/properties/:purpose", async (req, res) => {
   const { page = 1, limit = 8 } = req.query; // Get page and limit from query parameters
 
   try {
+    // Get the total count of listings for the given purpose
+    const totalCount = await Property.countDocuments({ purpose });
+
+    // Fetch the properties with pagination
     const properties = await Property.find({ purpose })
       .skip((page - 1) * limit) // Calculate the number of documents to skip
       .limit(limit); // Limit the number of documents per page
 
-    res.json(properties);
+    res.json({ properties, totalCount }); // Return both properties and total count
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
