@@ -28,6 +28,7 @@ export default function Explore({ properties, page, limit }) {
 
   // Callback function to update listingPurpose
   const rentSaleToggle = (purpose) => {
+    setLoading(false);
     setListingPurpose(purpose);
     router.push(`/explore?listingPurpose=${purpose}`);
   };
@@ -46,6 +47,7 @@ export default function Explore({ properties, page, limit }) {
   useEffect(() => {
     // Fetch listings when listingPurpose changes
     fetchListings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listingPurpose]);
 
   return (

@@ -11,17 +11,28 @@ import HelpYouFind from "../components/home/HelpYouFind/HelpYouFind";
 import HeroPage from "../components/HeroPage/HeroPage";
 import ButtonLg from "../components/design/Buttons/ButtonLg";
 
-export default function Home({ propertyForSale, propertyForRent }) {
-  const [rentSale, setrentSale] = useState("for-sale");
+export default function Home({ properties }) {
+  const [listings, setListings] = useState(properties.properties);
+  const [fetched, setfetched] = useState(listings.length);
+  const [listingPurpose, setListingPurpose] = useState("for-sale");
   const [loading, setLoading] = useState(false);
   const [listingType, setlistingType] = useState("0");
-  const [fetched, setfetched] = useState(propertyForSale.length);
 
-  const rentSaleToggle = (data) => {
+  console.log(listings);
+
+  const fetchListings = async () => {
+    try {
+      const properties = await listingsAPI(`properties/${listingPurpose}`);
+      setListings(properties.properties);
+    } catch (error) {
+      console.error("Error fetching listings:", error);
+    }
+  };
+
+  // Callback function to update listingPurpose
+  const rentSaleToggle = (purpose) => {
     setLoading(false);
-    data.textContent === "Rent"
-      ? setrentSale("for-rent")
-      : setrentSale("for-sale");
+    setListingPurpose(purpose);
   };
 
   const listingTypeChange = (data) => {
@@ -31,7 +42,13 @@ export default function Home({ propertyForSale, propertyForRent }) {
   // set loading if data fetched
   useEffect(() => {
     fetched && setLoading(true);
-  }, [fetched, rentSale]);
+  }, [fetched, listingPurpose]);
+
+  useEffect(() => {
+    // Fetch listings when listingPurpose changes
+    fetchListings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listingPurpose]);
 
   return (
     <>
@@ -48,25 +65,11 @@ export default function Home({ propertyForSale, propertyForRent }) {
               listingTypeChange={listingTypeChange}
             />
             {/* newest listing */}
-            {loading ? (
-              <NewestListing
-                listings={
-                  rentSale == "for-sale" ? propertyForSale : propertyForRent
-                }
-              />
-            ) : (
-              <LoadingItems />
-            )}
+            {loading ? <NewestListing listings={listings} /> : <LoadingItems />}
             {/* we help you find your dream house */}
             <HelpYouFind />
             {/* listing categories*/}
-            {loading && (
-              <ListingCategories
-                listings={
-                  rentSale == "for-sale" ? propertyForSale : propertyForRent
-                }
-              />
-            )}
+            {loading && <ListingCategories listings={listings} />}
           </div>
           {/* contact us section */}
           <HeroPage>
@@ -86,14 +89,15 @@ export default function Home({ propertyForSale, propertyForRent }) {
   );
 }
 
-export const getStaticProps = async () => {
-  const propertyForSale = await listingsAPI("properties/for-sale");
-  const propertyForRent = await listingsAPI("properties/for-rent");
+export async function getServerSideProps({ query }) {
+  // Parse the listingPurpose from the query parameter or default to "for-sale"
+  const listingPurpose = query.listingPurpose || "for-sale";
+
+  const properties = await listingsAPI(`properties/${listingPurpose}`);
 
   return {
     props: {
-      propertyForSale: propertyForSale,
-      propertyForRent: propertyForRent,
+      properties,
     },
   };
-};
+}
