@@ -71,41 +71,30 @@
   display: flex;
   list-style: none;
   align-items: center;
-  li:not(:first-child):not(:last-child) {
+
+  li {
     margin-right: theme("margin.3");
     a {
+      cursor: pointer;
       border-radius: theme("borderRadius.lg");
       padding: theme("padding.2") theme("padding.4");
       display: block;
-      &:hover {
-        background-color: theme("colors.primary.700");
-        color: theme("colors.white");
-      }
-      &.active {
+    }
+
+    &:not(:first-child):not(:last-child) {
+      a:hover,
+      a.active {
         background-color: theme("colors.primary.700");
         color: theme("colors.white");
       }
     }
-  }
-  li:first-child {
-    margin-right: theme("margin.3");
-    a {
-      border-radius: theme("borderRadius.lg");
-      padding: theme("padding.2") theme("padding.4");
-      display: block;
-      &:hover {
-        color: theme("colors.primary.700");
-      }
+
+    &:first-child a:hover {
+      color: theme("colors.primary.700");
     }
-  }
-  li:last-child {
-    a {
-      border-radius: theme("borderRadius.lg");
-      padding: theme("padding.2") theme("padding.4");
-      display: block;
-      &:hover {
-        color: theme("colors.primary.700");
-      }
+
+    &:last-child a:hover {
+      color: theme("colors.primary.700");
     }
   }
 }

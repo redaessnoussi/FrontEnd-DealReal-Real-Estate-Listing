@@ -18,8 +18,6 @@ export default function Home({ properties }) {
   const [loading, setLoading] = useState(false);
   const [listingType, setlistingType] = useState("0");
 
-  console.log(listings);
-
   const fetchListings = async () => {
     try {
       const properties = await listingsAPI(`properties/${listingPurpose}`);

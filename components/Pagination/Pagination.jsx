@@ -14,9 +14,6 @@ function Pagination({ style, totalPages, page, listingPurpose }) {
 
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  console.log("totalPages", totalPages);
-  console.log(pageNumbers);
-
   return (
     <div className={`${style.row} justify-center mt-20`}>
       <ul className={`${style.pagination}`}>

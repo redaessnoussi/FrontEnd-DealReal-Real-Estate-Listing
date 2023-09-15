@@ -2,7 +2,9 @@ $primary-700: theme("colors.primary.700");
 $title: theme("colors.title.800");
 $body: theme("colors.body.800");
 
-// Navbar
+// Helpers
 @import "helpers.module.scss";
+// Navbar
 @import "navbar.module.scss";
+// Inputs
 @import "inputs.module.scss";
