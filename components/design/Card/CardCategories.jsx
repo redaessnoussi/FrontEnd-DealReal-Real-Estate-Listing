@@ -4,7 +4,15 @@ import style from "../../../styles/main.module.scss";
 import Link from "next/link";
 import { HiLocationMarker } from "react-icons/hi";
 
-function CardCategories({ className, category, title, src, location, price }) {
+function CardCategories({
+  className,
+  category,
+  title,
+  src,
+  location,
+  price,
+  id,
+}) {
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -35,8 +43,8 @@ function CardCategories({ className, category, title, src, location, price }) {
       <h5
         className={`text-title-800 mb-2 font-bold hover:underline ${style.text_truncate}`}
       >
-        <Link href="#">
-          <a className={`${style.stretched_link}`}>{title}</a>
+        <Link className={`${style.stretched_link}`} href={`/explore/${id}`}>
+          {title}
         </Link>
       </h5>
       {/* listing location */}
