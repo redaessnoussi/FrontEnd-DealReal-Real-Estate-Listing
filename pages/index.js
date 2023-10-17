@@ -20,7 +20,9 @@ export default function Home({ properties }) {
 
   const fetchListings = async () => {
     try {
-      const properties = await listingsAPI(`properties/${listingPurpose}`);
+      const properties = await listingsAPI(
+        `properties/purpose/${listingPurpose}`
+      );
       setListings(properties.properties);
     } catch (error) {
       console.error("Error fetching listings:", error);
@@ -91,7 +93,7 @@ export async function getServerSideProps({ query }) {
   // Parse the listingPurpose from the query parameter or default to "for-sale"
   const listingPurpose = query.listingPurpose || "for-sale";
 
-  const properties = await listingsAPI(`properties/${listingPurpose}`);
+  const properties = await listingsAPI(`properties/purpose/${listingPurpose}`);
 
   return {
     props: {
