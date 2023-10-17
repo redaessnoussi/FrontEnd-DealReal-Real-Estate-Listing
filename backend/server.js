@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 const propertiesRouter = require("./routes/properties.routes"); // Import your properties router
+const usersRouter = require("./routes/users.routes");
 const admin = require("firebase-admin");
 const serviceAccount = require("../firebase/deal-real-firebase-adminsdk-bblp1-5950ccef13.json");
 
@@ -53,5 +54,6 @@ app.listen(PORT, () => {
 
 // Use the properties router
 app.use("/api", propertiesRouter);
+app.use("/api", usersRouter);
 
 module.exports = { storageFirebase };
