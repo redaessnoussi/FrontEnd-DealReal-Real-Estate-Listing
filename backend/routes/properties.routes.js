@@ -30,7 +30,7 @@ router.get("/properties", async (req, res) => {
 });
 
 // Endpoint to fetch properties by purpose (for-sale or for-rent)
-router.get("/properties/:purpose", async (req, res) => {
+router.get("/properties/purpose/:purpose", async (req, res) => {
   const { purpose } = req.params;
   const { page = 1, limit = 8 } = req.query; // Get page and limit from query parameters
 
@@ -46,6 +46,18 @@ router.get("/properties/:purpose", async (req, res) => {
     res.json({ properties, totalCount }); // Return both properties and total count
   } catch (error) {
     res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Endpoint to fetch properties by ID
+router.get("/properties/id/:_id", async (req, res) => {
+  const { _id } = req.params;
+  try {
+    const properties = await Property.find({ _id });
+    res.json(properties);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
@@ -99,44 +111,5 @@ router.post("/add-property", upload.array("images"), async (req, res) => {
       .json({ message: "Error adding property", error: error.message });
   }
 });
-
-// Add latitude and longitude to missing listings
-// async function updateAllPropertiesWithGeocode() {
-//   try {
-//     // Find all properties
-//     const allProperties = await Property.find();
-
-//     console.log(`Found ${allProperties.length} properties to update.`);
-
-//     for (const property of allProperties) {
-//       // Concatenate the address fields to form a single address string
-//       const fullAddress = `${property.location.country} ${property.location.city} ${property.location.area} ${property.location.street}`;
-
-//       // Use the geocoder to convert the address to coordinates
-//       const geocodingResult = await geocoder.geocode(fullAddress);
-
-//       // Check the structure of geocodingResult and extract latitude and longitude accordingly
-//       if (geocodingResult && geocodingResult.length > 0) {
-//         property.geography = {
-//           lat: geocodingResult[0].latitude,
-//           lng: geocodingResult[0].longitude,
-//         };
-//       } else {
-//         console.log(`Geocoding failed for property ${property._id}`);
-//       }
-
-//       // Save the updated property to the database
-//       await property.save();
-//       console.log(`Property ${property._id} updated.`);
-//     }
-
-//     console.log("Properties updated successfully.");
-//   } catch (error) {
-//     console.error("Error updating properties:", error);
-//   }
-// }
-
-// Call the function to update properties
-// updateAllPropertiesWithGeocode();
 
 module.exports = router;
