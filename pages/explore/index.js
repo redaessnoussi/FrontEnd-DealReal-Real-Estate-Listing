@@ -28,7 +28,7 @@ export default function Explore({ properties, page, limit }) {
     }
   };
 
-  console.log(listings);
+  // console.log(listings);
 
   // Callback function to update listingPurpose
   const rentSaleToggle = (purpose) => {
