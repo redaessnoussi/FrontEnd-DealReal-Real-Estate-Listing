@@ -44,10 +44,11 @@ function NewestListing({ listings }) {
                   <h5
                     className={`text-title-800 mb-2 mt-4 font-bold hover:underline ${style.text_truncate}`}
                   >
-                    <Link href="#">
-                      <a
-                        className={`${style.stretched_link}`}
-                      >{`${listing.title}`}</a>
+                    <Link
+                      className={`${style.stretched_link}`}
+                      href={`/explore/${listing._id}`}
+                    >
+                      {listing.title}
                     </Link>
                   </h5>
                   {/* listing description */}
