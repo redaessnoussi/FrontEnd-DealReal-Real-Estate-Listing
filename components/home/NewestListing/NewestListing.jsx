@@ -13,7 +13,7 @@ function NewestListing({ listings }) {
     <div className="container lg:px-4 py-24">
       <div className={`${style.row} justify-between items-center mb-8`}>
         {/* headline */}
-        <h1 className="text-title-800 mb-4">Newest Listings</h1>
+        <h1 className="text-title-800 mb-0">Newest Listings</h1>
         <ButtonLg
           type={`button`}
           className="border-secondary-500 bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 "
