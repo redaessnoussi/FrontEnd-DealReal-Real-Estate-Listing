@@ -4,10 +4,19 @@ import { listingsAPI } from "../../../data/listingsAPI";
 import GoogleMaps from "../../../components/googleMap/googleMap";
 import style from "../../../styles/main.module.scss";
 import { HiLocationMarker } from "react-icons/hi";
-import { MdOutlinePhone, MdPhoneAndroid } from "react-icons/md";
+import {
+  MdOutlineBathroom,
+  MdOutlineBedroomParent,
+  MdOutlineGarage,
+  MdOutlineHouse,
+  MdOutlinePhone,
+  MdPhoneAndroid,
+} from "react-icons/md";
 import Image from "next/image";
 import NewestListing from "../../../components/home/NewestListing/NewestListing";
 import ButtonLg from "../../../components/design/Buttons/ButtonLg";
+import { FaFacebook, FaInstagram, FaPinterest } from "react-icons/fa";
+import ButtonSm from "../../../components/design/Buttons/ButtonSm";
 
 export default function ListingDetails({ listingDetail, properties }) {
   const [listings, setListings] = useState(properties.properties);
@@ -16,7 +25,9 @@ export default function ListingDetails({ listingDetail, properties }) {
   const router = useRouter();
   const { id } = router.query;
 
-  // console.log(properties);
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   const fetchListings = async () => {
     try {
@@ -40,7 +51,7 @@ export default function ListingDetails({ listingDetail, properties }) {
   );
 
   // You can use listing data to display details on the page
-  // console.log("Listing Data:", listingDetail);
+  console.log("Listing Data:", listingDetail);
 
   return (
     <>
@@ -50,7 +61,36 @@ export default function ListingDetails({ listingDetail, properties }) {
         {/* title with social media sharing buttons */}
         <div className={`${style.row} justify-between gap-y-4 mb-3`}>
           <h3 className="text-title-800 font-bold">{listingDetail[0].title}</h3>
-          <h3>Social Media Buttons</h3>
+          {/* social media buttons */}
+          <ul className="flex">
+            <li className="mr-2">
+              <ButtonSm
+                roundedBtn={true}
+                type={`button`}
+                className="bg-primary-700 hover:bg-primary-800 hover:border-primary-800 border-primary-700 text-white"
+              >
+                <FaFacebook className="h-6 w-6" />
+              </ButtonSm>
+            </li>
+            <li className="mr-2">
+              <ButtonSm
+                roundedBtn={true}
+                type={`button`}
+                className="bg-primary-700 hover:bg-primary-800 hover:border-primary-800 border-primary-700 text-white"
+              >
+                <FaInstagram className="h-6 w-6" />
+              </ButtonSm>
+            </li>
+            <li>
+              <ButtonSm
+                roundedBtn={true}
+                type={`button`}
+                className="bg-primary-700 hover:bg-primary-800 hover:border-primary-800 border-primary-700 text-white"
+              >
+                <FaPinterest className="h-6 w-6" />
+              </ButtonSm>
+            </li>
+          </ul>
         </div>
         {/* location with marker */}
         <div className={`${style.row} mb-10`}>
@@ -121,10 +161,21 @@ export default function ListingDetails({ listingDetail, properties }) {
             {/* lisiting overview */}
             <h4 className="text-title-800 font-bold mb-6">Overview</h4>
             <div className={`${style.row} justify-between gap-y-4 mb-10`}>
-              <p className="text-title-800">4 Bedrooms</p>
-              <p className="text-title-800">3 Bathrooms</p>
-              <p className="text-title-800">1 Garage</p>
-              <p className="text-title-800">3,000 sqft</p>
+              <p className="text-title-800 flex items-center">
+                {" "}
+                <MdOutlineBedroomParent className="h-6 w-6 mr-1" /> 4 Bedrooms
+              </p>
+              <p className="text-title-800 flex items-center">
+                {" "}
+                <MdOutlineBathroom className="h-6 w-6 mr-1" /> 3 Bathrooms
+              </p>
+              <p className="text-title-800 flex items-center">
+                <MdOutlineGarage className="h-6 w-6 mr-1" />1 Garage
+              </p>
+              <p className="text-title-800 flex items-center">
+                <MdOutlineHouse className="h-6 w-6 mr-1" />
+                3,000 sqft
+              </p>
             </div>
             {/* listing details */}
             <h4 className="text-title-800 font-bold mb-6">Details</h4>
@@ -173,8 +224,99 @@ export default function ListingDetails({ listingDetail, properties }) {
             </div>
             <h4 className="font-bold text-slate-700 mb-6">Address</h4>
           </div>
-          <div className="w-5/12">
-            <h3>Reservation Card</h3>
+          <div className="w-4/12">
+            {/* reservation card */}
+            <div className="flex flex-col rounded-md border-2 border-gray-50">
+              {/* card header */}
+              {/* card title */}
+              <div className="px-6 pt-6">
+                <div className="flex justify-between">
+                  <h4 className="text-title-800 font-semibold">
+                    <div className="flex">
+                      <span className="mr-2">د.إ</span>
+                      {`${numberWithCommas(listingDetail[0].price)}`}
+                    </div>
+                    {/* review */}
+                  </h4>
+                  <ul className={`flex items-center`}>
+                    <li className="mr-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 text-star-800"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </li>
+                    <li>
+                      <span className="text-title-800 mr-1 font-semibold">
+                        4.8
+                      </span>
+                    </li>
+                    <span>(120 Review)</span>
+                  </ul>
+                </div>
+              </div>
+              <div className="flex-auto p-6">
+                <form>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="name"
+                      className="text-title-800 font-semibold mb-2"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className={style.input_default}
+                      placeholder="Your Full Name"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="email"
+                      className="text-title-800 font-semibold mb-2"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className={style.input_default}
+                      placeholder="Your Email"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="date"
+                      className="text-title-800 font-semibold mb-2"
+                    >
+                      Date
+                    </label>
+                    <input
+                      type="date"
+                      id="date"
+                      name="date"
+                      className={style.input_default}
+                      placeholder="Select"
+                    />
+                  </div>
+                  <ButtonLg
+                    type={`button`}
+                    className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white w-full justify-center mb-4"
+                  >
+                    Reserve
+                  </ButtonLg>
+                  <p className="text-center">
+                    Certain reservations may also require a security deposit.
+                  </p>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
