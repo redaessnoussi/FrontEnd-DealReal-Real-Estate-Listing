@@ -62,6 +62,7 @@ function CardCategories({
             {`${numberWithCommas(price)}`}
           </div>
         </h5>
+        {/* review star */}
         <ul className={`flex items-center`}>
           <li className="mr-1">
             <svg
