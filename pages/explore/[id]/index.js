@@ -182,43 +182,54 @@ export default function ListingDetails({ listingDetail, properties }) {
             <div className={`${style.row} justify-between mb-10`}>
               <div className="w-6/12">
                 <p className="text-title-800 font-bold">
-                  Property ID{" "}
-                  <span className="text-body-800 font-normal">AGS1234</span>
+                  Property ID:{" "}
+                  <span className="text-body-800 ml-1 font-normal">
+                    AGS1234
+                  </span>
                 </p>
                 <parent className="text-title-800 font-bold">
-                  Price{" "}
-                  <span className="text-body-800 font-normal">$ 250,000</span>
+                  Price:{" "}
+                  <span className="text-body-800 ml-1 font-normal">
+                    $ 250,000
+                  </span>
                 </parent>
                 <p className="text-title-800 font-bold">
-                  Property Size{" "}
-                  <span className="text-body-800 font-normal">3000 sqft</span>
+                  Property Size:{" "}
+                  <span className="text-body-800 ml-1 font-normal">
+                    3000 sqft
+                  </span>
                 </p>
                 <p className="text-title-800 font-bold">
-                  Bedroom <span className="text-body-800 font-normal">4</span>
+                  Bedroom:{" "}
+                  <span className="text-body-800 ml-1 font-normal">4</span>
                 </p>
                 <p className="text-title-800 font-bold">
-                  Bathroom <span className="text-body-800 font-normal">3</span>
+                  Bathroom:{" "}
+                  <span className="text-body-800 ml-1 font-normal">3</span>
                 </p>
               </div>
               <div className="w-6/12">
                 <p className="text-title-800 font-bold">
-                  Garage <span className="text-body-800 font-normal">1</span>
+                  Garage:{" "}
+                  <span className="text-body-800 ml-1 font-normal">1</span>
                 </p>
                 <p className="text-title-800 font-bold">
-                  Garage Size{" "}
-                  <span className="text-body-800 font-normal">200 sqft</span>
+                  Garage Size:{" "}
+                  <span className="text-body-800 ml-1 font-normal">
+                    200 sqft
+                  </span>
                 </p>
                 <p className="text-title-800 font-bold">
-                  Year Built{" "}
-                  <span className="text-body-800 font-normal">2001</span>
+                  Year Built:{" "}
+                  <span className="text-body-800 ml-1 font-normal">2001</span>
                 </p>
                 <p className="text-title-800 font-bold">
-                  Category{" "}
-                  <span className="text-body-800 font-normal">House</span>
+                  Category:{" "}
+                  <span className="text-body-800 ml-1 font-normal">House</span>
                 </p>
                 <p className="text-title-800 font-bold">
-                  Property Status{" "}
-                  <span className="text-body-800 font-normal">Sale</span>
+                  Property Status:{" "}
+                  <span className="text-body-800 ml-1 font-normal">Sale</span>
                 </p>
               </div>
             </div>
@@ -226,7 +237,7 @@ export default function ListingDetails({ listingDetail, properties }) {
           </div>
           <div className="w-4/12">
             {/* reservation card */}
-            <div className="flex flex-col rounded-md border-2 border-gray-50">
+            <div className="flex flex-col rounded-md border-2 border-gray-300">
               {/* card header */}
               {/* card title */}
               <div className="px-6 pt-6">
