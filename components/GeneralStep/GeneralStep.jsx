@@ -15,6 +15,7 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
 
   return (
     <>
+      {/* Property Title */}
       <div className="mb-6">
         <label
           htmlFor="property-title"
@@ -32,6 +33,25 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
           placeholder="Add Listing Title"
         />
       </div>
+      {/* Property Description */}
+      <div className="mb-6">
+        <label
+          htmlFor="property-description"
+          className="mb-2 inline-block text-title-800 font-bold"
+        >
+          Property Description
+        </label>
+        <textarea
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className={`block w-full ${style.input_default}`}
+          id="input-propertyDescription"
+          aria-describedby="propertyDescription"
+          placeholder="Add Listing Description"
+        />
+      </div>
+
+      {/* Property Category */}
       <div className="mb-6">
         <label
           htmlFor="property-description"
@@ -54,6 +74,7 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
           <option value="offices">Offices</option>
         </select>
       </div>
+      {/* Property Pricing */}
       <div className="mb-6">
         <label
           htmlFor="property-pricing"
@@ -68,13 +89,140 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
           className={`block w-full ${style.input_default}`}
           id="input-propertyPricing"
           aria-describedby="propertyPricing"
-          placeholder=""
+          placeholder="Property price"
         />
       </div>
+
+      {/* bedrooms and bathrooms */}
+      <div className="mb-6 flex justify-between">
+        {/* bedrooms */}
+        <div className="w-6/12 mr-6">
+          <label
+            htmlFor="property-bedrooms"
+            className="mb-2 inline-block text-title-800 font-bold"
+          >
+            Bedrooms
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            className={`block w-full ${style.input_default}`}
+            id="input-propertyBedrooms"
+            aria-describedby="propertyBedrooms"
+            placeholder="Bedrooms"
+          />
+        </div>
+        {/* bathrooms */}
+        <div className="w-6/12">
+          <label
+            htmlFor="property-bathrooms"
+            className="mb-2 inline-block text-title-800 font-bold"
+          >
+            Bathrooms
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            className={`block w-full ${style.input_default}`}
+            id="input-propertyBathrooms"
+            aria-describedby="propertyBathrooms"
+            placeholder="Bathrooms"
+          />
+        </div>
+      </div>
+
+      {/* property size and year built */}
+      <div className="mb-6 flex justify-between">
+        {/* property size */}
+        <div className="w-6/12 mr-6">
+          <label
+            htmlFor="property-size"
+            className="mb-2 inline-block text-title-800 font-bold"
+          >
+            Property Size
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            className={`block w-full ${style.input_default}`}
+            id="input-propertySize"
+            aria-describedby="propertySize"
+            placeholder="Size (sqft)"
+          />
+        </div>
+        {/* year built */}
+        <div className="w-6/12">
+          <label
+            htmlFor="year-built"
+            className="mb-2 inline-block text-title-800 font-bold"
+          >
+            Year Built
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            className={`block w-full ${style.input_default}`}
+            id="input-yearBuilt"
+            aria-describedby="yearBuilt"
+            placeholder="Year built"
+          />
+        </div>
+      </div>
+
+      {/* property garage */}
+      <div className="mb-6 flex justify-between">
+        <div className="w-6/12 mr-6">
+          <label className="block text-title-800 font-bold mb-2">Garage</label>
+          <div>
+            <label className="mr-6">
+              <input
+                type="radio"
+                value="garageYes"
+                checked={purpose === "garageYes"}
+                onChange={() => setGarage("garageYes")}
+              />
+              Available
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="garageNo"
+                checked={purpose === "garageNo"}
+                onChange={() => setGarage("garageNo")}
+              />
+              Not Available
+            </label>
+          </div>
+        </div>
+        {/* garage size */}
+        <div className="w-6/12">
+          <label
+            htmlFor="garage-size"
+            className="mb-2 inline-block text-title-800 font-bold"
+          >
+            Garage Size
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            className={`block w-full ${style.input_default}`}
+            id="input-garageSize"
+            aria-describedby="garageSise"
+            placeholder="Garage Size"
+          />
+        </div>
+      </div>
+
+      {/* Listing Type */}
       <div className="mb-6">
         <label className="block text-title-800 font-bold">Listing Type</label>
         <div>
-          <label>
+          <label className="mr-6">
             <input
               type="radio"
               value="for-sale"
