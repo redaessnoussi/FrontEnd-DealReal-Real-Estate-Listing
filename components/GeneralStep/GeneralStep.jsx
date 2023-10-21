@@ -7,6 +7,12 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [purpose, setPurpose] = useState("for-sale");
+  const [bedrooms, setBedrooms] = useState("");
+  const [bathrooms, setBathrooms] = useState("");
+  const [propertySize, setPropertySize] = useState("");
+  const [yearBuilt, setYearBuilt] = useState("");
+  const [garage, setGarage] = useState(true);
+  const [garageSize, setGarageSize] = useState("");
 
   const handleNextStep = () => {
     handleFormData({ title, category, price, purpose });
@@ -47,7 +53,7 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
           className={`block w-full ${style.input_default}`}
           id="input-propertyDescription"
           aria-describedby="propertyDescription"
-          placeholder="Add Listing Description"
+          placeholder=""
         />
       </div>
 
@@ -104,8 +110,8 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
             Bedrooms
           </label>
           <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={bedrooms}
+            onChange={(e) => setBedrooms(e.target.value)}
             type="text"
             className={`block w-full ${style.input_default}`}
             id="input-propertyBedrooms"
@@ -122,8 +128,8 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
             Bathrooms
           </label>
           <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={bathrooms}
+            onChange={(e) => setBathrooms(e.target.value)}
             type="text"
             className={`block w-full ${style.input_default}`}
             id="input-propertyBathrooms"
@@ -144,8 +150,8 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
             Property Size
           </label>
           <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={propertySize}
+            onChange={(e) => setPropertySize(e.target.value)}
             type="text"
             className={`block w-full ${style.input_default}`}
             id="input-propertySize"
@@ -162,8 +168,8 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
             Year Built
           </label>
           <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={yearBuilt}
+            onChange={(e) => setYearBuilt(e.target.value)}
             type="text"
             className={`block w-full ${style.input_default}`}
             id="input-yearBuilt"
@@ -182,7 +188,7 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
               <input
                 type="radio"
                 value="garageYes"
-                checked={purpose === "garageYes"}
+                checked={garage === true}
                 onChange={() => setGarage("garageYes")}
               />
               Available
@@ -191,56 +197,58 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
               <input
                 type="radio"
                 value="garageNo"
-                checked={purpose === "garageNo"}
+                checked={garage === false}
                 onChange={() => setGarage("garageNo")}
               />
               Not Available
             </label>
           </div>
         </div>
-        {/* garage size */}
+        {/* Listing Type */}
         <div className="w-6/12">
-          <label
-            htmlFor="garage-size"
-            className="mb-2 inline-block text-title-800 font-bold"
-          >
-            Garage Size
+          <label className="block text-title-800 font-bold mb-2">
+            Listing Type
           </label>
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            type="text"
-            className={`block w-full ${style.input_default}`}
-            id="input-garageSize"
-            aria-describedby="garageSise"
-            placeholder="Garage Size"
-          />
+          <div>
+            <label className="mr-6">
+              <input
+                type="radio"
+                value="for-sale"
+                checked={purpose === "for-sale"}
+                onChange={() => setPurpose("for-sale")}
+              />
+              For Sale
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="for-rent"
+                checked={purpose === "for-rent"}
+                onChange={() => setPurpose("for-rent")}
+              />
+              For Rent
+            </label>
+          </div>
         </div>
       </div>
 
-      {/* Listing Type */}
+      {/* Garage Size */}
       <div className="mb-6">
-        <label className="block text-title-800 font-bold">Listing Type</label>
-        <div>
-          <label className="mr-6">
-            <input
-              type="radio"
-              value="for-sale"
-              checked={purpose === "for-sale"}
-              onChange={() => setPurpose("for-sale")}
-            />
-            For Sale
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="for-rent"
-              checked={purpose === "for-rent"}
-              onChange={() => setPurpose("for-rent")}
-            />
-            For Rent
-          </label>
-        </div>
+        <label
+          htmlFor="garage-size"
+          className="mb-2 inline-block text-title-800 font-bold"
+        >
+          Garage Size
+        </label>
+        <input
+          value={garageSize}
+          onChange={(e) => setGarageSize(e.target.value)}
+          type="text"
+          className={`block w-full ${style.input_default}`}
+          id="input-garageSize"
+          aria-describedby="garageSize"
+          placeholder="Garage size (sqft)"
+        />
       </div>
       <div className={`flex justify-end`}>
         <ButtonLg
