@@ -20,6 +20,18 @@ const propertySchema = new mongoose.Schema({
       url: String, // Actual image URL
     },
   ],
+  createdAt: {
+    type: Date,
+    default: Date.now, // Add a default value of the current date and time
+  },
+  description: String,
+  bedrooms: Number,
+  bathrooms: Number,
+  garage: Boolean,
+  garageSize: Number,
+  propertySize: Number,
+  yearBuilt: Number,
+  specialId: String, // You can specify the type accordingly
 });
 
 const Property = mongoose.model("Property", propertySchema);
