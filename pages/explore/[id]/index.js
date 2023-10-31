@@ -25,9 +25,6 @@ export default function ListingDetails({ listingDetail, properties }) {
   const router = useRouter();
   const { id } = router.query;
 
-  console.log(process.env.MONGODB_URI);
-  console.log(process.env.API_URL);
-
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
