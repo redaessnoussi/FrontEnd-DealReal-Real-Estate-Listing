@@ -1,0 +1,16 @@
+.card {
+  border-width: 1px;
+  border-color: theme("colors.gray.300");
+  border-radius: theme("borderRadius.md");
+  display: flex;
+  flex-direction: column;
+
+  .card_header {
+    padding: 24px 24px 0 24px;
+  }
+
+  .card_body {
+    flex: auto;
+    padding: 24px;
+  }
+}
