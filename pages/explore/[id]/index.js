@@ -51,7 +51,7 @@ export default function ListingDetails({ listingDetail, properties }) {
   );
 
   // You can use listing data to display details on the page
-  // console.log("Listing Data:", listingDetail);
+  console.log("Listing Data:", listingDetail);
 
   return (
     <>

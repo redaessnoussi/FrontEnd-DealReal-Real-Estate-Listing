@@ -64,7 +64,20 @@ router.get("/properties/id/:_id", async (req, res) => {
 // Add Listing
 router.post("/add-property", upload.array("images"), async (req, res) => {
   try {
-    const { purpose, category, price, title } = req.body;
+    const {
+      purpose,
+      category,
+      price,
+      title,
+      description,
+      bedrooms,
+      bathrooms,
+      garage,
+      garageSize,
+      propertySize,
+      yearBuilt,
+      specialId,
+    } = req.body;
     const { country, city, area, street } = req.body.location; // Destructure location object
 
     // Concatenate the address fields to form a single address string
@@ -75,9 +88,6 @@ router.post("/add-property", upload.array("images"), async (req, res) => {
 
     if (geocodingResult && geocodingResult.length > 0) {
       const { latitude, longitude } = geocodingResult[0];
-
-      // console.log("1");
-      // console.log(req.body.images);
 
       const propertyData = {
         purpose,
@@ -94,6 +104,14 @@ router.post("/add-property", upload.array("images"), async (req, res) => {
           lat: latitude.toString(),
           lng: longitude.toString(),
         },
+        description,
+        bedrooms,
+        bathrooms,
+        garage,
+        garageSize,
+        propertySize,
+        yearBuilt,
+        specialId,
         images: req.body.images.map((url) => ({ url })),
       };
 

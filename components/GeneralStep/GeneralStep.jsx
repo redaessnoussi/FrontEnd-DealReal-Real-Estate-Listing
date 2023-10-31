@@ -4,6 +4,7 @@ import style from "../../styles/main.module.scss";
 
 function GeneralStep({ handleFormData, moveToNextStep }) {
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [purpose, setPurpose] = useState("for-sale");
@@ -15,7 +16,19 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
   const [garageSize, setGarageSize] = useState("");
 
   const handleNextStep = () => {
-    handleFormData({ title, category, price, purpose });
+    handleFormData({
+      title,
+      description,
+      bedrooms,
+      bathrooms,
+      propertySize,
+      yearBuilt,
+      category,
+      garage,
+      garageSize,
+      price,
+      purpose,
+    });
     moveToNextStep();
   };
 
@@ -48,8 +61,8 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
           Property Description
         </label>
         <textarea
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className={`block w-full ${style.input_default}`}
           id="input-propertyDescription"
           aria-describedby="propertyDescription"
@@ -189,7 +202,7 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
                 type="radio"
                 value="garageYes"
                 checked={garage === true}
-                onChange={() => setGarage("garageYes")}
+                onChange={() => setGarage(true)}
               />
               Available
             </label>
@@ -198,7 +211,7 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
                 type="radio"
                 value="garageNo"
                 checked={garage === false}
-                onChange={() => setGarage("garageNo")}
+                onChange={() => setGarage(false)}
               />
               Not Available
             </label>
@@ -248,6 +261,7 @@ function GeneralStep({ handleFormData, moveToNextStep }) {
           id="input-garageSize"
           aria-describedby="garageSize"
           placeholder="Garage size (sqft)"
+          disabled={garage === false} // Add disabled attribute conditionally
         />
       </div>
       <div className={`flex justify-end`}>

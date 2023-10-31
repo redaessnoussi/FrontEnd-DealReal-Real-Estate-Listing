@@ -24,6 +24,15 @@ function StepsSection({ steps }) {
         url: "",
       },
     ],
+    createdAt: "",
+    description: "",
+    bedrooms: "",
+    bathrooms: "",
+    garage: true,
+    garageSize: "",
+    propertySize: "",
+    yearBuilt: "",
+    specialId: "",
   });
 
   const handleFormData = (data) => {
@@ -40,7 +49,6 @@ function StepsSection({ steps }) {
     const formData = new FormData();
 
     propertyData.images.forEach((imageObj) => {
-      console.log("2");
       console.log(imageObj.url);
       // Append each image URL as a separate field
       formData.append("images[]", imageObj.url);
@@ -51,6 +59,13 @@ function StepsSection({ steps }) {
     formData.append("category", propertyData.category);
     formData.append("price", propertyData.price);
     formData.append("title", propertyData.title);
+    formData.append("description", propertyData.description);
+    formData.append("bedrooms", propertyData.bedrooms);
+    formData.append("bathrooms", propertyData.bathrooms);
+    formData.append("propertySize", propertyData.propertySize);
+    formData.append("yearBuilt", propertyData.yearBuilt);
+    formData.append("garage", propertyData.garage);
+    formData.append("garageSize", propertyData.garageSize);
 
     formData.append("location[country]", propertyData.location.country);
     formData.append("location[city]", propertyData.location.city);
