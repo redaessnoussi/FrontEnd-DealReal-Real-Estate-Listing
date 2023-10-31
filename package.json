@@ -23,7 +23,6 @@
     "mongoose": "^7.4.5",
     "multer": "^1.4.5-lts.1",
     "next": "12.0.7",
-    "next-auth": "^4.23.2",
     "node-geocoder": "^4.2.0",
     "passport": "^0.6.0",
     "passport-facebook": "^3.0.0",
