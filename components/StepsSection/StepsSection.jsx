@@ -60,7 +60,7 @@ function StepsSection({ steps }) {
     try {
       // Make an API request to upload images and other data
       await axios.post(
-        "https://deal-real.netlify.app/api/add-property",
+        "https://deal-real-real-estate-listing.vercel.app/api/add-property",
         formData
       );
 
