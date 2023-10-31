@@ -59,10 +59,7 @@ function StepsSection({ steps }) {
 
     try {
       // Make an API request to upload images and other data
-      await axios.post(
-        "https://deal-real-real-estate-listing.vercel.app/api/add-property",
-        formData
-      );
+      await axios.post("http://localhost:5000/api/add-property", formData);
 
       // Handle success, e.g., redirect to a success page
       console.log("added succusfuly");
