@@ -8,13 +8,14 @@ import {
 
 export default function ListingOverview({
   style,
-  bedrooms,
-  bathrooms,
-  garage,
-  prSize,
+  listingDetail,
   numberWithCommas,
 }) {
-  const propertySize = numberWithCommas(prSize);
+  const bedrooms = listingDetail[0].bedrooms;
+  const bathrooms = listingDetail[0].bathrooms;
+  const garage = listingDetail[0].garage;
+  const propertySize = numberWithCommas(listingDetail[0].propertySize);
+
   return (
     <>
       <h4 className="text-title-800 font-bold mb-6">Overview</h4>

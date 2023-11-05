@@ -2,18 +2,19 @@ import React from "react";
 
 export default function ListingInfos({
   style,
-  listingPrice,
-  propertySize,
-  bedrooms,
-  bathrooms,
-  garage,
-  garageSize,
-  yearBuilt,
-  category,
-  purpose,
+  listingDetail,
   numberWithCommas,
   capitalizeFirstLetter,
 }) {
+  const listingPrice = listingDetail[0].price;
+  const propertySize = listingDetail[0].propertySize;
+  const bedrooms = listingDetail[0].bedrooms;
+  const bathrooms = listingDetail[0].bathrooms;
+  const garage = listingDetail[0].garage;
+  const garageSize = listingDetail[0].garageSize;
+  const yearBuilt = listingDetail[0].yearBuilt;
+  const category = listingDetail[0].category;
+  const purpose = listingDetail[0]?.purpose;
   const formatedPrice = numberWithCommas(listingPrice);
   const formatedSize = numberWithCommas(propertySize);
   const formatedGarageSize = numberWithCommas(garageSize);

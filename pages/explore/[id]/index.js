@@ -5,7 +5,6 @@ import GoogleMaps from "../../../components/googleMap/googleMap";
 import style from "../../../styles/main.module.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
-import ButtonLg from "../../../components/design/Buttons/ButtonLg";
 import { FaFacebook, FaInstagram, FaPinterest } from "react-icons/fa";
 import ButtonSm from "../../../components/design/Buttons/ButtonSm";
 import CardReservation from "../../../components/design/Card/CardReservation";
@@ -19,14 +18,6 @@ export default function ListingDetails({ listingDetail, properties }) {
   const [listingPurpose, setListingPurpose] = useState("for-sale");
   const router = useRouter();
   const { id } = router.query;
-
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   const fetchListings = async () => {
     try {
@@ -44,10 +35,6 @@ export default function ListingDetails({ listingDetail, properties }) {
     fetchListings();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listingPurpose]);
-
-  const MarkerLocation = () => (
-    <HiLocationMarker className="text-primary-700 w-6 h-6" />
-  );
 
   // You can use listing data to display details on the page
   console.log("Listing Data:", listingDetail);
@@ -137,24 +124,13 @@ export default function ListingDetails({ listingDetail, properties }) {
             {/* Lisiting overview */}
             <ListingOverview
               style={style}
-              bedrooms={listingDetail[0].bedrooms}
-              bathrooms={listingDetail[0].bathrooms}
-              garage={listingDetail[0].garage}
-              prSize={listingDetail[0].propertySize}
+              listingDetail={listingDetail}
               numberWithCommas={numberWithCommas}
             />
             {/* Listing details */}
             <ListingInfos
               style={style}
-              listingPrice={listingDetail[0].price}
-              propertySize={listingDetail[0].propertySize}
-              bedrooms={listingDetail[0].bedrooms}
-              bathrooms={listingDetail[0].bathrooms}
-              garage={listingDetail[0].garage}
-              garageSize={listingDetail[0].garageSize}
-              yearBuilt={listingDetail[0].yearBuilt}
-              category={listingDetail[0].category}
-              purpose={listingDetail[0]?.purpose}
+              listingDetail={listingDetail}
               numberWithCommas={numberWithCommas}
               capitalizeFirstLetter={capitalizeFirstLetter}
             />
@@ -164,7 +140,7 @@ export default function ListingDetails({ listingDetail, properties }) {
             {/* Reservation card form*/}
             <CardReservation
               style={style}
-              listingPrice={listingDetail[0].price}
+              listingDetail={listingDetail}
               numberWithCommas={numberWithCommas}
             />
           </div>
@@ -199,3 +175,15 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const MarkerLocation = () => (
+  <HiLocationMarker className="text-primary-700 w-6 h-6" />
+);

@@ -3,9 +3,10 @@ import ButtonLg from "../Buttons/ButtonLg";
 
 export default function CardReservation({
   style,
-  listingPrice,
+  listingDetail,
   numberWithCommas,
 }) {
+  const listingPrice = listingDetail[0].price;
   const formattedPrice = numberWithCommas(listingPrice);
 
   return (
