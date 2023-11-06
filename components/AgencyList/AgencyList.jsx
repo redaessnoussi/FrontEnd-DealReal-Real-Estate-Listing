@@ -2,7 +2,7 @@ import Image from "next/image";
 import { HiLocationMarker } from "react-icons/hi";
 import { HiOutlinePhone } from "react-icons/hi";
 import { HiOutlineMail } from "react-icons/hi";
-import ButtonLg from "design/Buttons/ButtonLg";
+import ButtonLg from "components/design/Buttons/ButtonLg";
 import style from "styles/main.module.scss";
 
 function AgencyList() {
