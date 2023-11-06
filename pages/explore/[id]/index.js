@@ -42,7 +42,6 @@ export default function ListingDetails({ listingDetail, properties }) {
     <>
       <div className="container mx-auto px-7 py-7">
         {/* listings cards */}
-
         {/* title with social media sharing buttons */}
         <div className={`${style.row} justify-between gap-y-4 mb-3`}>
           <h3 className="text-title-800 font-bold">{listingDetail[0].title}</h3>
@@ -72,7 +71,7 @@ export default function ListingDetails({ listingDetail, properties }) {
           {listingDetail[0].images.map((image, key) => (
             <Image
               src={image.url}
-              width={296}
+              width={376}
               height={255}
               layout="fixed"
               alt={`property__`}
@@ -86,11 +85,19 @@ export default function ListingDetails({ listingDetail, properties }) {
             {/* Listing description and details */}
             {/* Listing description */}
             <h4 className="text-title-800 font-bold mb-6">Description</h4>
-            <p className="mb-10">
-              {listingDetail[0].description
-                ? listingDetail[0].description
-                : "N/A"}
-            </p>
+            <div className="mb-10">
+              {listingDetail[0].description ? (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: listingDetail[0].description
+                      .replace(/\r\n/g, "<br/>")
+                      .replace(/•/g, "&#8226;"),
+                  }}
+                />
+              ) : (
+                "N/A"
+              )}
+            </div>
             {/* Lisiting overview */}
             <ListingOverview
               style={style}
