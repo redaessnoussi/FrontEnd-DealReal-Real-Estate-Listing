@@ -40,9 +40,7 @@ function CardCategories({
       </div>
 
       {/* listing title */}
-      <h5
-        className={`text-title-800 mb-2 font-bold hover:underline ${style.text_truncate}`}
-      >
+      <h5 className={`text-title-800 mb-2 font-bold ${style.text_truncate}`}>
         <Link className={`${style.stretched_link}`} href={`/explore/${id}`}>
           {title}
         </Link>

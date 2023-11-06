@@ -42,7 +42,7 @@ function NewestListing({ listings }) {
                   />
                   {/* listing title */}
                   <h5
-                    className={`text-title-800 mb-2 mt-4 font-bold hover:underline ${style.text_truncate}`}
+                    className={`text-title-800 mb-2 mt-4 font-bold ${style.text_truncate}`}
                   >
                     <Link
                       className={`${style.stretched_link}`}
