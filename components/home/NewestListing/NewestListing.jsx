@@ -10,7 +10,7 @@ function NewestListing({ listings }) {
   }
 
   return (
-    <div className="container lg:px-4 py-24">
+    <div className="container py-24">
       <div className={`${style.row} justify-between items-center mb-8`}>
         {/* headline */}
         <h1 className="text-title-800 mb-0">Newest Listings</h1>

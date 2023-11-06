@@ -4,7 +4,7 @@ import CardCategories from "components/design/Card/CardCategories";
 
 function ListingCategories({ listings }) {
   return (
-    <div className="container lg:px-4 pb-24">
+    <div className="container pb-24">
       <div className="text-center">
         {/* title */}
         <h1 className="text-title-800 mb-6">Listing Categories</h1>

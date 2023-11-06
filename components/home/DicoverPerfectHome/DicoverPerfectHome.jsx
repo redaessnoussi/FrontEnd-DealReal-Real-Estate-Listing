@@ -6,7 +6,7 @@ function DicoverPerfectHome({ rentSaleToggle, listingTypeChange }) {
   return (
     <>
       <div
-        className={`container ${style.bg_hero} text-center text-white flex flex-col justify-center items-center rounded-lg p-4 md:py-10 lg:py-24 lg:px-4`}
+        className={`container ${style.bg_hero} text-center text-white flex flex-col justify-center items-center rounded-lg p-4 md:py-10 lg:py-24`}
       >
         {/* headline */}
         <h1 className="mb-6 font-bold lg:text-6xl md:text-5xl">

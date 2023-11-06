@@ -30,7 +30,7 @@ function HelpYouFind() {
   ];
 
   return (
-    <div className="container lg:px-4 pb-24">
+    <div className="container pb-24">
       <div className="grid lg:grid-cols-2 gap-8">
         <div>
           <h1 className="text-title-800 mb-10">
