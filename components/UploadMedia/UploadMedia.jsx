@@ -11,50 +11,37 @@ function UploadMedia({ handleFormData, moveToNextStep }) {
     const files = e.target.files;
     setSelectedImages(Array.from(files));
   };
-  // console.log(storage);
+
   async function handleNextStep() {
     try {
       const uploadedImages = [];
 
-      // Iterate through selected images
+      // Iterate through selected images and upload each one individually
       for (const image of selectedImages) {
+        console.log("hada front end");
+        console.log(image);
+
         const fileName = `${Date.now()}-${image.name}`;
         const storageRef = ref(storage, `/images/${fileName}`);
-
-        // Create an upload task
         const uploadTask = uploadBytesResumable(storageRef, image);
 
-        // Listen for state changes, including progress updates
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            // Calculate and update progress
-            const progress = Math.round(
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            );
-            console.log(`Upload is ${progress}% done`);
-          },
-          (error) => {
-            console.error("Error during upload:", error);
-          },
-          async () => {
-            // Upload complete, get the public URL
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            uploadedImages.push(downloadURL);
-            console.log("File available at:", downloadURL);
+        // Await the completion of each upload task
+        await uploadTask;
 
-            // Check if all images are uploaded
-            if (uploadedImages.length === selectedImages.length) {
-              console.log(uploadedImages);
-              // Handle the form data with the uploaded image URLs
-              handleFormData({
-                images: uploadedImages.map((url) => ({ url })),
-              });
-              moveToNextStep();
-            }
-          }
-        );
+        // Get the download URL for the uploaded image
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        uploadedImages.push(downloadURL);
+        console.log("File available at:", downloadURL);
       }
+
+      console.log(uploadedImages);
+
+      // Handle the form data with the uploaded image URLs
+      handleFormData({
+        images: uploadedImages.map((url) => ({ url })),
+      });
+
+      moveToNextStep();
     } catch (error) {
       console.error("Error during image upload:", error);
     }
