@@ -1,9 +1,9 @@
-import BrandName from "../BrandName";
-import AvatarButton from "../design/AvatarButton/AvatarButton";
-import NavbarTop from "../design/Navbar/NavbarTop";
-import navbar from "../../styles/main.module.scss";
+import BrandName from "components/BrandName";
+import AvatarButton from "components/design/AvatarButton/AvatarButton";
+import NavbarTop from "components/design/Navbar/NavbarTop";
+import navbar from "styles/main.module.scss";
 import { useEffect, useState } from "react";
-import ButtonLg from "../design/Buttons/ButtonLg";
+import ButtonLg from "components/design/Buttons/ButtonLg";
 import Link from "next/link";
 
 function TopMenuNavbar() {

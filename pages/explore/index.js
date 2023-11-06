@@ -1,13 +1,13 @@
-import { listingsAPI } from "../../data/listingsAPI";
-import CardCategories from "../../components/design/Card/CardCategories";
-import style from "../../styles/main.module.scss";
-import RentSellToggle from "../../components/home/DicoverPerfectHome/RentSellToggle/RentSellToggle";
+import { listingsAPI } from "data/listingsAPI";
+import CardCategories from "components/design/Card/CardCategories";
+import style from "styles/main.module.scss";
+import RentSellToggle from "components/home/DicoverPerfectHome/RentSellToggle/RentSellToggle";
 import { useEffect, useState } from "react";
-import GoogleMap from "../../components/googleMap/googleMap";
-import LoadingPage from "../../components/design/LoadingPage/LoadingPage";
-import LoadingItems from "../../components/design/LoadingItems/LoadingItems";
+import GoogleMap from "components/googleMap/googleMap";
+import LoadingPage from "components/design/LoadingPage/LoadingPage";
+import LoadingItems from "components/design/LoadingItems/LoadingItems";
 import Head from "next/head";
-import Pagination from "../../components/Pagination/Pagination";
+import Pagination from "components/Pagination/Pagination";
 import { useRouter } from "next/router";
 
 export default function Explore({ properties, page, limit }) {

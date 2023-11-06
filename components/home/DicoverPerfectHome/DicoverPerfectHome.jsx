@@ -1,6 +1,6 @@
 import React from "react";
 import RentSellToggle from "./RentSellToggle/RentSellToggle";
-import style from "../../../styles/main.module.scss";
+import style from "styles/main.module.scss";
 
 function DicoverPerfectHome({ rentSaleToggle, listingTypeChange }) {
   return (

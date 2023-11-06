@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Card from "./Card";
-import style from "../../../styles/main.module.scss";
+import Card from "components/design/Card/Card";
+import style from "styles/main.module.scss";
 import Link from "next/link";
 import { HiLocationMarker } from "react-icons/hi";
 

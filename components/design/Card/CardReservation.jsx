@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonLg from "../Buttons/ButtonLg";
+import ButtonLg from "components/design/Buttons/ButtonLg";
 
 export default function CardReservation({
   style,

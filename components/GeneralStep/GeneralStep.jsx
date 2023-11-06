@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ButtonLg from "../design/Buttons/ButtonLg";
-import style from "../../styles/main.module.scss";
+import ButtonLg from "components/design/Buttons/ButtonLg";
+import style from "styles/main.module.scss";
 
 function GeneralStep({ handleFormData, moveToNextStep }) {
   const [title, setTitle] = useState("");

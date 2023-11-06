@@ -1,5 +1,5 @@
-import BrandName from "../BrandName";
-import style from "../../styles/main.module.scss";
+import BrandName from "components/BrandName";
+import style from "styles/main.module.scss";
 
 function Footer() {
   return (

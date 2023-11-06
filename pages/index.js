@@ -1,15 +1,15 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { listingsAPI } from "../data/listingsAPI";
+import { listingsAPI } from "data/listingsAPI";
 // React Components
-import DicoverPerfectHome from "../components/home/DicoverPerfectHome/DicoverPerfectHome";
-import NewestListing from "../components/home/NewestListing/NewestListing";
-import ListingCategories from "../components/home/ListingCategories/ListingCategories";
-import LoadingPage from "../components/design/LoadingPage/LoadingPage";
-import LoadingItems from "../components/design/LoadingItems/LoadingItems";
-import HelpYouFind from "../components/home/HelpYouFind/HelpYouFind";
-import HeroPage from "../components/HeroPage/HeroPage";
-import ButtonLg from "../components/design/Buttons/ButtonLg";
+import DicoverPerfectHome from "components/home/DicoverPerfectHome/DicoverPerfectHome";
+import NewestListing from "components/home/NewestListing/NewestListing";
+import ListingCategories from "components/home/ListingCategories/ListingCategories";
+import LoadingPage from "components/design/LoadingPage/LoadingPage";
+import LoadingItems from "components/design/LoadingItems/LoadingItems";
+import HelpYouFind from "components/home/HelpYouFind/HelpYouFind";
+import HeroPage from "components/HeroPage/HeroPage";
+import ButtonLg from "components/design/Buttons/ButtonLg";
 
 export default function Home({ properties }) {
   const [listings, setListings] = useState(properties.properties);

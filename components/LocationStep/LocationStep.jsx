@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ButtonLg from "../design/Buttons/ButtonLg";
+import ButtonLg from "components/design/Buttons/ButtonLg";
 
 function LocationStep({ handleFormData, moveToNextStep }) {
   const [country, setCountry] = useState("");

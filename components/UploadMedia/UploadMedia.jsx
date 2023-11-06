@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import ButtonLg from "../design/Buttons/ButtonLg";
+import ButtonLg from "components/design/Buttons/ButtonLg";
 import { storage } from "../../firebase/storage"; // Import the Firebase storage instance
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 

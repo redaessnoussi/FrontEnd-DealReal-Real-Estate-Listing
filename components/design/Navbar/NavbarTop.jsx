@@ -1,5 +1,5 @@
 import Link from "next/link";
-import navbar from "../../../styles/main.module.scss";
+import navbar from "styles/main.module.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";
 

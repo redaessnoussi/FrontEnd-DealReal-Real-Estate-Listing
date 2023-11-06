@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import { MdOutlinePhone, MdPhoneAndroid } from "react-icons/md";
-import ButtonLg from "../design/Buttons/ButtonLg";
-import NewestListing from "../home/NewestListing/NewestListing";
+import ButtonLg from "components/design/Buttons/ButtonLg";
+import NewestListing from "components/home/NewestListing/NewestListing";
 
 export default function AgencyContact({ style, listings }) {
   return (

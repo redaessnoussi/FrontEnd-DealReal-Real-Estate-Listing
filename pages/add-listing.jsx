@@ -1,5 +1,5 @@
-import HeroPage from "../components/HeroPage/HeroPage";
-import StepsSection from "../components/StepsSection/StepsSection";
+import HeroPage from "components/HeroPage/HeroPage";
+import StepsSection from "components/StepsSection/StepsSection";
 import Head from "next/head";
 
 function AddListing() {

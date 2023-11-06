@@ -1,16 +1,15 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { listingsAPI } from "../../../data/listingsAPI";
-import GoogleMaps from "../../../components/googleMap/googleMap";
-import style from "../../../styles/main.module.scss";
+import { listingsAPI } from "data/listingsAPI";
+import GoogleMaps from "components/googleMap/googleMap";
+import style from "styles/main.module.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
-import { FaFacebook, FaInstagram, FaPinterest } from "react-icons/fa";
-import ButtonSm from "../../../components/design/Buttons/ButtonSm";
-import CardReservation from "../../../components/design/Card/CardReservation";
-import ListingOverview from "../../../components/ListingDetails/ListingOverview";
-import AgencyContact from "../../../components/ListingDetails/AgencyContact";
-import ListingInfos from "../../../components/ListingDetails/ListingInfos";
+import CardReservation from "components/design/Card/CardReservation";
+import ListingOverview from "components/ListingDetails/ListingOverview";
+import AgencyContact from "components/ListingDetails/AgencyContact";
+import ListingInfos from "components/ListingDetails/ListingInfos";
+import SocialMediaButtons from "components/design/SocialMediaButtons/SocialMediaButtons";
 
 export default function ListingDetails({ listingDetail, properties }) {
   const [listings, setListings] = useState(properties.properties);
@@ -47,36 +46,7 @@ export default function ListingDetails({ listingDetail, properties }) {
         {/* title with social media sharing buttons */}
         <div className={`${style.row} justify-between gap-y-4 mb-3`}>
           <h3 className="text-title-800 font-bold">{listingDetail[0].title}</h3>
-          {/* social media buttons */}
-          <ul className="flex">
-            <li className="mr-2">
-              <ButtonSm
-                roundedBtn={true}
-                type={`button`}
-                className="bg-primary-700 hover:bg-primary-800 hover:border-primary-800 border-primary-700 text-white"
-              >
-                <FaFacebook className="h-6 w-6" />
-              </ButtonSm>
-            </li>
-            <li className="mr-2">
-              <ButtonSm
-                roundedBtn={true}
-                type={`button`}
-                className="bg-primary-700 hover:bg-primary-800 hover:border-primary-800 border-primary-700 text-white"
-              >
-                <FaInstagram className="h-6 w-6" />
-              </ButtonSm>
-            </li>
-            <li>
-              <ButtonSm
-                roundedBtn={true}
-                type={`button`}
-                className="bg-primary-700 hover:bg-primary-800 hover:border-primary-800 border-primary-700 text-white"
-              >
-                <FaPinterest className="h-6 w-6" />
-              </ButtonSm>
-            </li>
-          </ul>
+          <SocialMediaButtons />
         </div>
         {/* location with marker */}
         <div className={`${style.row} mb-10`}>
@@ -177,6 +147,9 @@ export async function getServerSideProps(context) {
 }
 
 function numberWithCommas(x) {
+  if (x === undefined) {
+    return null;
+  }
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 

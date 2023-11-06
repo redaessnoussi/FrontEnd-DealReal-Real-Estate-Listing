@@ -1,6 +1,6 @@
-import ButtonMd from "../../../design/Buttons/ButtonMd";
-import ButtonLg from "../../../design/Buttons/ButtonLg";
-import style from "../../../../styles/main.module.scss";
+import ButtonMd from "components/design/Buttons/ButtonMd";
+import ButtonLg from "components/design/Buttons/ButtonLg";
+import style from "styles/main.module.scss";
 import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 

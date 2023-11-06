@@ -1,6 +1,6 @@
-import style from "../../../styles/main.module.scss";
-import ButtonMd from "../../design/Buttons/ButtonMd";
-import CardCategories from "../../design/Card/CardCategories";
+import style from "styles/main.module.scss";
+import ButtonMd from "components/design/Buttons/ButtonMd";
+import CardCategories from "components/design/Card/CardCategories";
 
 function ListingCategories({ listings }) {
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import UploadMedia from "../UploadMedia/UploadMedia";
-import LocationStep from "../LocationStep/LocationStep";
-import GeneralStep from "../GeneralStep/GeneralStep";
+import UploadMedia from "components/UploadMedia/UploadMedia";
+import LocationStep from "components/LocationStep/LocationStep";
+import GeneralStep from "components/GeneralStep/GeneralStep";
 import axios from "axios";
 
 function StepsSection({ steps }) {

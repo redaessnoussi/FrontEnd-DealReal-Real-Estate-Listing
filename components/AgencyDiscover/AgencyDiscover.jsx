@@ -1,4 +1,4 @@
-import style from "../../styles/main.module.scss";
+import style from "styles/main.module.scss";
 
 function AgencyDiscover() {
   const categoriesData = [

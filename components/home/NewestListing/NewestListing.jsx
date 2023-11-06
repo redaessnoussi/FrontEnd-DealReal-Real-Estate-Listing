@@ -1,7 +1,7 @@
 import Image from "next/image";
-import style from "../../../styles/main.module.scss";
-import ButtonLg from "../../design/Buttons/ButtonLg";
-import Card from "../../design/Card/Card";
+import style from "styles/main.module.scss";
+import ButtonLg from "components/design/Buttons/ButtonLg";
+import Card from "components/design/Card/Card";
 import Link from "next/link";
 
 function NewestListing({ listings }) {

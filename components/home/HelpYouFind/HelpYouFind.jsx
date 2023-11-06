@@ -1,6 +1,5 @@
-// import style from "../../../styles/main.module.scss";
 import Image from "next/image";
-import Accordion from "../../design/Accordion/Accordion";
+import Accordion from "components/design/Accordion/Accordion";
 
 function HelpYouFind() {
   const accordionData = [

@@ -1,9 +1,9 @@
-import AgencyDiscover from "../components/AgencyDiscover/AgencyDiscover";
-import AgencyList from "../components/AgencyList/AgencyList";
-import style from "../styles/main.module.scss";
+import AgencyDiscover from "components/AgencyDiscover/AgencyDiscover";
+import AgencyList from "components/AgencyList/AgencyList";
+import style from "styles/main.module.scss";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
-import HeroPage from "../components/HeroPage/HeroPage";
+import HeroPage from "components/HeroPage/HeroPage";
 
 function Agency() {
   return (

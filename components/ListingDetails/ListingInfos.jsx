@@ -17,8 +17,9 @@ export default function ListingInfos({
   const purpose = listingDetail[0]?.purpose;
   const formatedPrice = numberWithCommas(listingPrice);
   const formatedSize = numberWithCommas(propertySize);
-  const formatedGarageSize = numberWithCommas(garageSize);
+  const formatedGarageSize = garageSize ? numberWithCommas(garageSize) : null;
   const formatedCategory = capitalizeFirstLetter(category);
+
   return (
     <>
       <h4 className="text-title-800 font-bold mb-6">Details</h4>
@@ -63,7 +64,7 @@ export default function ListingInfos({
           <p className="text-title-800 font-bold">
             Garage Size:{" "}
             <span className="text-body-800 ml-1 font-normal">
-              {formatedGarageSize ? formatedGarageSize : "N/A"} sqft
+              {formatedGarageSize ? formatedGarageSize + " sqft" : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">

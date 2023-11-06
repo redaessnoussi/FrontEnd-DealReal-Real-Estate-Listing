@@ -1,6 +1,6 @@
 // Top Menu Navbar
-import TopMenuNavbar from "../components/TopMenuNavbar/TopMenuNavbar";
-import Footer from "./Footer/Footer";
+import TopMenuNavbar from "components/TopMenuNavbar/TopMenuNavbar";
+import Footer from "components/Footer/Footer";
 
 function Layout({ children }) {
   return (
