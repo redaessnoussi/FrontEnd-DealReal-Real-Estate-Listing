@@ -26,29 +26,29 @@ export default function ListingInfos({
       <div className={`${style.row} justify-between mb-10`}>
         <div className="w-6/12">
           <p className="text-title-800 font-bold">
-            Property ID:{" "}
+            Property ID:
             <span className="text-body-800 ml-1 font-normal">AGS1234</span>
           </p>
           <p className="text-title-800 font-bold">
-            Price:{" "}
+            Price:
             <span className="text-body-800 ml-1 font-normal">
               $ {formatedPrice ? formatedPrice : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">
-            Property Size:{" "}
+            Property Size:
             <span className="text-body-800 ml-1 font-normal">
               {formatedSize ? formatedSize + " sqft" : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">
-            Bedroom:{" "}
+            Bedroom:
             <span className="text-body-800 ml-1 font-normal">
               {bedrooms ? bedrooms : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">
-            Bathroom:{" "}
+            Bathroom:
             <span className="text-body-800 ml-1 font-normal">
               {bathrooms ? bathrooms : "N/A"}
             </span>
@@ -56,31 +56,31 @@ export default function ListingInfos({
         </div>
         <div className="w-6/12">
           <p className="text-title-800 font-bold">
-            Garage:{" "}
+            Garage:
             <span className="text-body-800 ml-1 font-normal">
               {garage ? "1" : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">
-            Garage Size:{" "}
+            Garage Size:
             <span className="text-body-800 ml-1 font-normal">
               {formatedGarageSize ? formatedGarageSize + " sqft" : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">
-            Year Built:{" "}
+            Year Built:
             <span className="text-body-800 ml-1 font-normal">
               {yearBuilt ? yearBuilt : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">
-            Category:{" "}
+            Category:
             <span className="text-body-800 ml-1 font-normal">
               {formatedCategory ? formatedCategory : "N/A"}
             </span>
           </p>
           <p className="text-title-800 font-bold">
-            Property Status:{" "}
+            Property Status:
             <span className="text-body-800 ml-1 font-normal">
               {purpose === "for-sale" ? "Sale" : "Rent"}
             </span>
