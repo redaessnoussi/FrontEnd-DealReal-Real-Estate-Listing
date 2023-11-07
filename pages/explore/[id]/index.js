@@ -56,7 +56,7 @@ export default function ListingDetails({ listingDetail, properties }) {
         </div>
         {/* multiple listing image */}
         {/* thumbnail image */}
-        <div className="w-full mb-8 h-[558px]">
+        <div className="w-full px-4 mb-8">
           <Image
             src={listingDetail[0].images[0].url}
             layout="responsive"
@@ -67,21 +67,22 @@ export default function ListingDetails({ listingDetail, properties }) {
           />
         </div>
         {/* slider images */}
-        <div className={`${style.row} justify-between gap-y-4 mb-8`}>
+        <div className={`${style.row} mb-8`}>
           {listingDetail[0].images.map((image, key) => (
-            <Image
-              src={image.url}
-              width={376}
-              height={255}
-              layout="fixed"
-              alt={`property__`}
-              className="rounded-lg object-cover"
-              key={key}
-            />
+            <div key={key} className="w-full md:w-4/12 px-4 mb-7">
+              <Image
+                src={image.url}
+                width={376}
+                height={255}
+                layout="responsive"
+                alt={`property__`}
+                className="rounded-lg object-cover"
+              />
+            </div>
           ))}
         </div>
         <div className={`${style.row} justify-between`}>
-          <div className="w-7/12">
+          <div className="w-full md:w-6/12 lg:w-7/12 xl:w-8/12 md:pr-3">
             {/* Listing description and details */}
             {/* Listing description */}
             <h4 className="text-title-800 font-bold mb-6">Description</h4>
@@ -111,9 +112,8 @@ export default function ListingDetails({ listingDetail, properties }) {
               numberWithCommas={numberWithCommas}
               capitalizeFirstLetter={capitalizeFirstLetter}
             />
-            <h4 className="font-bold text-slate-700 mb-6">Address</h4>
           </div>
-          <div className="w-4/12">
+          <div className="w-full md:w-6/12 lg:w-5/12 xl:w-4/12 md:pl-3 mb-6 md:mb-0">
             {/* Reservation card form*/}
             <CardReservation
               style={style}
@@ -122,6 +122,7 @@ export default function ListingDetails({ listingDetail, properties }) {
             />
           </div>
         </div>
+        <h4 className="font-bold text-slate-700 mb-6">Address</h4>
       </div>
       {/* Listing address on the map */}
       <div className="bg-green-200 h-96 relative flex justify-center mb-10">

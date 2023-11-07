@@ -27,10 +27,14 @@ export default function AgencyContact({ style, listings }) {
             Grand House Real Estate
           </h5>
           <div className="flex">
-            <MdOutlinePhone className="mr-2 w-6 h-6" />
-            <p className="mr-4">+90 8989787 898</p>
-            <MdPhoneAndroid className="mr-2 w-6 h-6" />
-            <p>+90 8989787 898</p>
+            <div className="md:w-6/12 lg:w-auto inline-flex">
+              <MdOutlinePhone className="mr-2 w-6 h-6" />
+              <p className="mr-4">+90 8989787 898</p>
+            </div>
+            <div className="md:w-6/12 lg:w-auto inline-flex">
+              <MdPhoneAndroid className="mr-2 w-6 h-6" />
+              <p>+90 8989787 898</p>
+            </div>
           </div>
         </div>
         <ButtonLg
