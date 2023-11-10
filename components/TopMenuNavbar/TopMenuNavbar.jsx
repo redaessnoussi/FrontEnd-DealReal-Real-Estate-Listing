@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ButtonLg from "components/design/Buttons/ButtonLg";
 import Link from "next/link";
 
-function TopMenuNavbar() {
+function TopMenuNavbar({ style }) {
   const [isActive, setActive] = useState(false);
   const [classname, setclassname] = useState(null);
 
@@ -56,6 +56,7 @@ function TopMenuNavbar() {
           <AvatarButton
             src="/images/face-2.jpg"
             className="ml-5 md:ml-0 md:mr-5"
+            style={style}
           />
           {/* add listing button */}
           <ButtonLg
