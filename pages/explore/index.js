@@ -37,12 +37,6 @@ export default function Explore({ properties, page, limit }) {
     router.push(`/explore?listingPurpose=${purpose}`);
   };
 
-  // Define the handlePageChange function
-  const handlePageChange = (page) => {
-    // Update the URL and fetch data for the new page
-    router.push(`/explore?listingPurpose=${listingPurpose}&page=${page}`);
-  };
-
   // set loading if data fetched
   useEffect(() => {
     fetched && setLoading(true);
