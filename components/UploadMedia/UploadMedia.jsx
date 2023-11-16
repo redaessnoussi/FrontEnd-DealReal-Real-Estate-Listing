@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import ButtonLg from "components/design/Buttons/ButtonLg";
-import { storage } from "../../firebase/storage"; // Import the Firebase storage instance
+import { firebaseStorage } from "../../firebase/firebaseStorage"; // Import the Firebase storage instance
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 function UploadMedia({ handleFormData, moveToNextStep }) {
@@ -22,7 +22,7 @@ function UploadMedia({ handleFormData, moveToNextStep }) {
         console.log(image);
 
         const fileName = `${Date.now()}-${image.name}`;
-        const storageRef = ref(storage, `/images/${fileName}`);
+        const storageRef = ref(firebaseStorage, `/images/${fileName}`);
         const uploadTask = uploadBytesResumable(storageRef, image);
 
         // Await the completion of each upload task
