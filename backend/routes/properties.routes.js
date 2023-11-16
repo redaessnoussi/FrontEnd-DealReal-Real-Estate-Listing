@@ -20,6 +20,7 @@ router.get("/properties", async (req, res) => {
 
   try {
     const properties = await Property.find()
+      .sort({ createdAt: -1 }) // Sort by createdAt in descending order (newest first)
       .skip((page - 1) * limit) // Calculate the number of documents to skip
       .limit(limit); // Limit the number of documents per page
 
@@ -40,6 +41,7 @@ router.get("/properties/purpose/:purpose", async (req, res) => {
 
     // Fetch the properties with pagination
     const properties = await Property.find({ purpose })
+      .sort({ createdAt: -1 }) // Sort by createdAt in descending order (newest first)
       .skip((page - 1) * limit) // Calculate the number of documents to skip
       .limit(limit); // Limit the number of documents per page
 
