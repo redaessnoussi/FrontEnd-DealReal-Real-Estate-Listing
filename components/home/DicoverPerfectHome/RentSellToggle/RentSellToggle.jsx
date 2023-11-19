@@ -4,16 +4,24 @@ import style from "styles/main.module.scss";
 import { FiSearch } from "react-icons/fi";
 import { useState } from "react";
 
-function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
+function RentSellToggle({
+  className,
+  rentSaleToggle,
+  updateSearchParams,
+  purpose,
+}) {
   const [active, setactive] = useState(true);
   const [inactive, setinactive] = useState(true);
-  const [listingsType, setlistingsType] = useState("3");
+  const [listingsType, setlistingsType] = useState("villas");
+  const [listingsCity, setlistingsCity] = useState("Dubai");
+
   const activeClass =
     "bg-primary-700 border-primary-700 text-white hover:bg-primary-800 hover:border-primary-800";
   const inactiveClass =
     "bg-white border-primary-700 hover:border-primary-800 text-primary-700 hover:bg-primary-800 hover:text-white";
 
   const toggleClass = (target) => {
+    console.log(purpose);
     rentSaleToggle(target);
     setactive(!active);
     setinactive(!inactive);
@@ -24,27 +32,48 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
     setlistingsType(val);
   };
 
+  // change listing type value from combobox
+  const changeListingCity = (val) => {
+    setlistingsCity(val);
+  };
+
+  // listing types options
   const ListingTypes = () => (
     <select
       value={listingsType}
       className={style.input_select}
       onChange={(e) => changeListingType(e.target.value)}
     >
-      <option value="3">Villas</option>
-      <option value="4">Apartment</option>
-      <option value="5">Office</option>
-      <option value="6">Shop</option>
-      <option value="7">Warehouse</option>
-      <option value="8">Factory</option>
-      <option value="9">Labour camp</option>
-      <option value="10">Commercial Building</option>
-      <option value="11">Other Commercial</option>
+      <option value="villas">Villas</option>
+      <option value="apartments">Apartments</option>
+      <option value="offices">Offices</option>
+      <option value="shops">Shops</option>
+      <option value="warehouses">Warehouses</option>
+      <option value="factory">Factory</option>
+      <option value="labour">Labour camp</option>
+      <option value="commercial">Commercial Building</option>
+      <option value="other">Other Commercial</option>
     </select>
   );
 
-  const searchListings = (e) => {
-    e.preventDefault();
-    listingTypeChange(listingsType);
+  const ListingCities = () => (
+    <select
+      value={listingsCity}
+      className={style.input_select}
+      onChange={(e) => changeListingCity(e.target.value)}
+    >
+      <option value="dubai">Dubai</option>
+      <option value="abudabi">Abudabi</option>
+      <option value="casablanca">Casablanca</option>
+    </select>
+  );
+
+  const searchListings = () => {
+    updateSearchParams({
+      purpose: purpose,
+      city: listingsCity,
+      category: listingsType,
+    });
   };
 
   return (
@@ -80,19 +109,13 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
       </div>
       {/* rent sell toggle inputs */}
       <div className="shadow-md bg-white w-full md:w-11/12 lg:w-10/12 p-5 md:rounded-lg rounded-tl-none rounded-tr-none rounded-bl-lg rounded-br-lg">
-        <form
-          className="flex flex-wrap flex-row items-end md:justify-center"
-          onSubmit={(e) => searchListings(e)}
-        >
+        <form className="flex flex-wrap flex-row items-end md:justify-center">
           {/* Location */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">
             <span className="block text-title-800 font-semibold mb-2 text-sm">
               Location
             </span>
-            <select className={style.input_select}>
-              <option value="dubai">Dubai</option>
-              <option value="abudabi">Abudabi</option>
-            </select>
+            <ListingCities />
           </label>
           {/* Type */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">
@@ -114,7 +137,8 @@ function RentSellToggle({ className, rentSaleToggle, listingTypeChange }) {
           </label>
           {/* Search Button */}
           <ButtonLg
-            type={`submit`}
+            type="button"
+            onClick={() => searchListings()}
             className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white md:mb-0"
           >
             Search <FiSearch className="w-5 h-5 ml-2" />
