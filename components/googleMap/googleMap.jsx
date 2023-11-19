@@ -4,6 +4,7 @@ import { HiLocationMarker } from "react-icons/hi";
 // Google Geocoding: AIzaSyBvjzj92Q7W5_U229N0g-oXzvFJnJev_xk
 
 const GoogleMaps = ({ properties }) => {
+  // console.log(properties);
   const landscapeColor = "#DEF8ED";
   const arterialColor = "#8AE5C0";
   const highwayColor = "#8AE5C0";
