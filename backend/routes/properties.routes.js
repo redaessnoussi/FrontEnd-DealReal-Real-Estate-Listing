@@ -12,7 +12,7 @@ const geocoder = NodeGeocoder({
 const storage = multer.memoryStorage(); // Store files in memory
 const upload = multer({ storage: storage });
 
-const storageFirebase = require("../server").storage;
+// const storageFirebase = require("../server").storage;
 
 // Endpoint to fetch properties
 router.get("/properties", async (req, res) => {
@@ -46,6 +46,59 @@ router.get("/properties/purpose/:purpose", async (req, res) => {
       .limit(limit); // Limit the number of documents per page
 
     res.json({ properties, totalCount }); // Return both properties and total count
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//router that will fetch listings base on the search parms
+router.get("/properties/search", async (req, res) => {
+  const {
+    page = 1,
+    limit = 8,
+    purpose,
+    city,
+    category,
+    minPrice,
+    maxPrice,
+  } = req.query;
+
+  try {
+    // Build the query object
+    const query = {};
+
+    if (purpose) {
+      // Add location to the query
+      query.purpose = purpose;
+    }
+
+    if (city) {
+      // Add location to the query
+      query["location.city"] = city; // Corrected this line
+    }
+
+    if (category) {
+      // Add type to the query
+      query.category = category;
+    }
+
+    if (minPrice && maxPrice) {
+      // Add price range to the query
+      query.price = { $gte: minPrice, $lte: maxPrice };
+    }
+
+    console.log(query);
+
+    // Get the total count of listings for the given query
+    const totalCount = await Property.countDocuments(query);
+
+    // Fetch the properties with pagination and query
+    const properties = await Property.find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    res.json({ properties, totalCount });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
