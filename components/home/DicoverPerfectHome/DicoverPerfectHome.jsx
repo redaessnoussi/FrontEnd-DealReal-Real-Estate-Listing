@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import RentSellToggle from "./RentSellToggle/RentSellToggle";
 import style from "styles/main.module.scss";
 
-function DicoverPerfectHome({ rentSaleToggle, listingTypeChange }) {
+function DicoverPerfectHome({ rentSaleToggle, updateSearchParams }) {
   return (
     <>
       <div
@@ -21,7 +21,7 @@ function DicoverPerfectHome({ rentSaleToggle, listingTypeChange }) {
         <RentSellToggle
           className={`lg:w-10/12`}
           rentSaleToggle={rentSaleToggle}
-          listingTypeChange={listingTypeChange}
+          updateSearchParams={updateSearchParams}
         />
       </div>
     </>

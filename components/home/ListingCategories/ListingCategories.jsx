@@ -54,7 +54,7 @@ function ListingCategories({ listings }) {
         </div>
       </div>
       {/* listings cards */}
-      <div className={`${style.row} justify-between gap-y-4`}>
+      <div className={`${style.row} gap-y-4`}>
         {listings?.map(
           (listing, key) =>
             key < 8 && (

@@ -10,45 +10,57 @@ import LoadingItems from "components/design/LoadingItems/LoadingItems";
 import HelpYouFind from "components/home/HelpYouFind/HelpYouFind";
 import HeroPage from "components/HeroPage/HeroPage";
 import ButtonLg from "components/design/Buttons/ButtonLg";
+import { useRouter } from "next/router";
 
-export default function Home({ properties }) {
-  const [listings, setListings] = useState(properties.properties);
-  const [fetched, setfetched] = useState(listings.length);
-  const [listingPurpose, setListingPurpose] = useState("for-sale");
-  const [loading, setLoading] = useState(false);
-  const [listingType, setlistingType] = useState("0");
+export default function Home() {
+  const router = useRouter(); // Use the useRouter hook to access the router object
+  const [listings, setListings] = useState([]);
+  const [listingsArray, setListingsArray] = useState(listings.properties);
+  const [purpose, setPurpose] = useState("for-sale");
 
-  const fetchListings = async () => {
+  const limit = 8; // Specify the limit for properties per page
+
+  const fetchListings = async (purposeData) => {
     try {
-      const properties = await listingsAPI(
-        `properties/purpose/${listingPurpose}`
+      const response = await listingsAPI(
+        `properties/purpose/${purposeData || "for-sale"}?page=${
+          router.query.page || 1
+        }&limit=${limit}`
       );
-      setListings(properties.properties);
+      setListings(response);
+      setListingsArray(response.properties);
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
   };
 
-  // Callback function to update listingPurpose
+  const updateSearchParams = (newParams) => {
+    router.push(
+      `/search?purpose=${newParams.purpose}&city=${newParams.city}&category=${newParams.category}`
+    );
+  };
+
+  // Callback function to update purpose
   const rentSaleToggle = (purpose) => {
-    setLoading(false);
-    setListingPurpose(purpose);
+    setPurpose(purpose);
   };
 
-  const listingTypeChange = (data) => {
-    setlistingType(data);
-  };
-
-  // set loading if data fetched
   useEffect(() => {
-    fetched && setLoading(true);
-  }, [fetched, listingPurpose]);
-
-  useEffect(() => {
-    // Fetch listings when listingPurpose changes
-    fetchListings();
+    // Fetch listings when purpose changes
+    fetchListings(router.query.purpose);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listingPurpose]);
+  }, [router.query.purpose, router.query.city, router.query.category]);
+
+  useEffect(() => {
+    // Fetch listings when purpose changes
+    fetchListings(purpose);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [purpose]);
+
+  useEffect(() => {
+    // Update listingsArray when response.properties changes
+    setListingsArray(listings.properties);
+  }, [listings.properties]);
 
   return (
     <>
@@ -56,48 +68,32 @@ export default function Home({ properties }) {
         <title>Deal Real - Homepage</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {fetched !== 0 ? (
-        <>
-          <div className="container mx-auto px-7">
-            {/* discover your perfect home */}
-            <DicoverPerfectHome
-              rentSaleToggle={rentSaleToggle}
-              listingTypeChange={listingTypeChange}
-            />
-            {/* newest listing */}
-            {loading ? <NewestListing listings={listings} /> : <LoadingItems />}
-            {/* we help you find your dream house */}
-            <HelpYouFind />
-            {/* listing categories*/}
-            {loading && <ListingCategories listings={listings} />}
-          </div>
-          {/* contact us section */}
-          <HeroPage>
-            <h1 className="text-white mb-8">
-              Get Luxury And Cheap Housing And Guaranteed Forever
-            </h1>
-            <ButtonLg className="border-secondary-500 bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 mx-auto">
-              <span className="text-white">Contact Now</span>
-            </ButtonLg>
-          </HeroPage>
-          {/* <ContactUs /> */}
-        </>
-      ) : (
-        <LoadingPage />
-      )}
+      <>
+        <div className="container mx-auto px-7">
+          {/* discover your perfect home */}
+          <DicoverPerfectHome
+            //rentSaleToggle: this will flag if the listing purpose value changed on toggle menu
+            rentSaleToggle={rentSaleToggle}
+            updateSearchParams={updateSearchParams}
+          />
+          {/* newest listing */}
+          <NewestListing listings={listingsArray} />
+          {/* we help you find your dream house */}
+          <HelpYouFind />
+          {/* listing categories*/}
+          <ListingCategories listings={listingsArray} />
+        </div>
+        {/* contact us section */}
+        <HeroPage>
+          <h1 className="text-white mb-8">
+            Get Luxury And Cheap Housing And Guaranteed Forever
+          </h1>
+          <ButtonLg className="border-secondary-500 bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 mx-auto">
+            <span className="text-white">Contact Now</span>
+          </ButtonLg>
+        </HeroPage>
+        {/* <ContactUs /> */}
+      </>
     </>
   );
-}
-
-export async function getServerSideProps({ query }) {
-  // Parse the listingPurpose from the query parameter or default to "for-sale"
-  const listingPurpose = query.listingPurpose || "for-sale";
-
-  const properties = await listingsAPI(`properties/purpose/${listingPurpose}`);
-
-  return {
-    props: {
-      properties,
-    },
-  };
 }

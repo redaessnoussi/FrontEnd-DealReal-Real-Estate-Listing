@@ -10,49 +10,52 @@ import Head from "next/head";
 import Pagination from "components/Pagination/Pagination";
 import { useRouter } from "next/router";
 
-export default function Explore({ properties, page, limit }) {
-  const [listings, setListings] = useState(properties.properties);
-  const [loading, setLoading] = useState(false);
-  const [fetched, setfetched] = useState(listings.length);
-  const [listingPurpose, setListingPurpose] = useState("for-sale");
+export default function Explore() {
   const router = useRouter(); // Use the useRouter hook to access the router object
+  const [listings, setListings] = useState([]);
+  const [listingsArray, setListingsArray] = useState(listings.properties);
+  const [purpose, setPurpose] = useState("for-sale");
+
+  const limit = 8; // Specify the limit for properties per page
 
   const fetchListings = async () => {
     try {
-      const properties = await listingsAPI(
-        `properties/purpose/${listingPurpose}`
+      const response = await listingsAPI(
+        `properties/purpose/${purpose}?page=${
+          router.query.page || 1
+        }&limit=${limit}`
       );
-      setListings(properties.properties);
+      setListings(response);
+      setListingsArray(response.properties);
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
   };
 
-  // console.log(listings);
-
   // Callback function to update listingPurpose
   const rentSaleToggle = (purpose) => {
-    setLoading(false);
-    setListingPurpose(purpose);
-    router.push(`/explore?listingPurpose=${purpose}`);
+    console.log(purpose);
+    setPurpose(purpose);
+    // Reset page to 1 when purpose changes
+    router.push(`explore?page=1`);
   };
 
-  // set loading if data fetched
-  useEffect(() => {
-    fetched && setLoading(true);
-  }, [fetched, listingPurpose]);
+  const updateSearchParams = (newParams) => {
+    router.push(
+      `/search?purpose=${newParams.purpose}&city=${newParams.city}&category=${newParams.category}`
+    );
+  };
 
   useEffect(() => {
-    // Fetch listings when pagination change
-    setListings(properties.properties);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
-
-  useEffect(() => {
-    // Fetch listings when listingPurpose changes
+    // Fetch listings when page changes
     fetchListings();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listingPurpose]);
+  }, [purpose, router.query.page]);
+
+  useEffect(() => {
+    // Update listingsArray when response.properties changes
+    setListingsArray(listings.properties);
+  }, [listings.properties]);
 
   return (
     <>
@@ -60,71 +63,48 @@ export default function Explore({ properties, page, limit }) {
         <title>Deal Real - Explore Listings</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {fetched !== 0 ? (
+      {listingsArray && listingsArray.length > 0 && (
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
-            <GoogleMap properties={listings} />
+            <GoogleMap properties={listingsArray} />
             {/* Rent Sell Toggle */}
             <RentSellToggle
               className={`absolute -bottom-64 md:-bottom-14 lg:w-9/12 px-7`}
+              //rentSaleToggle: this will flag if the listing purpose value changed on toggle menu
               rentSaleToggle={rentSaleToggle}
+              updateSearchParams={updateSearchParams}
             />
           </div>
           <div className="container mx-auto px-7 pb-24 pt-96 md:pt-60">
             {/* listings cards */}
-            <div className={`${style.row} justify-between gap-y-4`}>
-              {loading ? (
-                listings.map((listing, key) => (
-                  <div
-                    className="md:w-4/12 lg:w-3/12 w-full h-full flex-initial"
-                    key={key}
-                  >
-                    <CardCategories
-                      id={listing._id}
-                      src={listing.images[0].url}
-                      title={listing.title}
-                      location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
-                      price={listing.price}
-                      category={listing.category}
-                    />
-                  </div>
-                ))
-              ) : (
-                <LoadingItems />
-              )}
+            <div className={`${style.row} gap-y-4`}>
+              {listingsArray?.map((listing, key) => (
+                <div
+                  className="md:w-4/12 lg:w-3/12 w-full h-full flex-initial"
+                  key={key}
+                >
+                  <CardCategories
+                    id={listing._id}
+                    src={listing.images[0].url}
+                    title={listing.title}
+                    location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
+                    price={listing.price}
+                    category={listing.category}
+                  />
+                </div>
+              ))}
             </div>
 
             {/* Pagination */}
             <Pagination
               style={style}
-              totalPages={Math.ceil(properties.totalCount / limit)}
-              page={page}
-              listingPurpose={listingPurpose} // Pass listingPurpose as a prop
+              totalPages={Math.ceil(listings.totalCount / limit)}
+              page={parseInt(router.query.page) || 1}
+              listingPurpose={purpose} // Pass listingPurpose as a prop
             />
           </div>
         </>
-      ) : (
-        <LoadingPage />
       )}
     </>
   );
-}
-
-export async function getServerSideProps({ query }) {
-  // Parse the listingPurpose from the query parameter or default to "for-sale"
-  const listingPurpose = query.listingPurpose || "for-sale";
-  const page = parseInt(query.page) || 1;
-  const limit = 8; // Specify the limit for properties per page
-
-  const properties = await listingsAPI(
-    `properties/purpose/${listingPurpose}?page=${page}&limit=${limit}`
-  );
-
-  return {
-    props: {
-      properties,
-      page,
-      limit,
-    },
-  };
 }

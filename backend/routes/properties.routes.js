@@ -87,8 +87,6 @@ router.get("/properties/search", async (req, res) => {
       query.price = { $gte: minPrice, $lte: maxPrice };
     }
 
-    console.log(query);
-
     // Get the total count of listings for the given query
     const totalCount = await Property.countDocuments(query);
 

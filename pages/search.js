@@ -10,76 +10,75 @@ import CardCategories from "components/design/Card/CardCategories";
 import RentSellToggle from "components/home/DicoverPerfectHome/RentSellToggle/RentSellToggle";
 import GoogleMap from "components/googleMap/googleMap";
 
-function Search({ properties, page, limit }) {
+function Search() {
   const router = useRouter(); // Use the useRouter hook to access the router object
-  const [loading, setLoading] = useState(false);
-  const [purpose, setPurpose] = useState(router.query.purpose);
-  const [city, setCity] = useState(router.query.city);
-  const [category, setCategory] = useState(router.query.category);
   const [listings, setListings] = useState([]);
-  const [fetched, setFetched] = useState(listings.length);
+  const [listingsArray, setListingsArray] = useState(listings.properties);
+  const [purpose, setPurpose] = useState("for-sale");
 
-  console.log(router.query.city);
+  const limit = 8; // Specify the limit for properties per page
 
-  const fetchListings = async () => {
+  const fetchListings = async (purposeData) => {
     try {
       let queryString = "properties/search?";
 
-      if (purpose) {
-        queryString += `purpose=${purpose}&`;
+      if (router.query.purpose) {
+        queryString += `purpose=${purposeData}&`;
       }
 
-      if (city) {
-        queryString += `city=${city}&`;
+      if (router.query.city) {
+        queryString += `city=${router.query.city}&`;
       }
 
-      if (category) {
-        queryString += `category=${category}&`;
+      if (router.query.category) {
+        queryString += `category=${router.query.category}&`;
       }
 
+      if (router.query.page) {
+        queryString += `page=${router.query.page || 1}`;
+      }
       // Remove the trailing "&" if it exists
       queryString = queryString.replace(/&$/, "");
-      console.log(queryString);
-      const properties = await listingsAPI(queryString);
-      setListings(properties.properties);
-      setFetched(properties.properties.length);
+      const response = await listingsAPI(queryString);
+      setListings(response);
+      setListingsArray(response.properties);
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
   };
 
-  console.log(listings);
-  console.log(fetched);
-
-  // Callback function to update listingPurpose
+  // Callback function to update purpose
   const rentSaleToggle = (purpose) => {
-    setLoading(false);
     setPurpose(purpose);
-    router.push(`/search?purpose=${purpose}`);
   };
 
   const updateSearchParams = (newParams) => {
-    setPurpose(newParams.purpose || null);
-    setCity(newParams.city || null);
-    setCategory(newParams.category || null);
+    router.push(
+      `/search?purpose=${newParams.purpose}&city=${newParams.city}&category=${newParams.category}`
+    );
   };
 
-  // set loading if data fetched
   useEffect(() => {
-    fetched && setLoading(true);
-  }, [fetched, purpose]);
+    // Fetch listings when page changes
+    fetchListings(router.query.purpose);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    router.query.page,
+    router.query.purpose,
+    router.query.city,
+    router.query.category,
+  ]);
 
   useEffect(() => {
-    // Fetch listings when pagination change
-    setListings(properties.properties);
+    // Fetch listings when page changes
+    fetchListings(purpose);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [purpose]);
 
   useEffect(() => {
-    // Fetch listings when listingPurpose changes
-    fetchListings();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [purpose, city, category]);
+    // Update listingsArray when response.properties changes
+    setListingsArray(listings.properties);
+  }, [listings.properties]);
 
   return (
     <>
@@ -87,82 +86,50 @@ function Search({ properties, page, limit }) {
         <title>Deal Real - Explore Listings</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {fetched !== 0 ? (
+      {listingsArray && listingsArray.length > 0 && (
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
-            <GoogleMap properties={listings} />
+            <GoogleMap properties={listingsArray} />
             {/* Rent Sell Toggle */}
             <RentSellToggle
               className={`absolute -bottom-64 md:-bottom-14 lg:w-9/12 px-7`}
+              //rentSaleToggle: this will flag if the listing purpose value changed on toggle menu
               rentSaleToggle={rentSaleToggle}
-              purpose={purpose} // Pass purpose as a prop
               updateSearchParams={updateSearchParams}
             />
           </div>
           <div className="container mx-auto px-7 pb-24 pt-96 md:pt-60">
             {/* listings cards */}
-            <div className={`${style.row} justify-between gap-y-4`}>
-              {loading ? (
-                listings.map((listing, key) => (
-                  <div
-                    className="md:w-4/12 lg:w-3/12 w-full h-full flex-initial"
-                    key={key}
-                  >
-                    <CardCategories
-                      id={listing._id}
-                      src={listing.images[0].url}
-                      title={listing.title}
-                      location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
-                      price={listing.price}
-                      category={listing.category}
-                    />
-                  </div>
-                ))
-              ) : (
-                <LoadingItems />
-              )}
+            <div className={`${style.row} gap-y-4`}>
+              {listingsArray?.map((listing, key) => (
+                <div
+                  className="md:w-4/12 lg:w-3/12 w-full h-full flex-initial"
+                  key={key}
+                >
+                  <CardCategories
+                    id={listing._id}
+                    src={listing.images[0].url}
+                    title={listing.title}
+                    location={`${listing.location.country}, ${listing.location.city}, ${listing.location.area}`}
+                    price={listing.price}
+                    category={listing.category}
+                  />
+                </div>
+              ))}
             </div>
 
             {/* Pagination */}
             <Pagination
               style={style}
-              totalPages={Math.ceil(properties.totalCount / limit)}
-              page={page}
-              listingPurpose={purpose} // Pass listingPurpose as a prop
+              totalPages={Math.ceil(listings.totalCount / limit)}
+              page={parseInt(router.query.page) || 1}
+              listingPurpose={router.query.purpose} // Pass listingPurpose as a prop
             />
           </div>
         </>
-      ) : (
-        <LoadingPage />
       )}
     </>
   );
-}
-
-export async function getServerSideProps({ query }) {
-  // Parse the listingPurpose from the query parameter or default to "for-sale"
-  const purpose = query.purpose || null;
-  const page = parseInt(query.page) || 1;
-  const limit = 8; // Specify the limit for properties per page
-
-  // Extract additional parameters
-  const city = query.city || null;
-  const category = query.category || null;
-  const minPrice = query.minPrice || null;
-  const maxPrice = query.maxPrice || null;
-
-  // `properties/search?purpose=${purpose}&category=${category}&city=${city}&minPrice=${minPrice}&maxPrice=${maxPrice}`
-  const properties = await listingsAPI(
-    `properties/search?purpose=${purpose}&city=${city}&category=${category}`
-  );
-
-  return {
-    props: {
-      properties,
-      page,
-      limit,
-    },
-  };
 }
 
 export default Search;

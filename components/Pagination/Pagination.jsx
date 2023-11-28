@@ -1,14 +1,30 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useRouter } from "next/router";
 
-function Pagination({ style, totalPages, page, listingPurpose }) {
+function Pagination({ style, totalPages, page }) {
   const router = useRouter(); // Use the useRouter hook to access the router object
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
-      // Check if the newPage is within valid bounds
+      // Get the current pathname from the router
+      const currentPathname = router.pathname;
+
+      console.log("listingPurpose pagination", listingPurpose);
+
+      // Get the previous query parameters from the router
+      const { listingPurpose, page, ...otherParams } = router.query;
+
+      // Construct the new URL with the updated page parameter
+      const url =
+        currentPathname +
+        "?" +
+        Object.entries({ listingPurpose, ...otherParams, page: newPage })
+          .filter(([key, value]) => value !== undefined)
+          .map(([key, value]) => `${key}=${value}`)
+          .join("&");
+
       // Update the URL and fetch data for the new page
-      router.push(`/explore?listingPurpose=${listingPurpose}&page=${newPage}`);
+      router.push(url);
     }
   };
 

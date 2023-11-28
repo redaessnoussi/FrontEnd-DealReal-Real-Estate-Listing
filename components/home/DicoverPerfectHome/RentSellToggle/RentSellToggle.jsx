@@ -2,18 +2,16 @@ import ButtonMd from "components/design/Buttons/ButtonMd";
 import ButtonLg from "components/design/Buttons/ButtonLg";
 import style from "styles/main.module.scss";
 import { FiSearch } from "react-icons/fi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-function RentSellToggle({
-  className,
-  rentSaleToggle,
-  updateSearchParams,
-  purpose,
-}) {
+function RentSellToggle({ className, updateSearchParams, rentSaleToggle }) {
+  const router = useRouter(); // Use the useRouter hook to access the router object
   const [active, setactive] = useState(true);
   const [inactive, setinactive] = useState(true);
   const [listingsType, setlistingsType] = useState("villas");
   const [listingsCity, setlistingsCity] = useState("Dubai");
+  const [listingPurpose, setListingPurpose] = useState("for-sale");
 
   const activeClass =
     "bg-primary-700 border-primary-700 text-white hover:bg-primary-800 hover:border-primary-800";
@@ -21,7 +19,7 @@ function RentSellToggle({
     "bg-white border-primary-700 hover:border-primary-800 text-primary-700 hover:bg-primary-800 hover:text-white";
 
   const toggleClass = (target) => {
-    console.log(purpose);
+    setListingPurpose(target);
     rentSaleToggle(target);
     setactive(!active);
     setinactive(!inactive);
@@ -32,7 +30,7 @@ function RentSellToggle({
     setlistingsType(val);
   };
 
-  // change listing type value from combobox
+  // change listing city value from combobox
   const changeListingCity = (val) => {
     setlistingsCity(val);
   };
@@ -69,8 +67,9 @@ function RentSellToggle({
   );
 
   const searchListings = () => {
+    console.log("search listings");
     updateSearchParams({
-      purpose: purpose,
+      purpose: listingPurpose,
       city: listingsCity,
       category: listingsType,
     });
@@ -123,6 +122,7 @@ function RentSellToggle({
               Type
             </span>
             <ListingTypes />
+            {/* <ListingPurpose /> */}
           </label>
           {/* Range */}
           <label className="block text-left mr-3 md:flex-1 w-full mb-4 md:mb-0">
@@ -138,7 +138,9 @@ function RentSellToggle({
           {/* Search Button */}
           <ButtonLg
             type="button"
-            onClick={() => searchListings()}
+            onClick={() => {
+              searchListings();
+            }}
             className="bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 border-secondary-500 text-white md:mb-0"
           >
             Search <FiSearch className="w-5 h-5 ml-2" />
