@@ -11,6 +11,8 @@ import HelpYouFind from "components/home/HelpYouFind/HelpYouFind";
 import HeroPage from "components/HeroPage/HeroPage";
 import ButtonLg from "components/design/Buttons/ButtonLg";
 import { useRouter } from "next/router";
+import ContactUs from "components/home/ContactUs/ContactUs";
+import NeedHomeLoan from "components/home/NeedHomeLoan/NeedHomeLoan";
 
 export default function Home() {
   const router = useRouter(); // Use the useRouter hook to access the router object
@@ -80,19 +82,17 @@ export default function Home() {
           <NewestListing listings={listingsArray} />
           {/* we help you find your dream house */}
           <HelpYouFind />
+        </div>
+        {/* need home loan section */}
+        <NeedHomeLoan />
+        <div className="container mx-auto px-7">
           {/* listing categories*/}
           <ListingCategories listings={listingsArray} />
         </div>
         {/* contact us section */}
         <HeroPage>
-          <h1 className="text-white mb-8">
-            Get Luxury And Cheap Housing And Guaranteed Forever
-          </h1>
-          <ButtonLg className="border-secondary-500 bg-secondary-500 hover:bg-secondary-700 hover:border-secondary-700 mx-auto">
-            <span className="text-white">Contact Now</span>
-          </ButtonLg>
+          <ContactUs />
         </HeroPage>
-        {/* <ContactUs /> */}
       </>
     </>
   );
