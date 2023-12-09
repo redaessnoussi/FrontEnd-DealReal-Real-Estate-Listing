@@ -3,11 +3,14 @@ import { firebaseStorage } from "../../../../firebase/firebaseStorage"; // Impor
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import ButtonLg from "components/design/Buttons/ButtonLg";
+require("dotenv").config();
 
 function RegisterForm({ style }) {
   // for registration
   const [repeatPassword, setrepeatPassword] = useState("");
   const [avatarFile, setAvatarFile] = useState({});
+  const apiURL = process.env.API_URL;
+
   // for user data
   const [userData, setUserData] = useState({
     email: "",
@@ -141,10 +144,7 @@ function RegisterForm({ style }) {
 
   const sendData = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/register",
-        userData
-      );
+      const response = await axios.post(`${apiURL}/api/register`, userData);
       console.log(response.data); // Handle the response as needed
     } catch (error) {
       console.error("Registration failed:", error);

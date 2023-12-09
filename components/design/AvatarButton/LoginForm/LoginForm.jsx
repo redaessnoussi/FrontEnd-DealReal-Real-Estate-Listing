@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ButtonLg from "components/design/Buttons/ButtonLg";
+require("dotenv").config();
 
 function LoginForm({ style }) {
   // for login
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const apiURL = process.env.API_URL;
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/login", {
+      const response = await axios.post(`${apiURL}/api/login`, {
         username: username,
         password: password,
       });

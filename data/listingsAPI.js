@@ -1,6 +1,9 @@
 import axios from "axios";
+// require("dotenv").config();
 
-export const baseUrl = "http://localhost:5000"; // Replace with your backend API URL
+const apiURL = process.env.API_URL;
+
+export const baseUrl = apiURL; // Replace with your backend API URL
 
 export const listingsAPI = async (endpoint) => {
   const url = `${baseUrl}/api/${endpoint}`;

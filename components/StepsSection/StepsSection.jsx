@@ -3,6 +3,7 @@ import UploadMedia from "components/UploadMedia/UploadMedia";
 import LocationStep from "components/LocationStep/LocationStep";
 import GeneralStep from "components/GeneralStep/GeneralStep";
 import axios from "axios";
+require("dotenv").config();
 
 function StepsSection({ steps }) {
   const stepsCount = steps.length;
@@ -34,6 +35,7 @@ function StepsSection({ steps }) {
     yearBuilt: "",
     specialId: "",
   });
+  const apiURL = process.env.API_URL;
 
   const handleFormData = (data) => {
     setPropertyData({ ...propertyData, ...data });
@@ -74,7 +76,7 @@ function StepsSection({ steps }) {
 
     try {
       // Make an API request to upload images and other data
-      await axios.post("http://localhost:5000/api/add-property", formData);
+      await axios.post(`${apiURL}/api/add-property`, formData);
 
       // Handle success, e.g., redirect to a success page
       console.log("added succusfuly");
