@@ -20,7 +20,7 @@ function AddListing() {
       {/* create listing section */}
       <div className="container mx-auto p-7">
         {/* steps section */}
-        <StepsSection steps={["General", "Media", "Location"]} />
+        <StepsSection steps={["General", "Media", "Location", "Success"]} />
       </div>
     </>
   );

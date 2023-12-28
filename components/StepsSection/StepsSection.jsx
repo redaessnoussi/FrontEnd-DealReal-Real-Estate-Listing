@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import UploadMedia from "components/UploadMedia/UploadMedia";
 import LocationStep from "components/LocationStep/LocationStep";
 import GeneralStep from "components/GeneralStep/GeneralStep";
-import axios from "axios";
+import SuccessAdd from "components/SuccessAdd/SuccessAdd";
 require("dotenv").config();
 
 function StepsSection({ steps }) {
@@ -149,6 +150,10 @@ function StepsSection({ steps }) {
           moveToNextStep={moveToNextStep}
         />
       );
+      break;
+
+    case 3:
+      stepComponent = <SuccessAdd />;
       break;
     default:
       stepComponent = null;
