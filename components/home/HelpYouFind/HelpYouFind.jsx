@@ -42,6 +42,7 @@ function HelpYouFind() {
             alt="Dream House"
             width={500}
             height={300}
+            priority={false}
             layout="responsive"
             className="object-cover rounded-lg"
           />
