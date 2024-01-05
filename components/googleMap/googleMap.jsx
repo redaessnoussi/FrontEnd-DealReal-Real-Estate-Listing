@@ -10,8 +10,8 @@ const GoogleMaps = ({ properties }) => {
 
   const defaultMapParams = {
     center: {
-      lat: parseInt(properties[0].geography.lat),
-      lng: parseInt(properties[0].geography.lng),
+      lat: properties.length > 0 ? parseInt(properties[0].geography.lat) : null,
+      lng: properties.length > 0 ? parseInt(properties[0].geography.lng) : null,
     },
     zoom: 10,
   };

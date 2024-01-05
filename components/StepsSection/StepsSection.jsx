@@ -4,7 +4,7 @@ import UploadMedia from "components/UploadMedia/UploadMedia";
 import LocationStep from "components/LocationStep/LocationStep";
 import GeneralStep from "components/GeneralStep/GeneralStep";
 import SuccessAdd from "components/SuccessAdd/SuccessAdd";
-require("dotenv").config();
+//require("dotenv").config();
 
 function StepsSection({ steps }) {
   const stepsCount = steps.length;

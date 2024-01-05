@@ -16,7 +16,6 @@
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "deck.gl": "^8.6.5",
-    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "firebase": "^10.3.1",
     "firebase-admin": "^11.10.1",

@@ -11,10 +11,10 @@ export default function ListingOverview({
   listingDetail,
   numberWithCommas,
 }) {
-  const bedrooms = listingDetail[0].bedrooms;
-  const bathrooms = listingDetail[0].bathrooms;
-  const garage = listingDetail[0].garage;
-  const propertySize = numberWithCommas(listingDetail[0].propertySize);
+  const bedrooms = listingDetail[0]?.bedrooms;
+  const bathrooms = listingDetail[0]?.bathrooms;
+  const garage = listingDetail[0]?.garage;
+  const propertySize = numberWithCommas(listingDetail[0]?.propertySize);
 
   return (
     <>

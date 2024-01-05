@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ButtonLg from "components/design/Buttons/ButtonLg";
-require("dotenv").config();
+// require("dotenv").config();
 
 function LoginForm({ style }) {
   // for login

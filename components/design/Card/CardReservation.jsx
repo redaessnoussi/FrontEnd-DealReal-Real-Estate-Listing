@@ -7,7 +7,7 @@ export default function CardReservation({
   listingDetail,
   numberWithCommas,
 }) {
-  const listingPrice = listingDetail[0].price;
+  const listingPrice = listingDetail[0]?.price;
   const formattedPrice = numberWithCommas(listingPrice);
 
   return (

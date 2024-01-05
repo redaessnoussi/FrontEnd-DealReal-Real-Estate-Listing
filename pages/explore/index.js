@@ -9,16 +9,19 @@ import GoogleMap from "components/googleMap/googleMap";
 import Head from "next/head";
 import Pagination from "components/Pagination/Pagination";
 import { useRouter } from "next/router";
+import LoadingPage from "components/design/LoadingPage/LoadingPage";
 
 export default function Explore() {
   const router = useRouter(); // Use the useRouter hook to access the router object
+  const [isloading, setloading] = useState(false);
   const [listings, setListings] = useState([]);
-  const [listingsArray, setListingsArray] = useState(listings.properties);
+  const [listingsArray, setListingsArray] = useState(listings.properties || []);
   const [purpose, setPurpose] = useState("for-sale");
 
   const limit = 8; // Specify the limit for properties per page
 
   const fetchListings = async () => {
+    setloading(true);
     try {
       const response = await listingsAPI(
         `properties/purpose/${purpose}?page=${
@@ -32,12 +35,13 @@ export default function Explore() {
     }
   };
 
+  // console.log(listingsArray.length);
+
   // Callback function to update listingPurpose
   const rentSaleToggle = (purpose) => {
-    console.log(purpose);
     setPurpose(purpose);
-    // Reset page to 1 when purpose changes
     router.push(`explore?page=1`);
+    // Reset page to 1 when purpose changes
   };
 
   const updateSearchParams = (newParams) => {
@@ -57,13 +61,19 @@ export default function Explore() {
     setListingsArray(listings.properties);
   }, [listings.properties]);
 
+  useEffect(() => {
+    listingsArray?.length > 0 && setloading(false);
+  }, [listingsArray]);
+
   return (
     <>
       <Head>
         <title>Deal Real - Explore Listings</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {listingsArray && listingsArray.length > 0 && (
+      {isloading ? (
+        <LoadingPage />
+      ) : (
         <>
           <div className="bg-green-200 h-96 relative flex justify-center">
             <GoogleMap properties={listingsArray} />

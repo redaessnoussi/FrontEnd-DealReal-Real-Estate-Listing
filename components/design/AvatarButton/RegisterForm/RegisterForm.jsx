@@ -3,7 +3,7 @@ import { firebaseStorage } from "../../../../firebase/firebaseStorage"; // Impor
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import ButtonLg from "components/design/Buttons/ButtonLg";
-require("dotenv").config();
+// require("dotenv").config();
 
 function RegisterForm({ style }) {
   // for registration

@@ -13,16 +13,19 @@ import HeroPage from "components/HeroPage/HeroPage";
 import { useRouter } from "next/router";
 import ContactUs from "components/home/ContactUs/ContactUs";
 import NeedHomeLoan from "components/home/NeedHomeLoan/NeedHomeLoan";
+import LoadingItems from "components/design/LoadingItems/LoadingItems";
 
 export default function Home() {
   const router = useRouter(); // Use the useRouter hook to access the router object
+  const [isloading, setloading] = useState(false);
   const [listings, setListings] = useState([]);
-  const [listingsArray, setListingsArray] = useState(listings.properties);
+  const [listingsArray, setListingsArray] = useState(listings.properties || []);
   const [purpose, setPurpose] = useState("for-sale");
 
   const limit = 8; // Specify the limit for properties per page
 
   const fetchListings = async (purposeData) => {
+    setloading(true);
     try {
       const response = await listingsAPI(
         `properties/purpose/${purposeData || "for-sale"}?page=${
@@ -31,6 +34,7 @@ export default function Home() {
       );
       setListings(response);
       setListingsArray(response.properties);
+      setloading(false);
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
@@ -79,7 +83,11 @@ export default function Home() {
             updateSearchParams={updateSearchParams}
           />
           {/* newest listing */}
-          <NewestListing listings={listingsArray} />
+          {isloading ? (
+            <LoadingItems />
+          ) : (
+            <NewestListing listings={listingsArray} />
+          )}
           {/* we help you find your dream house */}
           <HelpYouFind />
         </div>
@@ -87,7 +95,11 @@ export default function Home() {
         <NeedHomeLoan />
         <div className="container mx-auto px-7">
           {/* listing categories*/}
-          <ListingCategories listings={listingsArray} />
+          {isloading ? (
+            <LoadingItems />
+          ) : (
+            <ListingCategories listings={listingsArray} />
+          )}
         </div>
         {/* contact us section */}
         <HeroPage>
