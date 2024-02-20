@@ -1,5 +1,7 @@
 # Deal Real - Real Estate Listing App
 
+## Would you like to see the project live? ==> [Visit Now](https://deal-real-real-estate-listing.vercel.app)
+
 Deal Real is a full-stack web application built with the MERN stack (MongoDB, Express, React, Node.js). It also utilizes Next.js for server-side rendering, Tailwind CSS for styling, and Firebase for authentication.
 
 <div style="display: flex;">
