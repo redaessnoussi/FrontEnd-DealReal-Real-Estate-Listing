@@ -131,6 +131,7 @@ function RentSellToggle({ className, updateSearchParams, rentSaleToggle }) {
             </span>
             <input
               type="text"
+              id="range"
               className={style.input_default}
               placeholder="$106 - $948"
             />

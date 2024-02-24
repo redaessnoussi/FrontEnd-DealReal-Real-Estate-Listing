@@ -51,6 +51,7 @@ function UploadMedia({ handleFormData, moveToNextStep }) {
     <>
       <h2>Upload Images</h2>
       <input
+      id="image-upload"
         type="file"
         multiple
         onChange={handleImageChange}
