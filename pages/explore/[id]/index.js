@@ -142,7 +142,7 @@ export default function ListingDetails() {
                     {listingDetail[0]?.images.map((image, key) => (
                       <div
                         key={key}
-                        className="px-4"
+                        className="px-4 cursor-pointer"
                         onClick={() => openModal(image.url)}
                       >
                         <Image
